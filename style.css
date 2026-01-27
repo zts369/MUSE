@@ -1,6 +1,15 @@
-h1{
-   font-family: 'EB Garamond';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
 
 }
 
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+h1 {
+  text-align: center;
+  font-family: 'EB Garamond', serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400..800&family=Montserrat:wght@100..900&display=swap');
