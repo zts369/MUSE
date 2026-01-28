@@ -12,6 +12,17 @@
   
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Prevents accidental horizontal scrolling */
+}
+
+.container {
+  width: 100%;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -29,14 +40,16 @@ h1 {
   background-position: center;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  min-height: 100vh;
 }
 
 .hero-content {
   text-align: left;
   color: var(--off-white);
-  padding: 0 2rem;
+  padding: 0 auto;
   max-width: 800px;
+  margin: 0px;
 }
 
 .hero-top {
@@ -49,22 +62,23 @@ h1 {
 
 .hero-title {
   font-family: 'EB Garamond', sans-serif;
+  font-size: 6rem;
   text-transform: uppercase;
-  font-weight: 400;
-  letter-spacing: 8px;
-  margin-bottom: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 10px;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
 }
 
 .hero-description {
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   margin-bottom: 2.5rem;
   opacity: 0.95;
   max-width: 600px;
 }
-
 
 /* per section general settings */
 
@@ -84,7 +98,7 @@ section {
   font-weight: 600;
   letter-spacing: 3px;
   color: var(--burgundy);
-  margin-bottom: -20px;
+  margin-bottom: -1rem;
 }
 
 .section-title {
@@ -110,6 +124,41 @@ section {
   background-color: var(--cream);
 }
 
+.room-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  flex-direction:column;
+}
+
+.rooms-all-rooms-button {
+  font-family: 'Montserrat';
+  color: var(--charcoal);
+  font-size: 1.1rem;
+}
+
+.room-book-button{
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 1rem 2.5rem;
+  background-color: #E8D1C5; 
+  color: #452829;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.room-book-button:hover {
+  background-color: #f7ded1; 
+  color: #452829;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(69, 40, 41, 0.2);
+}
 
 .amenities-section {
   background-color: var(--off-white);
@@ -135,16 +184,15 @@ section {
 }
 
 
-
-
-/* Nav bar */
+/* Nav bar, to do */
 .nav {
+  position: sticky;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 4rem;
   background: transparent;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .nav a {
@@ -163,6 +211,7 @@ section {
 
 
 /*Carousel*/
+
 .carousel-container{
   position: relative; /* Allows buttons to be positioned absolutely */
   display: flex;
