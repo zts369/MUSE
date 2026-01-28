@@ -1,15 +1,169 @@
-
 * {
   box-sizing: border-box;
 }
-
-body {
-
-}
-
 h1 {
-  text-align: center;
   font-family: 'EB Garamond', serif;
 }
+
+
+/*Carousel*/
+.carousel-container{
+  position: relative; /* Allows buttons to be positioned absolutely */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 50px;
+}
+
+.room-carousel-list {
+  width: 100vw;
+  height: 350px;
+  padding: 5px;
+
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+
+  columns: 1;
+  margin: 0 100px 0px 100px;
+  text-align: center;
+}
+
+
+.room-carousel-list::scroll-button(*) {
+  background-color: #dddddd;
+  border: 0;
+  font-size: 2rem;
+  background: none;
+  color: black;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.room-carousel-list::scroll-button(*):hover,
+.room-carousel-list::scroll-button(*):focus {
+  opacity: 1;
+}
+
+.room-carousel-list::scroll-button(*):active {
+  translate: 1px 1px;
+}
+
+.room-carousel-list::scroll-button(*):disabled {
+  opacity: 0.2;
+  cursor: unset;
+}
+
+.room-carousel-list::scroll-button(left) {
+  width: 60px;
+  height: 60px;
+  background-color: gray;
+  opacity: 0.5;
+  border-radius: 30px;
+  border: 2px solid gray;
+  content: "◄";
+  color: white;
+  font-size: 30px;
+}
+
+.room-carousel-list::scroll-button(right) {
+  width: 60px;
+  height: 60px;
+  background-color: gray;
+  opacity: 0.5;
+  border-radius: 30px;
+  border: 2px solid gray;
+  color: white;
+  font-size: 30px;
+  content: "►";
+}
+
+.room-carousel-list {
+  anchor-name: --my-carousel;
+}
+
+.room-carousel-list::-webkit-scrollbar {
+  display: none;
+}
+
+.room-carousel-list::scroll-button(*) {
+  position: absolute;
+  position-anchor: --my-carousel;
+}
+
+.room-carousel-list::scroll-button(left) {
+  right: calc(anchor(left) - 70px);
+  bottom: calc(anchor(bottom) + 60px);
+}
+
+.room-carousel-list::scroll-button(right) {
+  left: calc(anchor(right) - 70px);
+  bottom: calc(anchor(bottom) + 60px);
+}
+
+.room-carousel-list::column {
+  scroll-snap-align: center;
+}
+
+.room-carousel-list {
+  scroll-marker-group: after;
+}
+
+.room-carousel-list::scroll-marker-group {
+  position: absolute;
+  position-anchor: --my-carousel;
+  top: calc(anchor(bottom) - 13px);
+  justify-self: anchor-center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.room-carousel-list::column::scroll-marker {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 8px;
+}
+.room-carousel-list::column::scroll-marker:target-before {
+  border: 2px solid #CCCCCC;
+  background-color: #CCCCCC;
+}
+
+.room-carousel-list::column::scroll-marker:target-current {
+  background-color: #452829;
+  transition: all 0.7s;
+}
+
+.room-carousel-list::column::scroll-marker:target-after {
+  border: 2px solid #CCCCCC;
+  background-color: #CCCCCC;
+}
+
+
+.room-item {
+  list-style-type: none;
+
+  display: inline-block;
+  height: 300px;
+  width: auto;
+  scroll-snap-align: always;
+
+  padding: 5px;
+  margin: 0 15px;
+  vertical-align: top;
+
+}
+
+.room-item img {
+  height: 300px;
+  width: auto;
+  margin: 10px 20px 20px 10px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/*SOURCE KO SA CAROUSEL: */
+
 
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400..800&family=Montserrat:wght@100..900&display=swap');
