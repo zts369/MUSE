@@ -1,3 +1,17 @@
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400..800&family=Montserrat:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* main color palette palang, can add fonts + other global settings if need be*/
+:root {
+  --burgundy: #452829;
+  --charcoal: #57595b;
+  --cream: #FFF7F0;
+  --light-beige: #F3E8DF;
+  --off-white: #FDFFF8;
+  
+}
+
 * {
   box-sizing: border-box;
 }
@@ -5,12 +19,148 @@ h1 {
   font-family: 'EB Garamond', serif;
 }
 
+/* hero/big image section */
+
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+  url("https://www.siliconluxembourg.lu/wp-content/uploads/2017/05/gabriel-ghnassia-hotel.jpg");
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  text-align: left;
+  color: var(--off-white);
+  padding: 0 2rem;
+  max-width: 800px;
+}
+
+.hero-top {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-family: 'EB Garamond', sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-description {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  opacity: 0.95;
+  max-width: 600px;
+}
+
+
+/* per section general settings */
+
+section {
+  padding: 6rem 4rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-label {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--burgundy);
+  margin-bottom: -20px;
+}
+
+.section-title {
+  font-family: 'EB Garamond', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  word-spacing: 0.5rem;
+  color: var(--burgundy);
+  margin-bottom: 1rem;
+}
+
+.section-body {
+  font-family: 'Montserrat';
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  max-width: 435px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.rooms-section {
+  background-color: var(--cream);
+}
+
+
+.amenities-section {
+  background-color: var(--off-white);
+}
+
+.location-section {
+  background-color: var(--cream);
+}
+
+.location-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.location-container iframe {
+  width: 100%;
+  height: 500px;
+  border: none;
+  display: block;
+}
+
+
+
+
 /* Nav bar */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4rem;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
 .nav a {
   text-decoration: none;
-  color: white;
-
+  color: black;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
+
+.nav a:hover {
+  text-decoration: underline;
+  transition: all 0.5s ease;
+  color: rgb(36, 36, 36);
+}
+
 
 /*Carousel*/
 .carousel-container{
@@ -169,7 +319,36 @@ h1 {
   border-radius: 8px;
 }
 
+.room-item img:hover {
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+/* 
+tentative carousel changes, will ask iren
+.carousel-nav {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  color: var(--burgundy);
+}
+
+.carousel-nav:hover {
+  background-color: var(--light-beige);
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+  */
+
+
 /*SOURCE KO SA CAROUSEL: */
 
-
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400..800&family=Montserrat:wght@100..900&display=swap');

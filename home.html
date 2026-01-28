@@ -16,22 +16,35 @@
         </nav>
 
         <!-- Picture / video and hotel description -->
-        <div class="main">
-            <img src="https://i.pinimg.com/736x/6a/28/70/6a2870f4bff5b8b27bb027fc0b8db53f.jpg" alt="Hotel Transylvania">
-            <div class="main-caption">
-                <h4>WELCOME TO</h4>
-                <h1>Hotel Transylvania</h1>
-                <p>Experience the ultimate in comfort and luxury at Hotel Transylvania, where every stay is a memorable adventure. Nestled in a picturesque location, our hotel offers world-class amenities, exquisite dining, and unparalleled service. Whether you're here for a romantic getaway, a family vacation, or a business trip, Hotel Transylvania promises an unforgettable experience.</p>
+
+        <section class="hero"> 
+            
+            <div class = "hero-content">
+                <div class = "hero-text"> 
+                    <p class = "hero-top"> Welcome To </p>
+                    <h2 class = "hero-title"> HOTEL</h2>
+                    <h1 class = "hero-title"> TRANSYLVANIA </h1>
+                    <p class="hero-description">Experience the ultimate in comfort and luxury at Hotel Transylvania, where every stay is a memorable adventure.</p>
+                </div>
             </div>
-        </div>
+        </section>
 
         <!-- View Hotel Rooms-->
-        <div class="rooms">
-            <h5>Explore</h5>
-            <h4>A Place That Fits You</h4>
-            <p>Explore the spaces designed for your comfort and relaxation.</p>
+        <section class="rooms-section">
+            <div class ="section-header">
+                <h5 class="section-label"> Explore</h5>
+                <h2 class ="section-title">A Place That Fits You</h2>
+                <p class = "section-body">Explore the spaces designed for your comfort and relaxation.</p>
+            </div>
+    
         
             <div class="carousel-container">
+                <!-- will ask iren about changes
+                <button class="carousel-nav prev" onclick="scrollCarousel(-1)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button> -->
                 <ul class="room-carousel-list">
                     <!--Twilight Cozy Room-->
                     <li class="room-item">
@@ -67,22 +80,44 @@
                         <img src="https://i.pinimg.com/736x/76/ec/3b/76ec3b5c9444bda6bff1ab2c628bc963.jpg" alt="Celestial Family Suite">
                     </li>
                 </ul>
+                <!-- 
+                <button class="carousel-nav next" onclick="scrollCarousel(1)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button> -->
             </div>
+
+            
         
             <div class="carousel-footer">
                 <a href="rooms.html">View all rooms</a>
                 <button onclick="location.href='book.html'">Book Now</button>
             </div>
-        </div>
+        </section>
+
+        <section class = "amenities-section"> 
+            <div class = "section-header"> 
+                <h5 class="section-label"> Service </h5>
+                <h2 class ="section-title">Hotel Amenities</h2>
+                <p class = "section-body">Enjoy thoughtfully curated amenities designed for comfort, relaxation, and convenience throughout your stay.</p>
+            </div>
+            
+        </section>
 
         <!-- Location -->
-        <div>
-            <h5>Place</h5>
-            <h4>Getting Here</h4>
-            <p>Find your way to the hotel with ease.</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.495749398393!2d120.9971541!3d14.6277773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b60d1705065b%3A0xce443cbaaca62507!2sTransylvania!5e0!3m2!1sen!2sph!4v1769529928262!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
+        <div class = "location-section">
+            <div class = "section-header"> 
+                <h5 class="section-label"> Place </h5>
+                <h2 class ="section-title">Getting here</h2>
+                <p class = "section-body">Find your way to the hotel with ease.</p>
+            </div>
+            
+            <div class="location-container"> 
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.495749398393!2d120.9971541!3d14.6277773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b60d1705065b%3A0xce443cbaaca62507!2sTransylvania!5e0!3m2!1sen!2sph!4v1769529928262!5m2!1sen!2sph"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ></iframe>
+            </div> 
         </div>
+            
 
     </div>
 </body>
