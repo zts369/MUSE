@@ -511,9 +511,9 @@ tentative carousel changes, will ask iren
   font-size: 0.75rem;
   position: absolute;
   bottom: 60px;
-  left: 30px;
+  left: 40px;
   color: white;
-  font-size: 0.9rem;
+  font-size: 1rem;
   text-transform: capitalize;
   opacity: 0.9;
 }
@@ -522,9 +522,9 @@ tentative carousel changes, will ask iren
 .arrow {
   position: absolute;
   bottom: 60px;
-  right: 50px;
+  right: 55px;
   color: white;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .title-box {
