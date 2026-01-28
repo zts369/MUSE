@@ -1,6 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400..800&family=Montserrat:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+/*included na sa taas ung montserrat font*/
 
 /* main color palette palang, can add fonts + other global settings if need be*/
 :root {
@@ -12,7 +12,11 @@
   
 }
 
-body {
+*{
+  box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -23,14 +27,56 @@ body {
   width: 100%;
 }
 
-* {
-  box-sizing: border-box;
-}
+
 h1 {
   font-family: 'EB Garamond', serif;
 }
 
 /* Nav bar, to do */
+.site-header {
+  width: 100%;
+  padding: 0 0 20px 0;
+  margin-top: 0;
+  top: 0;
+  position: absolute;
+  z-index: 1000;
+}
+
+.header-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 100px 24px 0;
+}
+
+.logo{
+  background-color: #452829;
+  margin-left: 50px;
+  width: 150px;
+  height: fit-content;
+  text-align: center;
+  font-family: 'EB Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 10px 10px;
+}
+
+.logo-btn{
+  text-decoration: none;
+  color: #FFF7F0;
+}
+
+.logo-btn:hover{
+  text-decoration: underline;
+  color: #E8D1C5;
+  transition: all 0.3s ease;
+}
+
+.logo-btn:visited{
+  color: #FFF7F0;
+}
+
 .nav {
   position: sticky;
   display: flex;
@@ -38,12 +84,14 @@ h1 {
   align-items: center;
   padding: 1.5rem 4rem;
   background: transparent;
+  color: white;
   transition: all 0.3s ease;
 }
 
 .nav a {
+  margin-left: 50px;
   text-decoration: none;
-  color: black;
+  color: white;
   font-family: 'Montserrat';
   font-weight: 600;
   transition: all 0.3s ease;
@@ -64,7 +112,8 @@ h1 {
   background-size: cover;
   background-position: center;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: flex-start;
   min-height: 100vh;
 }
@@ -78,6 +127,7 @@ h1 {
 }
 
 .hero-top {
+  margin-top: 200px;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
