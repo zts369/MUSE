@@ -463,7 +463,7 @@ tentative carousel changes, will ask iren
   flex-wrap: wrap;
   justify-content: center;
   padding: 40px;
-  font-family: 'Monserrat', serif;
+  font-family: 'Montserrat', serif;
 }
 
 /* Card Container */
@@ -483,14 +483,14 @@ tentative carousel changes, will ask iren
 }
 
 /* Image Styling */
-.card-img {
+.card-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform var(--transition-speed) ease;
 }
 
-.card:hover .card-img {
+.card:hover .card-image-wrapper img {
   transform: scale(1.05);
 }
 
@@ -508,7 +508,7 @@ tentative carousel changes, will ask iren
 
 .label-small {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.75remerif;
+  font-size: 0.75rem;
   position: absolute;
   bottom: 60px;
   left: 30px;
