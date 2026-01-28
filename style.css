@@ -5,6 +5,12 @@ h1 {
   font-family: 'EB Garamond', serif;
 }
 
+/* Nav bar */
+.nav a {
+  text-decoration: none;
+  color: white;
+
+}
 
 /*Carousel*/
 .carousel-container{
