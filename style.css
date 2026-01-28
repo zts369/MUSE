@@ -9,6 +9,12 @@
   --cream: #FFF7F0;
   --light-beige: #F3E8DF;
   --off-white: #FDFFF8;
+
+  /* Card Component Variables for amenities */
+  --card-width: 280px;
+  --card-height: 400px;
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
   
 }
 
@@ -450,3 +456,91 @@ tentative carousel changes, will ask iren
 
 /*SOURCE KO SA CAROUSEL: */
 
+/* Card Component Styles for amenities */
+.cards-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px;
+  font-family: 'Times New Roman', serif;
+}
+
+/* Card Container */
+.card {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+/* Image Styling */
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-speed) ease;
+}
+
+.card:hover .card-img {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background-color:rgba(0,0,0,0.5);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.label-small {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75remerif;
+  position: absolute;
+  bottom: 80px;
+  left: 30px;
+  color: white;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  opacity: 0.9;
+}
+
+/* Up Arrow Icon */
+.arrow {
+  position: absolute;
+  bottom: 80px;
+  right: 50px;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.title-box {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--off-white);
+  width: 80%;
+  padding: 15px 10px;
+  border-radius: 12px 12px 0 0;
+  text-align: center;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.title-box h2 {
+  font-family: 'EB Garamond', serif;
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: #222;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
