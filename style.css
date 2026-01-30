@@ -210,7 +210,7 @@ section {
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 5rem;
   flex-direction:column;
 }
 
@@ -266,25 +266,26 @@ section {
 
 
 /*Carousel*/
-
 .carousel-container{
   position: relative; /* Allows buttons to be positioned absolutely */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 50px;
+  padding: 0 130px;
 }
 
 .room-carousel-list {
+  display: flex;
   width: 100vw;
   height: 350px;
-  padding: 5px;
+  padding: 0px;
+  margin: 0;
 
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
-
-  columns: 1;
-  margin: 0 100px 0px 100px;
+  list-style: none;
+  
+  anchor-name: --my-carousel;
   text-align: center;
 }
 
@@ -360,10 +361,6 @@ section {
   bottom: calc(anchor(bottom) + 60px);
 }
 
-.room-carousel-list::column {
-  scroll-snap-align: center;
-}
-
 .room-carousel-list {
   scroll-marker-group: after;
 }
@@ -371,56 +368,59 @@ section {
 .room-carousel-list::scroll-marker-group {
   position: absolute;
   position-anchor: --my-carousel;
-  top: calc(anchor(bottom) - 13px);
-  justify-self: anchor-center;
+  
+  top: calc(anchor(bottom) + 20px); 
+  
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  gap: 15px;
+  z-index: 99; /* Ensure they stay on top */
 }
-.room-carousel-list::column::scroll-marker {
+
+.room-item::scroll-marker {
   content: "";
+  display: block; /* Required to show up */
   width: 5px;
   height: 5px;
-  background-color: transparent;
+
   border: 2px solid black;
-  border-radius: 8px;
-}
-.room-carousel-list::column::scroll-marker:target-before {
-  border: 2px solid #CCCCCC;
-  background-color: #CCCCCC;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-.room-carousel-list::column::scroll-marker:target-current {
+.room-item::scroll-marker:target-current {
   background-color: #452829;
-  transition: all 0.7s;
 }
 
-.room-carousel-list::column::scroll-marker:target-after {
+.room-item::scroll-marker:target-before,
+.room-item::scroll-marker:target-after {
   border: 2px solid #CCCCCC;
   background-color: #CCCCCC;
 }
 
 
 .room-item {
-  list-style-type: none;
+  flex: 0 0 100%;
 
-  display: inline-block;
-  height: 300px;
+  display: flex;
+  height: 350px;
   width: auto;
-  scroll-snap-align: always;
+  scroll-snap-align: center;
 
-  padding: 5px;
-  margin: 0 15px;
+  padding: 0;
+  margin: 0;
   vertical-align: top;
-
+  justify-content: center;
+  align-items: center;
 }
 
 .room-item img {
-  height: 300px;
+  height: 350px;
   width: auto;
-  margin: 10px 20px 20px 10px;
+  margin: 0;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 .room-item img:hover {
