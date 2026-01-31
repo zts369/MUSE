@@ -58,25 +58,28 @@ h1 {
 .logo{
   background-color: #452829;
   margin-left: 50px;
-  width: 150px;
+  width: 220px;
   height: fit-content;
   text-align: center;
   font-family: 'EB Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  border-radius: 0 0 10px 10px;
+  font-size: 0.9rem;
+  font-weight: 450;
+  letter-spacing: 0.3rem;
+  padding-top : 0.5rem;
+  padding-bottom: 1.5rem;
+  border-radius: 0 0 30px 30px;
 }
 
 .logo-btn{
   text-decoration: none;
+  text-transform: capitalize;
   color: #FFF7F0;
 }
 
 .logo-btn:hover{
   text-decoration: underline;
   color: #E8D1C5;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }
 
 .logo-btn:visited{
