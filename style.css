@@ -391,168 +391,44 @@ section {
   background-color: rgb(252, 248, 245); 
 }
 
-
 /*Carousel*/
-.carousel-container{
-  position: relative; /* Allows buttons to be positioned absolutely */
+
+.carousel-wrapper {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0 130px;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
-.room-carousel-list {
+.carousel-container {
+  flex: 1; 
+  overflow: hidden;
+}
+
+.carousel-track {
   display: flex;
-  width: 100vw;
-  height: 350px;
-  padding: 0px;
-  margin: 0;
-
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  list-style: none;
-  
-  anchor-name: --my-carousel;
-  text-align: center;
+  gap: 1.5rem;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
-.room-carousel-list::scroll-button(*) {
-  background-color: #dddddd;
-  border: 0;
-  font-size: 2rem;
-  background: none;
-  color: black;
-  opacity: 0.7;
-  cursor: pointer;
+.room-card {
+  flex: 0 0 calc(33.333% - 16px); 
+  min-width: 300px;
 }
 
-.room-carousel-list::scroll-button(*):hover,
-.room-carousel-list::scroll-button(*):focus {
-  opacity: 1;
-}
-
-.room-carousel-list::scroll-button(*):active {
-  translate: 1px 1px;
-}
-
-.room-carousel-list::scroll-button(*):disabled {
-  opacity: 0.2;
-  cursor: unset;
-}
-
-.room-carousel-list::scroll-button(left) {
-  width: 60px;
-  height: 60px;
-  background-color: gray;
-  opacity: 0.5;
-  border-radius: 30px;
-  border: 2px solid gray;
-  content: "◄";
-  color: white;
-  font-size: 30px;
-}
-
-.room-carousel-list::scroll-button(right) {
-  width: 60px;
-  height: 60px;
-  background-color: gray;
-  opacity: 0.5;
-  border-radius: 30px;
-  border: 2px solid gray;
-  color: white;
-  font-size: 30px;
-  content: "►";
-}
-
-.room-carousel-list {
-  anchor-name: --my-carousel;
-}
-
-.room-carousel-list::-webkit-scrollbar {
-  display: none;
-}
-
-.room-carousel-list::scroll-button(*) {
-  position: absolute;
-  position-anchor: --my-carousel;
-}
-
-.room-carousel-list::scroll-button(left) {
-  right: calc(anchor(left) - 70px);
-  bottom: calc(anchor(bottom) + 60px);
-}
-
-.room-carousel-list::scroll-button(right) {
-  left: calc(anchor(right) - 70px);
-  bottom: calc(anchor(bottom) + 60px);
-}
-
-.room-carousel-list::scroll-marker-group {
-  position: absolute;
-  position-anchor: --my-carousel;
-  
-  top: calc(anchor(bottom) + 20px); 
-  
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 15px;
-  z-index: 99; /* Ensure they stay on top */
-}
-
-.room-item::scroll-marker {
-  content: "";
-  display: block; /* Required to show up */
-  width: 5px;
-  height: 5px;
-
-  border: 2px solid black;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.room-item::scroll-marker:target-current {
-  background-color: #452829;
-}
-
-.room-item::scroll-marker:target-before,
-.room-item::scroll-marker:target-after {
-  border: 2px solid #CCCCCC;
-  background-color: #CCCCCC;
-}
-
-
-.room-item {
-  flex: 0 0 100%;
-
-  display: flex;
-  height: 350px;
-  width: auto;
-  scroll-snap-align: center;
-
-  padding: 0;
-  margin: 0;
-  vertical-align: top;
-  justify-content: center;
-  align-items: center;
-}
-
-.room-item img {
-  height: 350px;
-  width: auto;
-  margin: 0;
+.room-card img {
+  width: 100%;
+  height: 400px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
 }
 
-.room-item img:hover {
+.room-card:hover img {
   transform: scale(1.02);
-  transition: all 0.3s ease;
 }
 
-/* 
-tentative carousel changes, will ask iren
 .carousel-nav {
   width: 50px;
   height: 50px;
@@ -566,18 +442,37 @@ tentative carousel changes, will ask iren
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   flex-shrink: 0;
-  color: var(--burgundy);
+  color: var(--primary-brown);
 }
 
 .carousel-nav:hover {
-  background-color: var(--light-beige);
+  background-color: var(--warm-beige);
   transform: scale(1.1);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
-  */
 
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
 
-/*SOURCE KO SA CAROUSEL: */
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #f1e2d0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background-color: var(--burgundy);
+  width: 24px;
+  border-radius: 4px;
+}
+
 
 /* Card Component Styles for amenities */
 .cards-container {
