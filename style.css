@@ -22,11 +22,12 @@
   box-sizing: border-box;
 }
 
-html, body {
+html, body, p{
   margin: 0;
   padding: 0;
   width: 100%;
   overflow-x: hidden; /* Prevents accidental horizontal scrolling */
+  font-family: 'Montserrat', sans-serif;
 }
 
 .container {
@@ -162,6 +163,31 @@ h1 {
   margin-bottom: 2.5rem;
   opacity: 0.95;
   max-width: 600px;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px; 
+}
+
+.scroll-indicator p {
+  margin: 0;
+  font-size: 14px; 
+  text-align: center;
+}
+
+.scroll-indicator img {
+  width: 50px;
+  height: 50px;
+  display: block;
 }
 
 /* per section general settings */
