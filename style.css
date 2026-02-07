@@ -178,7 +178,10 @@ h1 {
   gap: 5px; 
 }
 
+.scroll-indicator, 
 .scroll-indicator p {
+  color: white;
+  text-decoration: none;
   margin: 0;
   font-size: 14px; 
   text-align: center;
@@ -592,4 +595,122 @@ section {
   color: #222;
   line-height: 1.4;
   text-transform: uppercase;
+}
+
+
+/*Rooms section*/
+/* Container for the nav to create the full-width bottom border */
+.room-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem; /* Spacing between tabs */
+  margin-top: 5rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid #e0e0e0; /* The thin light grey line across */
+  max-width: 800px; /* Adjust based on your layout width */
+}
+
+.room-nav a {
+  color: #757575;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 1rem 2rem; /* Vertical space for the border distance */
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent; /* Hidden border by default */
+  margin-bottom: -1px; /* Overlaps the grey line perfectly */
+}
+
+.room-nav a:hover {
+  color: #452829;
+}
+
+/* The Active State - Matching your images */
+.room-nav a.active {
+  color: #452829;
+  font-weight: 600;
+  border-bottom: 3px solid #452829; /* The thick dark line for selection */
+}
+
+
+/* Card Container */
+.room-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns for larger screens */
+  gap: 30px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.room-item {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensures all cards in a row are the same height */
+}
+
+.room-image img {
+  width: 100%;      
+  height: 250px;    
+  object-fit: cover; 
+  display: block;
+}
+
+.room-card-content {
+  padding: 20px;
+}
+
+/* Title Styling */
+.room-name {
+  font-size: 1.2rem;
+  margin: 0 0 15px 0;
+  color: #333;
+}
+
+/* Icons Row */
+.room-details-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows icons to wrap if screen is small */
+  gap: 15px;
+  border-bottom: 1px solid #eee; /* The thin line in your image */
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.room-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.room-details img {
+  width: 20px; /* Adjust based on your icon size */
+  height: 20px;
+  opacity: 0.6; /* Makes icons look subtle like the image */
+}
+
+.room-details p {
+  margin: 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Price Styling */
+.room-price {
+  font-size: 1rem;
+  color: #666;
+}
+
+.room-price .amount {
+  color: #d4a373; /* Matches the tan/orange price color in your image */
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.room-price .per-night {
+  font-weight: normal;
 }
