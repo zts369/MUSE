@@ -40,26 +40,33 @@ h1 {
 }
 
 /* Nav bar, to do */
+
+.nav a.active {
+  border-bottom: 2px solid white;
+}
+
+.static-header .nav a.active {
+  border-bottom: 2px solid var(--burgundy);
+}
+
 .site-header {
   width: 100%;
-  padding: 0 0 20px 0;
-  margin-top: 0;
   top: 0;
-  position: absolute;
-  z-index: 1000;
 }
 
 .header-inner{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 100px 24px 0;
+  gap: 50px;
+  padding: 0 50px;
+  width: 100%;
 }
 
 .logo{
   background-color: #452829;
-  margin-left: 50px;
   width: 220px;
+  margin-left: 0;
   height: fit-content;
   text-align: center;
   font-family: 'EB Garamond', serif;
@@ -88,14 +95,9 @@ h1 {
 }
 
 .nav {
-  position: sticky;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 4rem;
-  background: transparent;
-  color: white;
-  transition: all 0.3s ease;
+  justify-content : flex-start;
+  gap: 30px;
 }
 
 .nav a {
@@ -108,10 +110,21 @@ h1 {
 }
 
 .nav a:hover {
-  text-decoration: underline;
+  text-decoration: none;
   transition: all 0.5s ease;
   color: rgb(36, 36, 36);
 }
+
+.hero .static-header {
+  background-color: transparent;
+  position: absolute;
+  left: 0px;
+}
+
+.hero .static-header .nav a.active {
+  border-bottom : 2px solid white;
+}
+
 
 /* hero/big image section */
 
@@ -131,7 +144,7 @@ h1 {
 .hero-content {
   text-align: left;
   color: var(--off-white);
-  padding: 0 auto;
+  padding: 0 20px;
   max-width: 800px;
   margin: 0px;
 }
@@ -597,8 +610,50 @@ section {
   text-transform: uppercase;
 }
 
-
 /*Rooms section*/
+
+.static-header {
+  position: relative;
+  background-color: var(--cream);
+  padding: 0;
+}
+
+.static-header .header-inner {
+  margin-bottom: 0;
+  height: 60px;
+}
+
+.static-header .logo {
+  margin-top: 0;
+  padding-bottom: 1rem; /* Tightens the logo box */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.static-header .nav {
+  display: flex;
+  justify-content : flex-end;
+  gap: 20px;
+}
+
+.rooms-nav-links a {
+  color: var(--burgundy);
+}
+
+/* i don't know what transition color to make this - jason*/
+.static-header .rooms-nav-links a:hover {
+  color: #5e5e5e;
+  text-decoration: none;
+  transition: all 0.5s ease;
+}
+
+#explore-rooms {
+  padding-top: 3rem;
+}
+
+
 /* Container for the nav to create the full-width bottom border */
 .room-nav {
   display: flex;
