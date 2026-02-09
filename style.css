@@ -27,6 +27,7 @@ html, body, p{
   padding: 0;
   width: 100%;
   overflow-x: hidden; /* Prevents accidental horizontal scrolling */
+  scroll-behavior: auto;
   font-family: 'Montserrat', sans-serif;
 }
 
