@@ -27,6 +27,7 @@ html, body, p{
   padding: 0;
   width: 100%;
   overflow-x: hidden; /* Prevents accidental horizontal scrolling */
+  scroll-behavior: auto;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -768,4 +769,175 @@ section {
 
 .room-price .per-night {
   font-weight: normal;
+}
+
+/* Sign-in / Sign-up Page Styles */
+.signin-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+  url("https://www.siliconluxembourg.lu/wp-content/uploads/2017/05/gabriel-ghnassia-hotel.jpg");
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.signin-hero .static-header {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.auth-card {
+  background-color: var(--cream);
+  padding: 3rem;
+  border-radius: var(--border-radius);
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  text-align: center;
+  margin-top: 60px;
+}
+
+.auth-header h2 {
+  font-family: 'EB Garamond', serif;
+  color: var(--burgundy);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.auth-header p {
+  color: var(--charcoal);
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--burgundy);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: white;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--burgundy);
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--burgundy);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.auth-btn:hover {
+  background-color: #2c1a1b;
+}
+
+.auth-footer {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--charcoal);
+}
+
+.auth-footer a {
+  color: var(--burgundy);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Horizontal layout for Sign Up card */
+#signup-card {
+  max-width: 800px;
+}
+
+#signup-card .auth-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+#signup-card .auth-btn,
+#signup-card .auth-footer {
+  grid-column: 1 / -1;
+}
+
+#signup-card .form-group {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  #signup-card .auth-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Contact Number Input Styling */
+.contact-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  background-color: white;
+  width: 100%;
+}
+
+.contact-wrapper:focus-within {
+  border-color: var(--burgundy);
+}
+
+.contact-prefix {
+  padding: 12px 15px;
+  color: var(--charcoal);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  background-color: #f3e8df; /* Light beige to distinguish prefix */
+  border-right: 1px solid #dcdcdc;
+  border-radius: 6px 0 0 6px;
+}
+
+.form-group .contact-wrapper input {
+  border: none;
+  border-radius: 0 6px 6px 0;
+  width: 100%;
+}
+
+.form-group .contact-wrapper input:focus {
+  outline: none;
+  border: none;
 }

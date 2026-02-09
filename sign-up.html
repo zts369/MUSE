@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Sign In - Hotel Transylvania</title>
+</head>
+<body>
+    
+    <main class="container">
+        
+        <section class="signin-hero">
+            <header class="site-header static-header">
+                <div class="header-inner">
+                    <div class="logo">
+                        <a class="logo-btn" href="home.html">HOTEL TRANSYLVANIA</a>
+                    </div>
+                    <nav class="nav">
+                        <a href="home.html">Home</a>
+                        <a href="amenities.html">Amenities</a>
+                        <a href="rooms.html">Rooms</a>
+                        <a href="sign-up.html" class="active">Sign-up / Sign-in</a>
+                    </nav>
+                </div>
+            </header>
+
+            <!-- Sign In Card -->
+            <div class="auth-card" id="signin-card">
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Enter your details to sign in</p>
+                </div>
+                <form class="auth-form">
+                    <div class="form-group">
+                        <label for="signin-identifier">Email or Username</label>
+                        <input type="text" id="signin-identifier" placeholder="Enter your email or username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signin-password">Password</label>
+                        <input type="password" id="signin-password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Sign In</button>
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Sign Up Card -->
+            <div class="auth-card" id="signup-card" style="display: none;">
+                <div class="auth-header">
+                    <h2>Create Account</h2>
+                    <p>Register your details to book a stay</p>
+                </div>
+                <form class="auth-form">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-username">Username</label>
+                        <input type="text" id="signup-username" placeholder="Choose a username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-contact">Contact Number</label>
+                        <div class="contact-wrapper">
+                            <span class="contact-prefix">+63</span>
+                            <input type="tel" id="signup-contact" placeholder="9123456789" maxlength="10" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="Create a password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm-password">Confirm Password</label>
+                        <input type="password" id="signup-confirm-password" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Sign Up</button>
+                    <div class="auth-footer">
+                        <p>Already have an account? <a href="#" id="show-signin">Sign in</a></p>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class ="footer-section">
+            <div class ="footer-text">
+                <div class="footer-title">
+                    <h4> Hotel </h4>
+                    <h1> Transylvania</h1>
+                </div>
+                <div class="footer-body">
+                    <p>406 Mayon St, Santa Mesa Heights, Quezon City, Metro Manila <br> +63 917 420 6767 <br> testemail@gmail.com
+                    </p>
+                </div>
+            </div>
+
+            <div class = "footer-nav">
+                <a href ="#">About Us</a>
+                <a href ="#">Contact</a>
+                <a href ="#">Terms & Conditions</a>
+            </div>
+
+            <div class = "footer-socials">
+                <a href = "#">Facebook</a>
+                <a href = "#">Tiktok</a>
+                <a href = "#">Instagram</a>
+            </div>
+
+            <div class = "footer-newsletter">
+                <h3> Subscribe to our newsletter </h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" class="newsletter-input">
+                    <button type="submit" class="newsletter-btn">OK</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const signinCard = document.getElementById('signin-card');
+        const signupCard = document.getElementById('signup-card');
+        const showSignupBtn = document.getElementById('show-signup');
+        const showSigninBtn = document.getElementById('show-signin');
+
+        showSignupBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            signinCard.style.display = 'none';
+            signupCard.style.display = 'block';
+        });
+
+        showSigninBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            signupCard.style.display = 'none';
+            signinCard.style.display = 'block';
+        });
+
+        // Contact Number Validation
+        const contactInput = document.getElementById('signup-contact');
+        contactInput.addEventListener('input', function(e) {
+            // Remove any non-digit characters to ensure integer values only
+            this.value = this.value.replace(/\D/g, '');
+        });
+    </script>
+</body>
+</html>
