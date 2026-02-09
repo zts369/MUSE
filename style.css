@@ -625,7 +625,7 @@ section {
 
 .static-header .logo {
   margin-top: 0;
-  padding-bottom: 1rem; /* Tightens the logo box */
+  padding-bottom: 1rem; 
   height: 100%;
   display: flex;
   align-items: center;
@@ -644,7 +644,7 @@ section {
 
 /* i don't know what transition color to make this - jason*/
 .static-header .rooms-nav-links a:hover {
-  color: #5e5e5e;
+  color: #fcbdbd;
   text-decoration: none;
   transition: all 0.5s ease;
 }
