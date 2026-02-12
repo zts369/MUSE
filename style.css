@@ -112,7 +112,7 @@ h1 {
 
 .nav a:hover {
   text-decoration: none;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease-in-out;
   color: rgb(36, 36, 36);
 }
 
@@ -184,7 +184,8 @@ h1 {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  animation: bounce 2s infinite;
+  animation: bounce 10s infinite;
+  transition: all 1s ease-in;
   
   display: flex;
   flex-direction: column;
@@ -645,7 +646,7 @@ section {
 
 /* i don't know what transition color to make this - jason*/
 .static-header .rooms-nav-links a:hover {
-  color: #5e5e5e;
+  color: #f2baaf;
   text-decoration: none;
   transition: all 0.5s ease;
 }
@@ -940,4 +941,61 @@ section {
 .form-group .contact-wrapper input:focus {
   outline: none;
   border: none;
+}
+
+.hero-about {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+  url('img/Lobby.png');
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 60vh;
+}
+
+.hero-about-title {
+  font-family: 'EB Garamond', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 500;
+  letter-spacing: 8px;
+  margin-top: 20rem;
+  font-style: italic;
+}
+
+.hero-about .static-header {
+  background-color: transparent;
+  position: absolute;
+  left: 0px;
+}
+
+.hero-about .static-header .nav a.active {
+  border-bottom : 2px solid white;
+}
+
+.about-description {
+  background-color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.about-description h3 {
+  font-family: 'EB Garamond';
+  font-size: 2.5rem;
+  color: var(--burgundy);
+  text-align: center;
+}
+
+.about-description p {
+  word-spacing: 8px;
+  line-height: 1.8rem;
+  font-family: 'Montserrat';
+}
+
+.about-text {
+  max-width: 75%;
 }
