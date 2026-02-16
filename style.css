@@ -42,12 +42,32 @@ h1 {
 
 /* Nav bar, to do */
 
-.nav a.active {
-  border-bottom: 2px solid white;
+/* --- DEFAULT NAV STYLES --- */
+.nav a {
+  text-decoration: none;
+  transition: 0.3s;
 }
 
-.static-header .nav a.active {
-  border-bottom: 2px solid var(--burgundy);
+/* --- IF THE BODY IS A DARK PAGE --- */
+.dark-page .nav a {
+  color: white;
+}
+.dark-page .nav a.active {
+  border-bottom: 3px solid white;
+}
+
+.dark-page .nav a:hover {
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  color: rgb(36, 36, 36);
+}
+ 
+.light-page .nav a {
+  color: var(--burgundy);
+  
+}
+.light-page .nav a.active {
+  border-bottom: 3px solid var(--burgundy);
 }
 
 .site-header {
@@ -111,11 +131,6 @@ h1 {
   transition: all 0.3s ease;
 }
 
-.nav a:hover {
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
-  color: rgb(36, 36, 36);
-}
 
 .hero .static-header {
   background-color: transparent;
@@ -123,9 +138,6 @@ h1 {
   left: 0px;
 }
 
-.hero .static-header .nav a.active {
-  border-bottom : 2px solid white;
-}
 
 
 /* hero/big image section */
@@ -578,12 +590,8 @@ section {
   gap: 20px;
 }
 
-.rooms-nav-links a {
-  color: var(--burgundy);
-}
-
 /* i don't know what transition color to make this - jason*/
-.static-header .rooms-nav-links a:hover {
+.light-page a:hover {
 
   color: #f2baaf;
   text-decoration: none;
@@ -935,9 +943,6 @@ section {
   left: 0px;
 }
 
-.hero-about .static-header .nav a.active {
-  border-bottom : 2px solid white;
-}
 
 .about-description {
   background-color: var(--cream);
