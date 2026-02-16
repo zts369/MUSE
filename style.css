@@ -318,32 +318,23 @@ section {
   background-color: var(--burgundy);
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
-  padding: 5rem 8% 4rem 8%;
+  padding: 3.5rem 7%;
   box-sizing: border-box;
+  color: white;
 }
 
-.footer-text, .footer-nav, .footer-socials, .footer-newsletter {
+.footer-socials{
   display: flex;
-  flex-direction: column;
-  text-align: left;
-  color: #FFFFFF;
-  font-family: 'Montserrat';
-  margin-left: 2rem;
-}
-
-.footer-text, .footer-socials {
-  gap: 0.5rem;
-}
-
-.footer-nav {
+  flex-direction: row;
   gap: 1rem;
 }
 
 .footer-title {
   font-family: 'EB Garamond', sans-serif;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .footer-title h1 {
@@ -366,7 +357,7 @@ section {
   max-width: 300px;
   line-height: 1.3rem;
   letter-spacing: 1px;
-  margin-top: -15px;
+  font-family: 'Montserrat';
 }
 
 .footer-section a{
@@ -382,59 +373,6 @@ section {
   color: var(--charcoal);
 }
 
-.footer-newsletter h3{
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.footer-newsletter {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-
-  flex-grow: 1;
-  max-width: 400px;
-  margin-left: 2rem;
-}
-
-.newsletter-form {
-  display: flex; 
-  border: 3px solid #E8D1C5; 
-  border-radius: 5px;
-  background: transparent; 
-  margin-top: -30px;
-}
-
-.newsletter-input {
-  background: transparent;
-  border: none;
-  color: var(--cream);
-  padding: 0.8rem 1rem;
-  flex-grow: 1; 
-  font-family: 'Montserrat', sans-serif;
-  outline: none;
-}
-
-.newsletter-input::placeholder {
-  color: var(--cream);
-  opacity: 0.6;
-}
-
-.newsletter-btn {
-  background-color: #E8D1C5;
-  color: #14274A; 
-  border: none;
-  padding: 0 1.5rem;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  text-transform: uppercase;
-}
-
-.newsletter-btn:hover {
-  background-color: rgb(252, 248, 245); 
-}
 
 /*Carousel*/
 
@@ -646,11 +584,8 @@ section {
 
 /* i don't know what transition color to make this - jason*/
 .static-header .rooms-nav-links a:hover {
-<<<<<<< HEAD
-  color: #fcbdbd;
-=======
+
   color: #f2baaf;
->>>>>>> 62d419aba4218017647bae2e433da419b7c3d154
   text-decoration: none;
   transition: all 0.5s ease;
 }
