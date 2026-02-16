@@ -6,62 +6,69 @@
     <link rel="stylesheet" href="style.css">
     <title>Hotel Transylvania Booking</title>
 </head>
-<body>
+<body class = "light-page">
     
-    <main class="container">
+    <main class="container" style = "background-color: #FFF7F0">
         <!-- navigation bar -->
-        <header class="site-header static-header">
-            <div class="header-inner">
-                <div class="logo">
-                    <a class="logo-btn" href="home.html">HOTEL TRANSYLVANIA</a>
+        <div id ="nav-placeholder"></div>
+
+        <section class="progress-section">
+            <p class="section-subtitle">SELECT YOUR DATES</p>
+            <div class="stepper">
+                <div class="step active">
+                    <div class="circle">1</div>
+                    <span>Booking Details</span>
                 </div>
-                <nav class="nav rooms-nav-links">
-                    <a href="home.html">Home</a>
-                    <a href="about.html">About Us</a>
-                    <a href="amenities.html">Amenities</a>
-                    <a href="rooms.html" class="active">Rooms</a>
-                    <a href="sign-up.html">Sign-up / Sign-in</a>
-                </nav>
+                <div class="step">
+                    <div class="circle">2</div>
+                    <span>Room & Rate Selection</span>
+                </div>
+                <div class="step">
+                    <div class="circle">3</div>
+                    <span>Payment</span>
+                </div>
+                <div class="step">
+                    <div class="circle">4</div>
+                    <span>Confirmation</span>
+                </div>
             </div>
-        </header>
-
-        <section class="booking-process-section">
-            <h5>SELECT YOUR DATES</h5>
-
-    
         </section>
 
-        
-        <section class="schedule-booking-section">
-            <div class="schedule-booking-container">
-                <form class="schedule-booking-form">
-
-                    <label for="checkin">Check-in Date</label>
-                    <input type="date" id="checkin" name="checkin" required>
-
-                    <label for="checkout">Check-out Date</label>
-                    <input type="date" id="checkout" name="checkout" required>
-
-                    <label for="adult-guest">Adult Guests</label>
-                    <input type="number" id="adult-guest" name="adult-guest" min="1" max="10" required>
-
-                    <label for="child-guest">Child Guests</label>
-                    <input type="number" id="child-guest" name="child-guest" min="0" max="10" required>
-
-                    <label for="numOfRooms">Room</label>
-                    <input type="number" id="numOfRooms" name="numOfRooms" min="1" max="7" required>
-
+        <section class="form-section">
+            <div class="booking-card">
+                <h2>Booking Details</h2>
+                <form class="booking-form">
+                    <div class="form-group">
+                        <label>Check-in Date *</label>
+                        <input type="date" placeholder="Select Date">
+                    </div>
+                    <div class="form-group">
+                        <label>Check-out Date *</label>
+                        <input type="date" placeholder="Select Date">
+                    </div>
+                    <div class="form-group">
+                        <label>Adult Guests *</label>
+                        <select><option>Select Number of Adults</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Child Guests *</label>
+                        <select><option>Select Number of Children (Under 12yrs old)</option></select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Room *</label>
+                        <select><option>Select Number of Rooms</option></select>
+                    </div>
                 </form>
-
+            </div>
         </section>
 
-        <section class="booking-button-section">
-            <button class="back-button" onclick="location.href='rooms.html'">Back to Rooms</button>
-            <button class="booking-button" type="submit" form="schedule-booking-form">Continue</button>
+        <section class="navigation-section">
+            <button class="btn">Back to Home</button>
+            <button class="btn">Continue</button>
         </section>
             
         <div id="footer-placeholder"></div>
         <script src="footerscript.js"></script>
-
+        <script src = "navscript.js"></script>
     </main>
 </body>

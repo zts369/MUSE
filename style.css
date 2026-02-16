@@ -42,13 +42,11 @@ h1 {
 
 /* Nav bar, to do */
 
-/* --- DEFAULT NAV STYLES --- */
 .nav a {
   text-decoration: none;
   transition: 0.3s;
 }
 
-/* --- IF THE BODY IS A DARK PAGE --- */
 .dark-page .nav a {
   color: white;
 }
@@ -1108,4 +1106,116 @@ section {
     .spec-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
     .amenities-list { grid-template-columns: 1fr; }
     .room-main-title { font-size: 2.2rem; }
+}
+
+/* booking, in progress*/
+
+.progress-section {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.section-subtitle {
+  letter-spacing: 3px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.stepper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.step {
+  text-align: center;
+  width: 150px;
+  font-size: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.stepper::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  width: 50%;
+  height: 2px;
+  background: var(--burgundy);
+  z-index: 0;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--burgundy);
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+}
+
+.step.active .circle {
+  background: var(--cream);
+}
+
+.form-section {
+  padding: 20px 0;  
+}
+
+.booking-card {
+  background-color: transparent;
+  border: 1.5px solid var(--burgundy);
+  border-radius: 40px;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+.booking-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 25px;
+}
+
+.full-width {
+  grid-column: span 2; 
+}
+
+.navigation-section {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px 0 100px 0;
+}
+
+
+.btn {
+  background: var(--cream);
+  border: none;
+  padding: 15px 80px;
+  border-radius: 8px;
+  color: var(--burgundy);
+  font-weight: bold;
+  border: 3px solid var(--burgundy);
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+input, select {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid var(--burgundy);
+  border-radius: 8px;
+  background: transparent;
 }
