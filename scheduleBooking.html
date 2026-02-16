@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Hotel Transylvania Booking</title>
+</head>
+<body>
+    
+    <main class="container">
+        <!-- navigation bar -->
+        <header class="site-header static-header">
+            <div class="header-inner">
+                <div class="logo">
+                    <a class="logo-btn" href="home.html">HOTEL TRANSYLVANIA</a>
+                </div>
+                <nav class="nav rooms-nav-links">
+                    <a href="home.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="amenities.html">Amenities</a>
+                    <a href="rooms.html" class="active">Rooms</a>
+                    <a href="sign-up.html">Sign-up / Sign-in</a>
+                </nav>
+            </div>
+        </header>
+
+        <section class="booking-process-section">
+            <h5>SELECT YOUR DATES</h5>
+
+    
+        </section>
+
+        
+        <section class="schedule-booking-section">
+            <div class="schedule-booking-container">
+                <form class="schedule-booking-form">
+
+                    <label for="checkin">Check-in Date</label>
+                    <input type="date" id="checkin" name="checkin" required>
+
+                    <label for="checkout">Check-out Date</label>
+                    <input type="date" id="checkout" name="checkout" required>
+
+                    <label for="adult-guest">Adult Guests</label>
+                    <input type="number" id="adult-guest" name="adult-guest" min="1" max="10" required>
+
+                    <label for="child-guest">Child Guests</label>
+                    <input type="number" id="child-guest" name="child-guest" min="0" max="10" required>
+
+                    <label for="numOfRooms">Room</label>
+                    <input type="number" id="numOfRooms" name="numOfRooms" min="1" max="7" required>
+
+                </form>
+
+        </section>
+
+        <section class="booking-button-section">
+            <button class="back-button" onclick="location.href='rooms.html'">Back to Rooms</button>
+            <button class="booking-button" type="submit" form="schedule-booking-form">Continue</button>
+        </section>
+            
+        <section class="footer-section">
+            <div class="footer-text">
+                <div class="footer-title">
+                    <h4> Hotel </h4>
+                    <h1> Transylvania</h1>
+                </div>
+                <div class="footer-body">
+                    <p>406 Mayon St, Santa Mesa Heights, Quezon City, Metro Manila <br> 
+                    +63 917 420 6767 <br> 
+                    testemail@gmail.com
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-nav">
+                <a href="about.html">About Us</a>
+                <a href="#">Contact</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+
+            <div class="footer-socials">
+                <a href="#">Facebook</a>
+                <a href="#">Tiktok</a>
+                <a href="#">Instagram</a>
+            </div>
+        </section>
+
+    </main>
+</body>
