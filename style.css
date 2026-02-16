@@ -1028,13 +1028,13 @@ section {
 /*ROOM DETAILS PAGE*/
 /* --- Root Styles for Detail Page --- */
 .room-details-page {
-    padding: 60px 20px;
+    padding: 0px;
     background-color: var(--cream);
     color: #333;
 }
 
 .detail-container {
-    max-width: 1000px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -1057,20 +1057,20 @@ section {
 
 .lead-text {
     font-weight: 500;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: #222;
 }
 
 .section-subtitle {
     font-size: 1.5rem;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
 /* --- Specifications Grid --- */
 .specification-wrapper {
-    background-color: #be8868; 
+    background-color: #bb9d7a; 
     padding: 60px 20px;
     text-align: center;
     margin-bottom: 60px;
@@ -1105,7 +1105,7 @@ section {
 .spec-label {
     font-size: 0.7rem;
     font-weight: 700;
-    color: #802121; 
+    color: #eee4de; 
     letter-spacing: 1.5px;
     margin-bottom: 4px;
 }
