@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Hotel Transylvania Booking</title>
+</head>
+<body class = "light-page">
+    
+    <main class="container" style = "background-color: #FFF7F0">
+        <!-- navigation bar -->
+        <div id ="nav-placeholder"></div>
+
+        <section class="progress-section">
+            <p class="section-subtitle">SELECT YOUR DATES</p>
+            <div class="stepper">
+                <div class="step active">
+                    <div class="circle">1</div>
+                    <span>Booking Details</span>
+                </div>
+                <div class="step">
+                    <div class="circle">2</div>
+                    <span>Room & Rate Selection</span>
+                </div>
+                <div class="step">
+                    <div class="circle">3</div>
+                    <span>Payment</span>
+                </div>
+                <div class="step">
+                    <div class="circle">4</div>
+                    <span>Confirmation</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <div class="booking-card">
+                <h2>Booking Details</h2>
+                <form class="booking-form">
+                    <div class="form-group">
+                        <label>Check-in Date *</label>
+                        <input type="date" placeholder="Select Date">
+                    </div>
+                    <div class="form-group">
+                        <label>Check-out Date *</label>
+                        <input type="date" placeholder="Select Date">
+                    </div>
+                    <div class="form-group">
+                        <label>Adult Guests *</label>
+                        <select><option>Select Number of Adults</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Child Guests *</label>
+                        <select><option>Select Number of Children (Under 12yrs old)</option></select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Room *</label>
+                        <select><option>Select Number of Rooms</option></select>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="navigation-section">
+            <button class="btn">Back to Home</button>
+            <button class="btn">Continue</button>
+        </section>
+            
+        <div id="footer-placeholder"></div>
+        <script src="footerscript.js"></script>
+        <script src = "navscript.js"></script>
+    </main>
+</body>
