@@ -55,6 +55,7 @@ h1 {
 }
 
 .dark-page .nav a:hover {
+  cursor: pointer;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
   color: rgb(36, 36, 36);
@@ -66,6 +67,13 @@ h1 {
 }
 .light-page .nav a.active {
   border-bottom: 3px solid var(--burgundy);
+}
+
+.light-page .nav a:hover {
+  cursor: pointer;
+  color: #f2baaf;
+  text-decoration: none;
+  transition: all 0.5s ease;
 }
 
 .site-header {
@@ -293,6 +301,7 @@ section {
 }
 
 .room-book-button:hover {
+  cursor: pointer;
   background-color: #f7ded1; 
   color: #452829;
   transform: translateY(-2px);
@@ -380,6 +389,7 @@ section {
 }
 
 .footer-section a:hover {
+  cursor: pointer;
   color: var(--charcoal);
 }
 
@@ -439,6 +449,7 @@ section {
 }
 
 .carousel-nav:hover {
+  cursor: pointer;
   background-color: var(--warm-beige);
   transform: scale(1.1);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
@@ -588,13 +599,7 @@ section {
   gap: 20px;
 }
 
-/* i don't know what transition color to make this - jason*/
-.light-page a:hover {
 
-  color: #f2baaf;
-  text-decoration: none;
-  transition: all 0.5s ease;
-}
 
 #explore-rooms {
   padding-top: 3rem;
@@ -630,6 +635,7 @@ section {
 
 .room-nav a:hover {
   color: #452829;
+  cursor: pointer;
 }
 
 /* The Active State - Matching your images */
@@ -1124,4 +1130,180 @@ section {
 .room-price-display .per-night {
     font-size: 1.3rem;
     color: #666;
+}
+
+/* booking */
+/* booking, in progress*/
+
+.progress-section {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.section-subtitle {
+  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: var(--burgundy);
+  text-transform: uppercase;
+}
+
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.step {
+  text-align: center;
+  width: 150px;
+  font-size: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.step.active span {
+  font-weight: 550;
+}
+
+.step span {
+  display: block;
+  font-family: 'Montserrat';
+  font-size: 13px;
+  color: var(--burgundy);
+}
+
+.stepper::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 7%;
+  width: 85%;
+  height: 1px;
+  background: var(--burgundy);
+  z-index: 0;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--burgundy);
+  font-size: 15px;
+  color: var(--burgundy);
+  border-radius: 100%;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+}
+
+.step.active .circle {
+  background: #E8D1C5;
+  font-weight: 800;
+}
+
+.form-section {
+  padding: 20px 0;  
+}
+
+.booking-card {
+  background-color: transparent;
+  border: 2.5px solid var(--burgundy);
+  border-radius: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 25px 50px 50px 50px;;
+  font-family: 'Montserrat';
+}
+
+.booking-card h2 {
+    /* Remove the default browser margin at the top */ 
+    
+    /* Add a little space below it to breathe before the form starts */
+    margin-bottom: 30px; 
+    
+    /* Optional: If you want it even higher, use a small negative margin */
+    /* margin-top: -10px; */
+}
+
+.booking-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 30px;
+}
+
+.full-width {
+  grid-column: span 2; 
+}
+
+.navigation-section {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px 0 100px 0;
+}
+
+
+.btn {
+  background: var(--cream);
+  border: none;
+  padding: 15px 80px;
+  border-radius: 8px;
+  color: var(--burgundy);
+  font-weight: bold;
+  border: 3px solid var(--burgundy);
+  width: 475px;
+}
+
+.btn:hover {
+  background: #E8D1C5;
+  transition: all 0.3s ease;
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.booking-form-group input,
+.booking-form-group select {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid var(--burgundy);
+  border-radius: 8px;
+  background: transparent;
+  appearance: base-select;
+}
+
+.booking-form-group input[type="date"] {
+  appearance: none; 
+  -webkit-appearance: none;
+  color: var(--burgundy);
+  font-family: 'Montserrat', sans-serif;
+  border: 1px solid #8D7777;  
+  border-radius: 10px;
+  padding: 12px;
+  background-color: transparent;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.booking-form-group input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(18%) sepia(16%) saturate(1115%) hue-rotate(314deg) brightness(91%) contrast(92%);
+}
+
+.booking-form-group select option {
+  padding: 10px;
+  background: transparent;
+  color: var(--burgundy);
 }
