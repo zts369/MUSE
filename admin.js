@@ -1,25 +1,3 @@
-function switchTab(tabId, e) {
-    const targetTab = document.getElementById(tabId);
-    if (!targetTab) return;
-
-    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    
-    targetTab.classList.add('active');
-    
-    if (e && e.currentTarget) {
-        e.currentTarget.classList.add('active');
-    }
-    
-    const titles = {
-        'rooms': 'Room Management',
-        'reports': 'Financial Reports'
-    };
-    
-    const titleEl = document.getElementById('tab-title');
-    if (titleEl) titleEl.innerText = titles[tabId] || 'Dashboard';
-}
-
 function openEditModal(roomName, price, status, desc) {
     document.getElementById('modal-title').innerText = 'Edit Room';
     document.getElementById('room-name').value = roomName;
@@ -43,9 +21,9 @@ function closeModal() {
 }
 
 // Close modal when clicking outside
-window.onclick = function(event) {
+window.addEventListener('click', function(event) {
     const modal = document.getElementById('roomModal');
     if (event.target == modal) {
         closeModal();
     }
-}
+});

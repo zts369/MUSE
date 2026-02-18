@@ -103,3 +103,11 @@
 .tag.success { background-color: #d4edda; color: #155724; }
 .tag.pending { background-color: #fff3cd; color: #856404; }
 .tag.danger { background-color: #f8d7da; color: #721c24; }
+
+/* Report Tab Styles */
+.report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
