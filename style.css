@@ -339,7 +339,7 @@ section {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 3.5rem 7%;
+  padding: 2rem 7%;
   box-sizing: border-box;
   color: white;
 }
@@ -1135,12 +1135,20 @@ section {
 /* booking */
 /* booking, in progress*/
 
+.booking-step {
+  width:100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
 .progress-section {
   padding: 10px 0;
+  margin-bottom: -100px;
   text-align: center;
 }
 
-.section-subtitle {
+.booking-section-subtitle {
   letter-spacing: 3px;
   font-size: 14px;
   font-weight: 500;
@@ -1254,9 +1262,10 @@ section {
   padding: 15px 80px;
   border-radius: 8px;
   color: var(--burgundy);
-  font-weight: bold;
   border: 3px solid var(--burgundy);
   width: 475px;
+  font-family: 'Montserrat';
+  font-weight: 600;
 }
 
 .btn:hover {
@@ -1280,15 +1289,41 @@ label {
   border: 1px solid var(--burgundy);
   border-radius: 8px;
   background: transparent;
-  appearance: base-select;
 }
+
+.booking-form-group select {
+  appearance: none;       
+  -webkit-appearance: none; 
+  -moz-appearance: none;    
+  
+  cursor: pointer;
+  padding-right: 40px;    
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23452829' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center; 
+  background-size: 14px; 
+  color: var(--burgundy);
+  font-family: 'Montserrat';
+  
+  border: 1px solid var(--burgundy);
+  border-radius: 8px;
+  background-color: transparent;
+}
+
+.booking-form-group select:focus {
+  outline: none;
+  border-color: #2e0f12;
+  transition: all 0.3s ease;
+}
+
 
 .booking-form-group input[type="date"] {
   appearance: none; 
   -webkit-appearance: none;
   color: var(--burgundy);
   font-family: 'Montserrat', sans-serif;
-  border: 1px solid #8D7777;  
+  border: 1px solid var(--burgundy);  
   border-radius: 10px;
   padding: 12px;
   background-color: transparent;
@@ -1302,8 +1337,3 @@ label {
   filter: invert(18%) sepia(16%) saturate(1115%) hue-rotate(314deg) brightness(91%) contrast(92%);
 }
 
-.booking-form-group select option {
-  padding: 10px;
-  background: transparent;
-  color: var(--burgundy);
-}

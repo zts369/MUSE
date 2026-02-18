@@ -13,62 +13,106 @@
         <div id ="nav-placeholder"></div>
 
         <section class="progress-section">
-            <p class="section-subtitle">SELECT YOUR DATES</p>
-            <div class="stepper">
-                <div class="step active">
-                    <div class="circle">1</div>
-                    <span>Booking Details</span>
+                <p id = "step-subtitle" class="booking-section-subtitle">SELECT YOUR DATES</p>
+                <div class="stepper">
+                    <div class="step active">
+                        <div class="circle">1</div>
+                        <span>Booking Details</span>
+                    </div>
+                    <div class="step">
+                        <div class="circle">2</div>
+                        <span>Room & Rate Selection</span>
+                    </div>
+                    <div class="step">
+                        <div class="circle">3</div>
+                        <span>Payment</span>
+                    </div>
+                    <div class="step">
+                        <div class="circle">4</div>
+                        <span>Confirmation</span>
+                    </div>
                 </div>
-                <div class="step">
-                    <div class="circle">2</div>
-                    <span>Room & Rate Selection</span>
-                </div>
-                <div class="step">
-                    <div class="circle">3</div>
-                    <span>Payment</span>
-                </div>
-                <div class="step">
-                    <div class="circle">4</div>
-                    <span>Confirmation</span>
-                </div>
-            </div>
         </section>
 
-        <section class="form-section">
-            <div class="booking-card">
-                <h2>Booking Details</h2>
-                <form class="booking-form">
-                    <div class="booking-form-group">
-                        <label>Check-in Date *</label>
-                        <input type="date" placeholder="Select Date">
-                    </div>
-                    <div class="booking-form-group">
-                        <label>Check-out Date *</label>
-                        <input type="date" placeholder="Select Date">
-                    </div>
-                    <div class="booking-form-group">
-                        <label>Adult Guests *</label>
-                        <select><option>Select Number of Adults</option></select>
-                    </div>
-                    <div class="booking-form-group">
-                        <label>Child Guests *</label>
-                        <select><option>Select Number of Children (Under 12yrs old)</option> <option>2</option></select>
-                    </div>
-                    <div class="booking-form-group full-width">
-                        <label>Room *</label>
-                        <select><option>Select Number of Rooms</option></select>
-                    </div>
-                </form>
-            </div>
-        </section>
+        <section id = "step-1" class = "booking-details-section booking-step" style = "margin-bottom: -50px;"> 
 
-        <section class="navigation-section">
-            <button class="btn">Back to Home</button>
-            <button class="btn">Continue</button>
+            <section class="form-section">
+                <div class="booking-card">
+                    <h2>Booking Details</h2>
+                    <form class="booking-form">
+                        <div class="booking-form-group">
+                            <label>Check-in Date *</label>
+                            <input type="date" placeholder="Select Date">
+                        </div>
+                        <div class="booking-form-group">
+                            <label>Check-out Date *</label>
+                            <input type="date" placeholder="Select Date">
+                        </div>
+                        <div class="booking-form-group">
+                            <label>Adult Guests *</label>
+                            <select><option>Select Number of Adults</option></select>
+                        </div>
+                        <div class="booking-form-group">
+                            <label>Child Guests *</label>
+                            <select><option>Select Number of Children (Under 12yrs old)</option> </select>
+                        </div>
+                        <div class="booking-form-group full-width">
+                            <label>Room *</label>
+                            <select><option>Select Number of Rooms</option></select>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="navigation-section">
+                <a href="home.html"><button class="btn">Back to Home</button></a>
+                <button class="btn" onclick="goToStep(2)">Continue</button>
+            </section>
+
+        </section>  
+
+        <section id = "step-2" class = "room-selection-section booking-step" style="display:none;">
+            <div class="selection-header">
+                <p class="all-stays-include">All Stays Include:</p>
+                <p class="amenities-text">
+                    Daily breakfast Daily afternoon tea at the Clubhouse In-room refreshments... 
+                    Access to wellness facilities including voga pavilion and Pilates studio, steam room, 
+                    cold plunge pool and fitness centre.
+                </p>
+            </div>
+
+            <div class="room-card">
+                <div class="room-image">
+                    <img src="room-image.jpg" alt="Moonlight Room">
+                </div>
+                <div class="room-info">
+                    <div class="room-title-row">
+                        <h3>Moonlight Room</h3>
+                        <div class="price-box">
+                            <span>From</span>
+                            <p>₱0,000/night</p>
+                            <button class="book-now-btn">Book now</button>
+                        </div>
+                    </div>
+                    <p class="room-description">Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+                    <div class="room-specs">
+                        <span>80m²</span>
+                        <span>4 beds</span>
+                        <span>2 baths</span>
+                        <span>6 guests</span>
+                    </div>
+                </div>
+            </div>
+            <section class="navigation-section">
+                <button class="btn" onclick="goToStep(1)">Back</button>
+                <button class="btn" onclick="goToStep(3)">Continue</button>
+            </section>
         </section>
+        
             
         <div id="footer-placeholder"></div>
         <script src="footerscript.js"></script>
         <script src = "navscript.js"></script>
+        <script src = "bookingJS.js"></script>
     </main>
 </body>
