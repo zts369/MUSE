@@ -6,10 +6,10 @@
     <title>Guest Booking | Hotel Transylvania</title>
 </head>
 <body class="fd-wrapper">
-    <main class="fd-main" style="margin-left: 0; padding: 40px;">
+    <main class="fd-content-section">
         <header class="content-header">
             <h2 id="booking-title" class="header-font">Guest Booking</h2>
-            <button onclick="window.history.back()" class="link-btn">← Back to Dashboard</button>
+            <button onclick="window.history.back()" class="link-btn">← Back to View Reservations</button>
         </header>
 
         <div class="fd-table-card">
@@ -24,65 +24,8 @@
         </div>
     </main>
 
+    <script src="guestData.js"></script>
     <script>
-        const guestDataStore = {
-            "Jonathan Loughran": {
-                email: "jonathan@human.com",
-                phone: "0917-123-4567",
-                bookings: [
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e1", room: "Moonlight Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 0, total: 2000, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e2", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 2, total: 3200, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e3", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 1, total: 3200, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e4", room: "Lunar Delux Suite", in: "2026-02-20", out: "2026-05-22", adults: 4, children: 2, total: 18900, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e5", room: "Celestial Family Suite", in: "2026-02-20", out: "2026-02-22", adults: 3, children: 4, total: 29900, status: "Reserved" }
-                ]
-            },
-            "Iren Phillin Ding": {
-                email: "iren@human.com",
-                phone: "0917-123-4567",
-                bookings: [
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e6", room: "Moonlight Room", in: "2026-02-21", out: "2026-02-22", adults: 2, children: 0, total: 2000, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e7", room: "Twilight Cozy Room", in: "2026-02-21", out: "2026-02-22", adults: 2, children: 2, total: 3200, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e8", room: "Twilight Cozy Room", in: "2026-02-21", out: "2026-02-22", adults: 2, children: 1, total: 3200, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e9", room: "Lunar Delux Suite", in: "2026-02-21", out: "2026-05-22", adults: 4, children: 2, total: 18900, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e10", room: "Celestial Family Suite", in: "2026-02-21", out: "2026-02-22", adults: 3, children: 4, total: 29900, status: "Reserved" }
-                ]
-            },
-            "Arisha Beri": {
-                email: "arishaberi@human.com",
-                phone: "0917-123-4567",
-                bookings: [
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e11", room: "Moonlight Room", in: "2026-02-22", out: "2026-02-24", adults: 2, children: 0, total: 2000, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e12", room: "Twilight Cozy Room", in: "2026-02-22", out: "2026-02-24", adults: 2, children: 2, total: 3200, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e13", room: "Twilight Cozy Room", in: "2026-02-22", out: "2026-02-24", adults: 2, children: 1, total: 3200, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e14", room: "Lunar Delux Suite", in: "2026-02-22", out: "2026-05-24", adults: 4, children: 2, total: 18900, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e15", room: "Celestial Family Suite", in: "2026-02-22", out: "2026-02-24", adults: 3, children: 4, total: 29900, status: "Reserved" }
-                ]
-            },
-            "Jason Derulo": {
-                email: "jason@human.com",
-                phone: "0917-123-4567",
-                bookings: [
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e16", room: "Moonlight Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 0, total: 2000, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e17", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 2, total: 3200, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e18", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 1, total: 3200, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e19", room: "Lunar Delux Suite", in: "2026-02-20", out: "2026-05-22", adults: 4, children: 2, total: 18900, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e20", room: "Celestial Family Suite", in: "2026-02-20", out: "2026-02-22", adults: 3, children: 4, total: 29900, status: "Reserved" }
-                ]
-            },
-            "Zhupin Sio": {
-                email: "zhupin@human.com",
-                phone: "0917-123-4567",
-                bookings: [
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e21", room: "Moonlight Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 0, total: 2000, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e22", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 2, total: 3200, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e23", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 1, total: 3200, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e24", room: "Lunar Delux Suite", in: "2026-02-20", out: "2026-05-22", adults: 4, children: 2, total: 18900, status: "Reserved" },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e25", room: "Celestial Family Suite", in: "2026-02-20", out: "2026-02-22", adults: 3, children: 4, total: 29900, status: "Reserved" }
-                ]
-            }
-        };
-
         const urlParams = new URLSearchParams(window.location.search);
         const guestName = urlParams.get('guest');
 

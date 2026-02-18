@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const resList = document.getElementById('reservation-list');
+            if (resList) {
+                resList.addEventListener('click', (e) => {
+                    const row = e.target.closest('.clickable-row');
+                    if (row) {
+                        window.location.href = `guestBooking.html?guest=${encodeURIComponent(row.dataset.guest)}`;
+                    }
+                });
+            }
+        });
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="frontdesk-style.css">
+    <title>Front Desk | Hotel Transylvania</title>
+</head>
+<body>
+    <div class="fd-wrapper">
+        <nav class="fd-sidebar">
+            <div class="sidebar-header">
+                <h3 class="brand-title">Hotel Transylvania</h3>
+                <p class="brand-sub">Front Desk</p>
+            </div>
+            <ul class="fd-nav">
+                <li>
+                    <a href="frontdeskViewReservation.html" class="nav-item">View Reservations</a>
+                </li>
+                <li>
+                    <a href="frontdeskGuestDirectory.html" class="nav-item">Guest Directory</a>
+                </li>
+                <li>
+                    <a href="frontdeskHistory.html" class="nav-item active">History Logs</a>
+                </li>
+            </ul>
+            <div class="fd-sidebar-footer">
+                <a href="sign-up.html" class="nav-item">Logout</a>
+            </div>
+        </nav>
+
+        <main class="fd-main">
+            <header class="content-header">
+                <h2 id="tab-title" class="header-font">View Reservations</h2>
+                <div class="staff-info">Staff Access</div>
+            </header>
+
+            <div id="reservations" class="tab-pane">
+                <div class="fd-table-card">
+                    <table class="fd-data-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Guest</th>
+                                <th>Room</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="log-entry">
+                            <tr class="log-entry">
+                                <td class="log-time">2026-02-19 <span class="time-dim">10:15:22</span></td>
+                                <td><strong>Jonathan Loughran</strong></td>
+                                <td>Room 101</td>
+                                <td><span class="log-badge badge-checkin">Check-In</span></td>
+                            </tr>
+                            <tr class="log-entry">
+                                <td class="log-time">2026-02-19 <span class="time-dim">09:45:10</span></td>
+                                <td><strong>Iren Phillin Ding</strong></td>
+                                <td>Room 204</td>
+                                <td><span class="log-badge badge-checkout">Check-Out</span></td>
+
+                            </tr>
+                            
+                            <tr class="log-entry">
+                                <td class="log-time">2026-02-19 <span class="time-dim">08:45:10</span></td>
+                                <td><strong>Zhupin Sio</strong></td>
+                                <td>Room 204</td>
+                                <td><span class="log-badge badge-checkout">Check-Out</span></td>
+
+                            </tr>
+                            <tr class="log-entry">
+                                <td class="log-time">2026-02-19 <span class="time-dim">06:35:10</span></td>
+                                <td><strong>Jason Derulo</strong></td>
+                                <td>Room 333</td>
+                                <td><span class="log-badge badge-checkout">Check-Out</span></td>
+
+                            </tr>
+                            <tr class="log-entry">
+                                <td class="log-time">2026-02-18 <span class="time-dim">16:20:00</span></td>
+                                <td><strong>Arisha Beri</strong></td>
+                                <td>Suite 01</td>
+                                <td><span class="log-badge badge-cancel">Cancelled</span></td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+    
