@@ -545,12 +545,14 @@ section {
 }
 
 /* Up Arrow Icon */
-.arrow {
+.arrow-btn {
   position: absolute;
   bottom: 60px;
   right: 55px;
   color: white;
   font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .title-box {
@@ -575,6 +577,44 @@ section {
   line-height: 1.4;
   text-transform: uppercase;
 }
+
+.text-container {
+  padding: 20px;
+  background: #FDFFF8;
+  transition: all 0.4s ease;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.description-box {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out, opacity 0.3s ease, padding 0.3s ease;
+
+  font-family: 'Montserrat';
+  color: #452829; 
+}
+
+.card.active .description-box {
+  max-height: 300px;    
+  opacity: 1;    
+  padding: 10px 20px;      
+  margin-top: 10px;
+}
+
+/* Rotate the arrow when active */
+.card.active .arrow-btn {
+  transform: rotate(180deg);
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+
+
+
+
+
 /*Rooms section*/
 
 .static-header {
@@ -642,15 +682,12 @@ section {
   cursor: pointer;
 }
 
-/* The Active State - Matching your images */
 .room-nav a.active {
   color: #452829;
   font-weight: 600;
   border-bottom: 3px solid #452829; 
 }
 
-
-/* Card Container */
 .room-list-btn {
   display: block;
   text-decoration: none;
@@ -701,19 +738,17 @@ section {
   padding: 20px;
 }
 
-/* Title Styling */
 .room-name {
   font-size: 1.2rem;
   margin: 0 0 15px 0;
   color: #333;
 }
 
-/* Icons Row */
 .room-details-container {
   display: flex;
-  flex-wrap: wrap; /* Allows icons to wrap if screen is small */
+  flex-wrap: wrap; 
   gap: 15px;
-  border-bottom: 1px solid #eee; /* The thin line in your image */
+  border-bottom: 1px solid #eee;
   padding-bottom: 15px;
   margin-bottom: 15px;
 }

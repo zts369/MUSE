@@ -35,7 +35,6 @@ function updateStepper(stepNumber) {
     });
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const paymentRadios = document.querySelectorAll('input[name="payment"]');
     const cardDetails = document.getElementById('credit-card-details');
