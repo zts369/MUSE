@@ -1286,13 +1286,7 @@ section {
 }
 
 .booking-card h2 {
-    /* Remove the default browser margin at the top */ 
-    
-    /* Add a little space below it to breathe before the form starts */
     margin-bottom: 30px; 
-    
-    /* Optional: If you want it even higher, use a small negative margin */
-    /* margin-top: -10px; */
 }
 
 .booking-form {
@@ -1394,6 +1388,27 @@ label {
   filter: invert(18%) sepia(16%) saturate(1115%) hue-rotate(314deg) brightness(91%) contrast(92%);
 }
 
+.add-room-btn{
+  display: block;
+  margin: 0 auto;
+  background-color: var(--burgundy);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  padding: 14px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 85%;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.add-room-btn:hover{
+  background-color: #5a1f2d;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+
 .selection-header {
   text-align: center;
   display: flex;
@@ -1467,7 +1482,7 @@ label {
 .room-info p {
   margin-top : 0;
   font-family: 'Montserrat';
-  max-width: 300px;
+  max-width: 500px;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
