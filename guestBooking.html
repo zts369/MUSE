@@ -25,75 +25,67 @@
     </main>
 
     <script>
-        // Your Data Store (In a real app, this would be a MongoDB fetch request)
-        
         const guestDataStore = {
             "Jonathan Loughran": {
                 email: "jonathan@human.com",
                 phone: "0917-123-4567",
                 bookings: [
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e1", room: "Moonlight Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 0, total: 2000 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e2", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 2, total: 3200 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e3", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 1, total: 3200 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e4", room: "Lunar Delux Suite", in: "2026-02-20", out: "2026-05-22", adults: 4, children: 2, total: 18900 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e5", room: "Celestial Family Suite", in: "2026-02-20", out: "2026-02-22", adults: 3, children: 4, total: 29900 }
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e1", room: "Moonlight Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 0, total: 2000, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e2", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 2, total: 3200, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e3", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 1, total: 3200, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e4", room: "Lunar Delux Suite", in: "2026-02-20", out: "2026-05-22", adults: 4, children: 2, total: 18900, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e5", room: "Celestial Family Suite", in: "2026-02-20", out: "2026-02-22", adults: 3, children: 4, total: 29900, status: "Reserved" }
                 ]
             },
-
             "Iren Phillin Ding": {
                 email: "iren@human.com",
                 phone: "0917-123-4567",
                 bookings: [
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e6", room: "Moonlight Room", in: "2026-02-21", out: "2026-02-22", adults: 2, children: 0, total: 2000 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e7", room: "Twilight Cozy Room", in: "2026-02-21", out: "2026-02-22", adults: 2, children: 2, total: 3200 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e8", room: "Twilight Cozy Room", in: "2026-02-21", out: "2026-02-22", adults: 2, children: 1, total: 3200 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e9", room: "Lunar Delux Suite", in: "2026-02-21", out: "2026-05-22", adults: 4, children: 2, total: 18900 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e10", room: "Celestial Family Suite", in: "2026-02-21", out: "2026-02-22", adults: 3, children: 4, total: 29900 }
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e6", room: "Moonlight Room", in: "2026-02-21", out: "2026-02-22", adults: 2, children: 0, total: 2000, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e7", room: "Twilight Cozy Room", in: "2026-02-21", out: "2026-02-22", adults: 2, children: 2, total: 3200, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e8", room: "Twilight Cozy Room", in: "2026-02-21", out: "2026-02-22", adults: 2, children: 1, total: 3200, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e9", room: "Lunar Delux Suite", in: "2026-02-21", out: "2026-05-22", adults: 4, children: 2, total: 18900, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e10", room: "Celestial Family Suite", in: "2026-02-21", out: "2026-02-22", adults: 3, children: 4, total: 29900, status: "Reserved" }
                 ]
             },
-
             "Arisha Beri": {
                 email: "arishaberi@human.com",
                 phone: "0917-123-4567",
                 bookings: [
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e11", room: "Moonlight Room", in: "2026-02-22", out: "2026-02-24", adults: 2, children: 0, total: 2000 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e12", room: "Twilight Cozy Room", in: "2026-02-22", out: "2026-02-24", adults: 2, children: 2, total: 3200 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e13", room: "Twilight Cozy Room", in: "2026-02-22", out: "2026-02-24", adults: 2, children: 1, total: 3200 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e14", room: "Lunar Delux Suite", in: "2026-02-22", out: "2026-05-24", adults: 4, children: 2, total: 18900 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e15", room: "Celestial Family Suite", in: "2026-02-22", out: "2026-02-24", adults: 3, children: 4, total: 29900 }
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e11", room: "Moonlight Room", in: "2026-02-22", out: "2026-02-24", adults: 2, children: 0, total: 2000, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e12", room: "Twilight Cozy Room", in: "2026-02-22", out: "2026-02-24", adults: 2, children: 2, total: 3200, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e13", room: "Twilight Cozy Room", in: "2026-02-22", out: "2026-02-24", adults: 2, children: 1, total: 3200, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e14", room: "Lunar Delux Suite", in: "2026-02-22", out: "2026-05-24", adults: 4, children: 2, total: 18900, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e15", room: "Celestial Family Suite", in: "2026-02-22", out: "2026-02-24", adults: 3, children: 4, total: 29900, status: "Reserved" }
                 ]
             },
-
             "Jason Derulo": {
                 email: "jason@human.com",
                 phone: "0917-123-4567",
                 bookings: [
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e16", room: "Moonlight Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 0, total: 2000 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e17", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 2, total: 3200 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e18", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 1, total: 3200 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e19", room: "Lunar Delux Suite", in: "2026-02-20", out: "2026-05-22", adults: 4, children: 2, total: 18900 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e20", room: "Celestial Family Suite", in: "2026-02-20", out: "2026-02-22", adults: 3, children: 4, total: 29900 }
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e16", room: "Moonlight Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 0, total: 2000, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e17", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 2, total: 3200, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e18", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 1, total: 3200, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e19", room: "Lunar Delux Suite", in: "2026-02-20", out: "2026-05-22", adults: 4, children: 2, total: 18900, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e20", room: "Celestial Family Suite", in: "2026-02-20", out: "2026-02-22", adults: 3, children: 4, total: 29900, status: "Reserved" }
                 ]
             },
-
             "Zhupin Sio": {
                 email: "zhupin@human.com",
                 phone: "0917-123-4567",
                 bookings: [
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e21", room: "Moonlight Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 0, total: 2000 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e22", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 2, total: 3200 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e23", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 1, total: 3200 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e24", room: "Lunar Delux Suite", in: "2026-02-20", out: "2026-05-22", adults: 4, children: 2, total: 18900 },
-                    { id: "65d2f1a2e4b0a1a2b3c4d5e25", room: "Celestial Family Suite", in: "2026-02-20", out: "2026-02-22", adults: 3, children: 4, total: 29900 }
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e21", room: "Moonlight Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 0, total: 2000, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e22", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 2, total: 3200, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e23", room: "Twilight Cozy Room", in: "2026-02-20", out: "2026-02-22", adults: 2, children: 1, total: 3200, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e24", room: "Lunar Delux Suite", in: "2026-02-20", out: "2026-05-22", adults: 4, children: 2, total: 18900, status: "Reserved" },
+                    { id: "65d2f1a2e4b0a1a2b3c4d5e25", room: "Celestial Family Suite", in: "2026-02-20", out: "2026-02-22", adults: 3, children: 4, total: 29900, status: "Reserved" }
                 ]
             }
         };
 
-        // 1. Get the Guest Name from the URL
         const urlParams = new URLSearchParams(window.location.search);
         const guestName = urlParams.get('guest');
 
-        // 2. Load the data
         if (guestName && guestDataStore[guestName]) {
             const data = guestDataStore[guestName];
             
@@ -102,25 +94,57 @@
             document.getElementById('det-phone').innerText = data.phone;
 
             const container = document.getElementById('booking-items-container');
-            data.bookings.forEach(booking => {
-
+            
+            data.bookings.forEach((booking, index) => {
                 const formattedTotal = Number(booking.total).toLocaleString();
+                const currentStatus = booking.status || 'Reserved';
 
                 const item = document.createElement('div');
-                item.className = 'booking-item'; // Style this in your CSS
-                item.style.borderBottom = "1px solid #eee";
-                item.style.padding = "15px 0";
+                item.className = 'booking-item';
+                
                 item.innerHTML = `
-                    <p><strong>Booking ID:</strong> <small>${booking.id}</small></p>
-                    <p><strong>Room:</strong> ${booking.room}</p>
-                    <p><strong>Check-In:</strong> ${booking.in} | <strong>Check-Out:</strong> ${booking.out}</p>
-                    <p><strong>Guests:</strong> ${booking.adults} Adults, ${booking.children} Children</p>
-                    <p><strong>Total:</strong> ₱${formattedTotal}</p>
+                    <div class="booking-flex">
+                        <div class="booking-info">
+                            <p><strong>Booking ID:</strong> <small>${booking.id}</small></p>
+                            <p><strong>Room:</strong> ${booking.room}</p>
+                            <p><strong>Check-In:</strong> ${booking.in} | <strong>Check-Out:</strong> ${booking.out}</p>
+                            <p><strong>Guests:</strong> ${booking.adults} Adults, ${booking.children} Children</p>
+                            <p><strong>Total:</strong> ₱${formattedTotal}</p>
+                        </div>
+                        
+                        <div class="status-control">
+                            <label class="status-label">Status</label>
+                            <select class="status-select" onchange="updateStatus('${guestName}', ${index}, this)">
+                                <option value="Reserved" ${currentStatus === 'Reserved' ? 'selected' : ''}>Reserved</option>
+                                <option value="Checked-In" ${currentStatus === 'Checked-In' ? 'selected' : ''}>Checked-In</option>
+                                <option value="Checked-Out" ${currentStatus === 'Checked-Out' ? 'selected' : ''}>Checked-Out</option>
+                                <option value="Cancelled" ${currentStatus === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
                 `;
                 container.appendChild(item);
+                
+                // Initialize color for the select element
+                const selectElement = item.querySelector('.status-select');
+                applyStatusColor(selectElement);
             });
-        } else {
-            document.body.innerHTML = "<h1>Guest Not Found</h1><button onclick='window.history.back()'>Go Back</button>";
+        }
+
+        function updateStatus(guest, bookingIndex, selectElement) {
+            const newStatus = selectElement.value;
+            guestDataStore[guest].bookings[bookingIndex].status = newStatus;
+            applyStatusColor(selectElement);
+            console.log(`Updated ${guest}'s booking to: ${newStatus}`);
+        }
+
+        function applyStatusColor(selectElement) {
+            // Remove existing color classes
+            selectElement.classList.remove('status-reserved', 'status-checkedin', 'status-checkedout', 'status-cancelled');
+            
+            // Add specific color class
+            const val = selectElement.value.toLowerCase().replace('-', '');
+            selectElement.classList.add(`status-${val}`);
         }
     </script>
 </body>
