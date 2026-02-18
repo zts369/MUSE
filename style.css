@@ -1020,6 +1020,24 @@ section {
   max-width: 75%;
 }
 
+/* Image Container Styling */
+.mission-vision-wrapper {
+  margin-top: 5rem;
+}
+
+.image-frame {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+}
+
+.mission-vision-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
 
 /*ROOM DETAILS PAGE*/
 /* --- Root Styles for Detail Page --- */
