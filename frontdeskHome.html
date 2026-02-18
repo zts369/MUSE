@@ -50,20 +50,7 @@
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const tbody = document.getElementById('reservation-list');
-    const rows = Array.from(tbody.querySelectorAll('tr'));
 
-    // Sort rows based on the text in the 3rd column (Check-in Date)
-    rows.sort((a, b) => {
-        const dateA = a.cells[2].innerText; // Index 2 is the 'Check-in' column
-        const dateB = b.cells[2].innerText;
-        return dateA.localeCompare(dateB);
-    });
-
-    // Re-append the sorted rows to the table
-    rows.forEach(row => tbody.appendChild(row));
-});
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
@@ -102,8 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <th>Total</th>
                                 <th>Check-In</th>
                                 <th>Check-Out</th>
+                                <th>Email</th>
                                 <th>Status</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody id="reservation-list">
@@ -114,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <td>2026-02-22</td>
                                 <td>jonathan@human.com</td>
                                 <td><span class="tag pending">Action Required</span></td>
-                                <td><button class="link-btn">View Details</button></td>
                             </tr>
 
                             <tr class="clickable-row" data-guest="Iren Phillin Ding">
@@ -124,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <td>2026-02-22</td>
                                 <td>jonathan@human.com</td>
                                 <td><span class="tag pending">Action Required</span></td>
-                                <td><button class="link-btn">View Details</button></td>
                             </tr>
 
                             <tr class="clickable-row" data-guest="Arisha Beri">
@@ -134,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <td>2026-02-24</td>
                                 <td>jonathan@human.com</td>
                                 <td><span class="tag pending">Action Required</span></td>
-                                <td><button class="link-btn">View Details</button></td>
                             </tr>
 
                             <tr class="clickable-row" data-guest="Jason Derulo">
@@ -144,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <td>2026-02-22</td>
                                 <td>jonathan@human.com</td>
                                 <td><span class="tag pending">Action Required</span></td>
-                                <td><button class="link-btn">View Details</button></td>
                             </tr>
 
                             <tr class="clickable-row" data-guest="Zhupin Sio">
@@ -154,7 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <td>2026-02-22</td>
                                 <td>jonathan@human.com</td>
                                 <td><span class="tag pending">Action Required</span></td>
-                                <td><button class="link-btn">View Details</button></td>
                             </tr>
                         </tbody>
                     </table>

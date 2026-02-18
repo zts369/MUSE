@@ -204,3 +204,23 @@ body {
     margin-bottom: 1rem;
     font-family: 'Montserrat';
 }
+
+.clickable-row {
+    cursor: pointer; 
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.clickable-row:hover {
+    background-color: #f8f5f0;
+    outline: 1px solid #d4af37; 
+}
+
+.clickable-row:active {
+    background-color: #f0e6d2;
+    transform: scale(0.998); 
+}
+
+.clickable-row:hover .guest-name {
+    color: #800000; 
+    font-weight: 600;
+}
