@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // Move this here so it's defined BEFORE the HTML elements load
+        function switchTab(tabId, e) {
+            const targetTab = document.getElementById(tabId);
+            if (!targetTab) return;
+
+            // Remove active classes
+            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            
+            // Add active classes
+            targetTab.classList.add('active');
+            
+            // Handle the sidebar highlight
+            if (e && e.currentTarget) {
+                e.currentTarget.classList.add('active');
+            } else if (window.event && window.event.currentTarget) {
+                window.event.currentTarget.classList.add('active');
+            }
+            
+            const titles = {
+                'reservations': 'View Reservations',
+                'directory': 'Guest Directory',
+                'logs': 'History Logs'
+            };
+            
+            const titleEl = document.getElementById('tab-title');
+            if (titleEl) titleEl.innerText = titles[tabId] || 'Dashboard';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+    const resList = document.getElementById('reservation-list');
+    
+    // Safety Check: Only run if the element exists on THIS page
+    if (resList) {
+        resList.addEventListener('click', function(e) {
+            const row = e.target.closest('.clickable-row');
+            if (row) {
+                const guestName = row.dataset.guest;
+                // Redirect to guestBooking page
+                window.location.href = `guestBooking.html?guest=${encodeURIComponent(guestName)}`;
+            }
+        });
+    } else {
+        console.warn("Element 'reservation-list' not found. This is normal if you are not on the View Reservations tab.");
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const tbody = document.getElementById('reservation-list');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    // Sort rows based on the text in the 3rd column (Check-in Date)
+    rows.sort((a, b) => {
+        const dateA = a.cells[2].innerText; // Index 2 is the 'Check-in' column
+        const dateB = b.cells[2].innerText;
+        return dateA.localeCompare(dateB);
+    });
+
+    // Re-append the sorted rows to the table
+    rows.forEach(row => tbody.appendChild(row));
+});
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="frontdesk-style.css">
+    <title>Front Desk | Hotel Transylvania</title>
+</head>
+<body>
+    <div class="fd-wrapper">
+        <nav class="fd-sidebar">
+            <div class="sidebar-header">
+                <h3 class="brand-title">Hotel Transylvania</h3>
+                <p class="brand-sub">Front Desk</p>
+            </div>
+            <ul class="fd-nav">
+                <li class="nav-item active" onclick="switchTab('reservations', event)">View Reservations</li>
+                <li class="nav-item" onclick="switchTab('directory', event)">Guest Directory</li>
+                <li class="nav-item" onclick="switchTab('logs', event)">History Logs</li>
+            </ul>
+            <div class="fd-sidebar-footer">
+                <a href="sign-up.html">Logout</a>
+            </div>
+        </nav>
+
+        <main class="fd-main">
+            <header class="content-header">
+                <h2 id="tab-title" class="header-font">View Reservations</h2>
+                <div class="staff-info">Staff Access</div>
+            </header>
+
+            <div id="reservations" class="tab-pane active">
+                <div class="fd-table-card">
+                    <table class="fd-data-table">
+                        <thead>
+                            <tr>
+                                <th>Guest Name</th>
+                                <th>Total</th>
+                                <th>Check-In</th>
+                                <th>Check-Out</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reservation-list">
+                            <tr class="clickable-row" data-guest="Jonathan Loughran">
+                                <td class="guest-name">Jonathan Loughran</td>
+                                <td>5</td>
+                                <td>2026-02-20</td>
+                                <td>2026-02-22</td>
+                                <td>jonathan@human.com</td>
+                                <td><span class="tag pending">Action Required</span></td>
+                                <td><button class="link-btn">View Details</button></td>
+                            </tr>
+
+                            <tr class="clickable-row" data-guest="Iren Phillin Ding">
+                                <td class="guest-name">Iren Phillin Ding</td>
+                                <td>5</td>
+                                <td>2026-02-21</td>
+                                <td>2026-02-22</td>
+                                <td>jonathan@human.com</td>
+                                <td><span class="tag pending">Action Required</span></td>
+                                <td><button class="link-btn">View Details</button></td>
+                            </tr>
+
+                            <tr class="clickable-row" data-guest="Arisha Beri">
+                                <td class="guest-name">Arisha Beri</td>
+                                <td>5</td>
+                                <td>2026-02-22</td>
+                                <td>2026-02-24</td>
+                                <td>jonathan@human.com</td>
+                                <td><span class="tag pending">Action Required</span></td>
+                                <td><button class="link-btn">View Details</button></td>
+                            </tr>
+
+                            <tr class="clickable-row" data-guest="Jason Derulo">
+                                <td class="guest-name">Jason Derulo</td>
+                                <td>5</td>
+                                <td>2026-02-20</td>
+                                <td>2026-02-22</td>
+                                <td>jonathan@human.com</td>
+                                <td><span class="tag pending">Action Required</span></td>
+                                <td><button class="link-btn">View Details</button></td>
+                            </tr>
+
+                            <tr class="clickable-row" data-guest="Zhupin Sio">
+                                <td class="guest-name">Zhupin Sio</td>
+                                <td>5</td>
+                                <td>2026-02-20</td>
+                                <td>2026-02-22</td>
+                                <td>jonathan@human.com</td>
+                                <td><span class="tag pending">Action Required</span></td>
+                                <td><button class="link-btn">View Details</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="directory" class="tab-pane">
+                <div class="fd-table-card">
+                    <p>Guest Directory content will appear here.</p>
+                </div>
+            </div>
+
+            <div id="logs" class="tab-pane">
+                <div class="fd-table-card">
+                    <p>History Logs content will appear here.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="detailsModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="header-font" id="modal-guest-title">Guest Booking</h2>
+                <button class="close-btn" onclick="closeDetails()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="guest-summary-box">
+                    <p><strong>Email:</strong> <span id="det-email"></span></p>
+                    <p><strong>Phone:</strong> <span id="det-phone"></span></p>
+                </div>
+                <h4 class="section-label">Current & Future Bookings</h4>
+                <div id="booking-items-container"></div>
+            </div>
+        </div>
+    </div>
+
+    

@@ -1,0 +1,206 @@
+:root {
+    --burgundy: #452829;
+    --charcoal: #57595b;
+    --cream: #FFF7F0;
+    --light-beige: #F3E8DF;
+    --off-white: #FDFFF8;
+    --green: #10b981;
+    --red: #ef4444;
+}
+
+/* Global Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--cream);
+    color: var(--charcoal);
+}
+
+.header-font, h2, h3 {
+    font-family: 'EB Garamond', serif;
+    color: var(--burgundy);
+}
+
+.fd-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.fd-sidebar {
+    width: 260px;
+    background-color: var(--burgundy);
+    color: var(--off-white);
+    padding: 2.5rem 1rem;
+    position: fixed;
+    height: 100%;
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.brand-title {
+    font-size: 1.8rem;
+    color: var(--light-beige);
+}
+
+.brand-sub {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.fd-nav {
+    list-style: none;
+}
+
+.nav-item {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.nav-item:hover, .nav-item.active {
+    background-color: var(--light-beige);
+    color: var(--burgundy);
+}
+
+.fd-sidebar-footer {
+    position: absolute;
+    bottom: 2rem;
+    width: 80%;
+    border-top: 1px solid rgba(255,247,240,0.2);
+    padding-top: 1rem;
+}
+
+.fd-sidebar-footer a {
+    color: var(--off-white);
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+/* Main Dashboard Area */
+.fd-main {
+    margin-left: 260px;
+    flex: 1;
+    padding: 3rem;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.staff-info {
+    font-size: 0.8rem;
+    background: var(--light-beige);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* Cards and Tables */
+.fd-table-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(69, 40, 41, 0.05);
+    border: 1px solid var(--light-beige);
+}
+
+.fd-data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.fd-data-table th {
+    text-align: left;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1rem;
+    border-bottom: 2px solid var(--light-beige);
+}
+
+.fd-data-table td {
+    padding: 1.2rem 1rem;
+    border-bottom: 1px solid var(--light-beige);
+    font-size: 0.9rem;
+}
+
+.guest-name {
+    font-weight: 600;
+    color: var(--burgundy);
+}
+
+.request-note {
+    font-style: italic;
+    color: var(--charcoal);
+    font-size: 0.85rem;
+}
+
+/* Buttons */
+.btn-approve {
+    background-color: var(--green);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    color: var(--red);
+    border: 1px solid var(--red);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.link-btn {
+    background: none;
+    border: none;
+    color: var(--burgundy);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Logs and Tabs */
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+.log-entry {
+    padding: 1rem;
+    border-left: 3px solid var(--burgundy);
+    background: var(--off-white);
+    margin-bottom: 1rem;
+}
+
+.log-meta { font-size: 0.7rem; color: var(--charcoal); margin-bottom: 5px; }
+
+.fd-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--light-beige);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat';
+}
