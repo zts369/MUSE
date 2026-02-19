@@ -46,6 +46,13 @@ h1 {
 
 /* Nav bar, to do */
 
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;        
+  margin-left: auto; 
+}
+
 .nav a {
   text-decoration: none;
   transition: 0.3s;
@@ -88,11 +95,22 @@ h1 {
 .header-inner{
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin: auto;
   gap: 50px;
   padding: 0 50px;
   width: 100%;
+}
+
+.header-inner > a {
+  display: flex;
+  align-items: center;
+  margin-left: 20px; /* Space between the last link and profile icon */
+}
+
+.header-inner img {
+  height: 55px;      /* Consistent sizing */
+  width: 55px;
+  display: block;
 }
 
 .logo{
