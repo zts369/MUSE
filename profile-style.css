@@ -4,8 +4,11 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 110vh;
 }
+
 
 .logo-box {
     background-color: #3e2723;
@@ -140,7 +143,12 @@ body {
     color: white;
 }
 
-/* Nav bar, to do */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;        
+  margin-left: auto; 
+}
 
 .nav a {
   text-decoration: none;
@@ -184,11 +192,22 @@ body {
 .header-inner{
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin: auto;
   gap: 50px;
   padding: 0 50px;
   width: 100%;
+}
+
+.header-inner > a {
+  display: flex;
+  align-items: center;
+  margin-left: 20px; /* Space between the last link and profile icon */
+}
+
+.header-inner img {
+  height: 55px;      /* Consistent sizing */
+  width: 55px;
+  display: block;
 }
 
 .logo{
@@ -231,7 +250,7 @@ body {
 .nav a {
   margin-left: 50px;
   text-decoration: none;
-  color: rgb(58, 9, 9);
+  color: white;
   font-family: 'Montserrat';
   font-weight: 600;
   transition: all 0.3s ease;
