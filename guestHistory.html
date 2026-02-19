@@ -6,55 +6,58 @@
     <link rel="stylesheet" href="guestHistory-style.css">
     <title>Hotel Transylvania Guest Profile</title>
 </head>
-<body class="profile-page-body">
+    <body class="profile-page-body">
 
-    <main class="profile-main">
-        <div id="nav-placeholder"></div>
-        <h2 class="page-title">Guest Profile</h2>
+        <main class="profile-main">
+            <div id="nav-placeholder"></div>
 
-        <div class="profile-grid">
-            <section class="card guest-info-card">
-                <h3 class="card-header">Guest Info</h3>
-                <div class="info-group">
-                    <div class="info-row">
-                        <span class="label">Full Name</span>
-                        <span id="det-name" class="value"></span>
-                    </div>
-                    <div class="info-row">
-                        <span class="label">Phone</span>
-                        <span id="det-phone" class="value"></span>
-                    </div>
-                    <div class="info-row">
-                        <span class="label">Email</span>
-                        <span id="det-email" class="value"></span>
-                    </div>
-                </div>
-                <a href="#" class="edit-link">Edit Profile</a>
-            </section>
+            <h2 class="page-title">Guest Profile</h2>
 
-            <section class="card history-card">
-                <h3 class="card-header">Guest Info</h3>
-                <table class="history-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Room</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="history-table-body">
-                        </tbody>
-                </table>
-            </section>
-            
-        <div id="footer-placeholder"></div>
+            <div class="profile-grid">
+
+                <section class="card guest-info-card">
+                    <h3 class="card-header">Guest Info</h3>
+                    <div class="info-group">
+                        <div class="info-row">
+                            <span class="label">Full Name</span>
+                            <span id="det-name" class="value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Phone</span>
+                            <span id="det-phone" class="value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Email</span>
+                            <span id="det-email" class="value"></span>
+                        </div>
+                    </div>
+                    <a href="#" class="edit-link">Edit Profile</a>
+                </section>
+
+                <section class="card history-card">
+                    <h3 class="card-header">Booking History</h3>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Room</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body"></tbody>
+                    </table>
+                </section>
+
+            </div>
+
+            <div id="footer-placeholder"></div>
+
+        </main>
+        <script src="guestData.js"></script>
         <script src="footerscript.js"></script>
         <script src="navscript.js"></script>
-        </div>
-    </main>
 
-    <script src="guestData.js"></script>
         <script>
             const urlParams = new URLSearchParams(window.location.search);
             const guestName = urlParams.get('guest');
@@ -70,12 +73,11 @@
                     const tableBody = document.getElementById('history-table-body');
                     tableBody.innerHTML = "";
 
-                    data.bookings.forEach((booking, index) => {
+                    data.bookings.forEach((booking) => {
                         const tr = document.createElement('tr');
                         
                         let displayStatus = booking.status === "Checked-Out" ? "Completed" : booking.status;
                         
-                        // Logic: Only show 'Cancel' if the status is "Reserved"
                         let actionHtml = "";
                         if (booking.status === "Reserved") {
                             actionHtml = `<button class="cancel-btn" onclick="cancelBooking('${booking.id}')">Cancel</button>`;
@@ -85,9 +87,11 @@
                             <td class="date-cell">${booking.in} -<br>${booking.out}</td>
                             <td>${booking.room}</td>
                             <td>₱${booking.total.toLocaleString()}</td>
-                            <td class="status-cell">
-                                <span class="status-text">${displayStatus}</span>
-                                ${actionHtml}
+                            <td>
+                                <div class="status-cell">
+                                    <span class="status-text">${displayStatus}</span>
+                                    ${actionHtml}
+                                </div>
                             </td>
                         `;
                         tableBody.appendChild(tr);
@@ -95,20 +99,18 @@
                 }
             }
 
-            // Function to handle cancellation
             function cancelBooking(bookingId) {
                 if (confirm(`Are you sure you want to cancel booking ${bookingId}?`)) {
                     const guest = guestDataStore[guestName];
-                    // Filter out the booking with the matching ID
                     guest.bookings = guest.bookings.filter(b => b.id !== bookingId);
                     
                     alert("Booking cancelled successfully.");
-                    renderPage(); // Refresh the table
+                    renderPage();
                 }
             }
 
-            // Initial render
             renderPage();
         </script>
-</body>
+
+    </body>
 </html>
