@@ -6,40 +6,36 @@
     <link rel="stylesheet" href="profile-style.css">
     <title>Hotel Transylvania Guest Profile</title>
 </head>
-    <body class="profile-page-body">
-        <div class="light-page">
+<body class="light-page">
+    <div id="nav-placeholder"></div>
+    <main class="profile-main">
 
-        </div>
-        <div id="nav-placeholder"></div>
-        <main class="profile-main">
-            
+        <h2 class="page-title">Guest Profile</h2>
 
-            <h2 class="page-title">Guest Profile</h2>
-
-            <div class="profile-grid">
-
-                <section class="card guest-info-card">
-                    <h3 class="card-header">Guest Info</h3>
-                    <div class="info-group">
-                        <div class="info-row">
-                            <span class="label">Full Name</span>
-                            <span id="det-name" class="value"></span>
-                        </div>
-                        <div class="info-row">
-                            <span class="label">Phone</span>
-                            <span id="det-phone" class="value"></span>
-                        </div>
-                        <div class="info-row">
-                            <span class="label">Email</span>
-                            <span id="det-email" class="value"></span>
-                        </div>
+        <div class="profile-grid">
+            <section class="card guest-info-card">
+                <h3 class="card-header">Guest Info</h3>
+                <div class="info-group">
+                    <div class="info-row">
+                        <span class="label">Full Name</span>
+                        <span id="det-name" class="value">John Doe</span>
                     </div>
-                    <a href="#" class="edit-link">Edit Profile</a>
-                </section>
+                    <div class="info-row">
+                        <span class="label">Phone</span>
+                        <span id="det-phone" class="value">0912 345 6789</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Email</span>
+                        <span id="det-email" class="value">johnmichael_doe@gmail.com</span>
+                    </div>
+                </div>
+                <a href="#" class="edit-link">Edit Profile</a>
+            </section>
 
-                <section class="card history-card">
-                    <h3 class="card-header">Booking History</h3>
-                    <table class="history-table">
+            <section class="card history-card">
+                <h3 class="card-header">Booking History</h3>
+                <div id="booking-wrapper">
+                    <table class="history-table" id="history-table">
                         <thead>
                             <tr>
                                 <th>Date</th>
@@ -48,72 +44,93 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody id="history-table-body"></tbody>
+                        <tbody id="history-table-body">
+                            </tbody>
                     </table>
-                </section>
 
-            </div>
+                </div>
+            </section>
+        </div>
+    </main>
 
+
+    <script>
+        const sampleGuest = {
+            name: "John Doe",
+            phone: "0912 345 6789",
+            email: "johnmichael_doe@gmail.com",
+            bookings: [
+                {
+                    id: "BK-101",
+                    in: "January 4, 2026",
+                    out: "January 8, 2026",
+                    room: "Lunar Deluxe Suite x1<br>Starlight Family Room x2",
+                    total: 45000,
+                    status: "Reserved"
+                },
+                {
+                    id: "BK-99",
+                    in: "February 14, 2025",
+                    out: "February 21, 2025",
+                    room: "Moonlight Room x1",
+                    total: 12000,
+                    status: "Checked-Out"
+                }
+            ]
+        };
+
+        function renderPage() {
+            const tableBody = document.getElementById('history-table-body');
+            const tableElement = document.getElementById('history-table');
+            const emptyState = document.getElementById('empty-state');
             
-        </main>
-        
-        <script src="guestData.js"></script>
+            // Set Profile Info
+            document.getElementById('det-name').innerText = sampleGuest.name;
+            document.getElementById('det-phone').innerText = sampleGuest.phone;
+            document.getElementById('det-email').innerText = sampleGuest.email;
+
+            // Render Table Rows
+            tableBody.innerHTML = "";
+            sampleGuest.bookings.forEach((booking) => {
+                const tr = document.createElement('tr');
+                
+                let displayStatus = booking.status === "Checked-Out" ? "Completed" : booking.status;
+                let actionHtml = "";
+                
+                if (booking.status === "Reserved") {
+                    actionHtml = `<button class="cancel-btn" onclick="cancelBooking('${booking.id}')">Cancel</button>`;
+                }
+
+                tr.innerHTML = `
+                    <td class="date-cell">${booking.in} -<br>${booking.out}</td>
+                    <td>${booking.room}</td>
+                    <td>₱${booking.total.toLocaleString()}</td>
+                    <td>
+                        <div class="status-cell">
+                            <span class="status-text">${displayStatus}</span>
+                            ${actionHtml}
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        function cancelBooking(bookingId) {
+            if (confirm(`Are you sure you want to cancel booking ${bookingId}?`)) {
+                // Remove the booking from our local sample object
+                sampleGuest.bookings = sampleGuest.bookings.filter(b => b.id !== bookingId);
+                alert("Booking cancelled successfully.");
+                renderPage();
+            }
+        }
+
+        // Initialize the page
+        renderPage();
+    </script>
+
+        <div id="footer-placeholder"></div>
         <script src="footerscript.js"></script>
-        <script src="navscript.js"></script>
-
-        <script>
-            const urlParams = new URLSearchParams(window.location.search);
-            const guestName = urlParams.get('guest');
-
-            function renderPage() {
-                if (guestName && guestDataStore[guestName]) {
-                    const data = guestDataStore[guestName];
-                    
-                    document.getElementById('det-name').innerText = guestName;
-                    document.getElementById('det-phone').innerText = data.phone;
-                    document.getElementById('det-email').innerText = data.email;
-
-                    const tableBody = document.getElementById('history-table-body');
-                    tableBody.innerHTML = "";
-
-                    data.bookings.forEach((booking) => {
-                        const tr = document.createElement('tr');
-                        
-                        let displayStatus = booking.status === "Checked-Out" ? "Completed" : booking.status;
-                        
-                        let actionHtml = "";
-                        if (booking.status === "Reserved") {
-                            actionHtml = `<button class="cancel-btn" onclick="cancelBooking('${booking.id}')">Cancel</button>`;
-                        }
-
-                        tr.innerHTML = `
-                            <td class="date-cell">${booking.in} -<br>${booking.out}</td>
-                            <td>${booking.room}</td>
-                            <td>₱${booking.total.toLocaleString()}</td>
-                            <td>
-                                <div class="status-cell">
-                                    <span class="status-text">${displayStatus}</span>
-                                    ${actionHtml}
-                                </div>
-                            </td>
-                        `;
-                        tableBody.appendChild(tr);
-                    });
-                }
-            }
-
-            function cancelBooking(bookingId) {
-                if (confirm(`Are you sure you want to cancel booking ${bookingId}?`)) {
-                    const guest = guestDataStore[guestName];
-                    guest.bookings = guest.bookings.filter(b => b.id !== bookingId);
-                    
-                    alert("Booking cancelled successfully.");
-                    renderPage();
-                }
-            }
-
-            renderPage();
-        </script>
-
-    </body>
+        <script src = "navscript.js"></script>
+</body>
 </html>
