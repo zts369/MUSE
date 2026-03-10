@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Hotel Transylvania Booking</title>
+</head>
+<body class = "light-page">
+    
+    <main class = "container" style = "background-color: #FFF7F0">
+        <!-- Picture / video and hotel description -->
+        <div id="nav-placeholder" style = "padding-bottom: 10px;"></div>
+
+        <hr style="height: 1px; border: none; background-color: #E8D1C5;">
+
+        <!-- View Hotel Rooms-->
+        <section id="explore-rooms" class="rooms-section">
+            <div class ="section-header">
+                <h5 class="section-label"> Explore</h5>
+                <h2 class ="section-title">A Place That Fits You</h2>
+                <p class = "section-body">Explore the spaces designed for your comfort and relaxation.</p>
+            </div>
+    
+            <nav class="room-nav">
+                <a href="#" data-filter="all" class="active">All</a>
+                <a href="#" data-filter="rooms">Rooms</a>
+                <a href="#" data-filter="suites">Suites</a>
+            </nav>
+
+            <div class="room-list-container">
+                <section class="room-container">
+                    <div class="room-list">
+                        {{#each rooms}}
+                        <a href="room-details.hbs#{{dashcase roomName}}" class="room-list-btn">
+                            <div class="room-item" data-category="{{category}}">   
+                                <div class="room-image">
+                                    <img src="{{imageUrl.[0]}}" alt="{{roomName}}">
+                                </div>
+                                
+                                <div class="room-card-content">
+                                    <h3 class="room-name">{{roomName}}"</h3>
+                                    
+                                    <div class="room-details-container">
+                                        <span class="room-details">
+                                            <img src="img/sqm.png" alt="icon">
+                                            <p>{{sqm}}sqm</p>
+                                        </span>
+                                        <span class="room-details">
+                                            <img src="img/bed.png" alt="icon">
+                                            <p>{{beds}} bed{{#unless (eq beds 1)}}s{{/unless}}</p>
+                                        </span>
+                                        <span class="room-details">
+                                            <img src="img/bath.png" alt="icon">
+                                            <p>{{bath}} bath{{#unless (eq bath 1)}}s{{/unless}}</p>
+                                        </span>
+                                        <span class="room-details">
+                                            <img src="img/guests.png" alt="icon">
+                                            <p>{{maxGuests}} guests</p>
+                                        </span>
+                                    </div>
+                    
+                                    <div class="room-price">
+                                        <span class="amount">₱{{formatPrice price}}</span> <span class="per-night">/ Night</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {{/each}}
+                    </div>
+        
+                </section>
+            </div>
+            
+            <script src="roomScript.js"></script>
+
+        </section>
+
+
+        <div id="footer-placeholder"></div>
+        <script src="footerscript.js"></script>
+        <script src ="navscript.js"></script>
+        
+    </main>
+
+    
+
+</body>
+</html>
