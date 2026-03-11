@@ -1,17 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
-const fs = require('fs');
+const fs = require('fs'); //for seeding data
 
+//Import Models
 const User = require('./models/users');
 const Room = require('./models/rooms');
-const Reservation = require('./models/reservations');
+
+//Import Routes
+const userRoutes = require('./routes/user_routes');
 const roomRoutes = require('./routes/room_routes');
 
 const app = express();
 const PORT = 3000;
 
-// ✅ Put ALL helpers inside the helpers object
+// Put ALL helpers inside the helpers object
 const hbs = exphbs.create({
   extname: '.hbs',
   defaultLayout: 'main',
@@ -62,4 +65,5 @@ app.listen(PORT, async () => {
   await insertRoomsData(Room, './data/rooms.json');
 });
 
+app.use('/', userRoutes);
 app.use('/', roomRoutes);

@@ -1,0 +1,81 @@
+[
+    {
+        "id": "iDing35",
+        "firstName": "Iren Phillin",
+        "lastName": "Ding",
+        "email": "iren@human.com",
+        "contact": "09171234567",
+        "password": "12345678",
+        "type": "guest",
+        "bookings": [
+            {
+                "id": "b1",
+                "roomId": "moonlight",
+                "in": "2024-07-01",
+                "out": "2024-07-05",
+                "adults": 2,
+                "children": 0,
+                "status": "Checked-Out"
+            },
+            {
+                "id": "b2",
+                "roomId": "lunar",
+                "in": "2024-08-10",
+                "out": "2024-08-15",
+                "adults": 4,
+                "children": 2,
+                "status": "Checked-Out"
+            },
+            {
+                "id": "b3",
+                "roomId": "celestial",
+                "in": "2026-08-10",
+                "out": "2026-08-15",
+                "adults": 4,
+                "children": 3,
+                "status": "Reserved"
+            }
+        ]
+    },
+    {
+        "id": "Zumba1",
+        "firstName": "Zhupin",
+        "lastName": "Sio",
+        "email": "zhupin@human.com",
+        "contact": "09171234567",
+        "password": "12345678",
+        "type": "guest",
+        "bookings": [
+            {
+                "id": "b4",
+                "roomId": "lunar",
+                "in": "2026-06-10",
+                "out": "2026-06-15",
+                "adults": 4,
+                "children": 2,
+                "status": "Reserved"
+            }
+        ]
+    },
+    {
+        "id": "staff1",
+        "firstName": "Arisha",
+        "lastName": "Beri",
+        "email": "arishaberi@human.com",
+        "contact": "09171234567",
+        "password": "12345678",
+        "type": "staff",
+        "bookings": []
+    },
+    {
+        "id": "admin101",
+        "firstName": "Jason",
+        "lastName": "Derulo",
+        "email": "jason@human.com",
+        "contact": "09171234567",
+        "password": "12345678",
+        "type": "admin",
+        "bookings": []
+    }
+
+]
