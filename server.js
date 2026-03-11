@@ -14,6 +14,8 @@ const roomRoutes = require('./routes/room_routes');
 const app = express();
 const PORT = 3000;
 
+app.use(express.static('public'));
+
 // Put ALL helpers inside the helpers object
 const hbs = exphbs.create({
   extname: '.hbs',
@@ -65,5 +67,5 @@ app.listen(PORT, async () => {
   await insertRoomsData(Room, './data/rooms.json');
 });
 
-app.use('/', userRoutes);
+// app.use('/', userRoutes);
 app.use('/', roomRoutes);
