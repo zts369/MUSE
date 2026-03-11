@@ -73,7 +73,8 @@ const userSchema = new mongoose.Schema({
             required: true,
             enum: ['Reserved', 'Checked-In', 'Checked-Out', 'Cancelled'],
             default: 'Reserved'
-        }
+        },
+        timestamps: true
     }]
 }, {
     timestamps: true
