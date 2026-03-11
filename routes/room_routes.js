@@ -19,4 +19,17 @@ router.get('/rooms', async (req, res) => {
   }
 });
 
+router.get('/rooms/:id', async (req, res) => {
+    try {
+        const room = await Room.findOne({ id: req.params.id }).lean();
+        if (!room) {
+        return res.status(404).send("Room not found");
+        }
+        res.render('room-details', { room });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error fetching room details");
+    }
+});
+
 module.exports = router;

@@ -1,5 +1,6 @@
 [
     {
+        "id": "moonlight",
         "roomName": "Moonlight Room",
         "category": "room",
         "price": 2000,
@@ -35,6 +36,7 @@
         ]
     },
     {
+        "id": "twilight",
         "roomName": "Twilight Cozy Room",
         "category": "room",
         "price": 3200,
@@ -70,6 +72,7 @@
         ]
     },
     {
+        "id": "starlight",
         "roomName": "Starlight Family Room",
         "category": "room",
         "price": 4200,
@@ -105,6 +108,7 @@
         ]
     },
     {
+        "id": "midnight",
         "roomName": "Midnight Bliss Suite",
         "category": "suite",
         "price": 9900,
@@ -142,6 +146,7 @@
         ]
     },
     {
+        "id": "lunar",
         "roomName": "Lunar Deluxe Suite",
         "category": "suite",
         "price": 18900,
@@ -182,43 +187,44 @@
           
     },
     {
-    "roomName": "Celestial Family Suite",
-    "category": "suite",
-    "price": 29900,
-    "amenities": [
-        "350 sqm of Elegantly Designed Space",
-        "Six Premium Beds with Luxury Upholstery",
-        "Four Spacious Full Bathrooms",
-        "Bathroom Amenities by Roberto Cavalli",
-        "Deep-Soak Bathtubs and Rain Showers",
-        "Intelligent Toilet Bowls",
-        "Hairdryer and Weighing Scale",
-        "Feather Duvet and 100% Cotton Bed Linens",
-        "Luxury Bathrobes and Slippers",
-        "Expansive Walk-in Closets",
-        "Automated Private Bar",
-        "In-room Safety Deposit Box",
-        "Nespresso Machine",
-        "DigiValet Smart Controls",
-        "Bedside Phones",
-        "Grand Living and Dining Areas",
-        "Private Entertainment Lounge",
-        "Executive Work Desk Area",
-        "Welcome Amenities",
-        "Complimentary High-Speed Wi-Fi"
-    ],
-    "isAvailable": true,
-    "sqm": 350,
-    "beds": 6,
-    "bath": 4,
-    "maxGuests": 8,
-    "description": "Our most expansive and prestigious family suite, designed for grand gatherings and exceptional stays.",
-    "longerDescription": "Spanning an extraordinary 350 sqm, the Celestial Family Suite offers an unparalleled luxury experience for up to eight guests. Featuring six premium beds, four full bathrooms, multiple living areas, and an elegant dining space, this suite is ideal for large families, special celebrations, or executive retreats. Refined interiors, grand proportions, and thoughtfully curated amenities ensure comfort, privacy, and sophistication at the highest level.",
-    "imageUrl": [
-        "https://www.theplazany.com/wp-content/uploads/2025/05/2025-royal-suite-living-room-1151x500-1.jpg",
-        "https://i.pinimg.com/736x/f1/47/d8/f147d8b76ca15e27b944c6d42717e6f3.jpg",
-        "https://i.pinimg.com/736x/90/26/ee/9026eea4a0eef64dfec4c279e9868d97.jpg"
-    ]
+        "id": "celestial",
+        "roomName": "Celestial Family Suite",
+        "category": "suite",
+        "price": 29900,
+        "amenities": [
+            "350 sqm of Elegantly Designed Space",
+            "Six Premium Beds with Luxury Upholstery",
+            "Four Spacious Full Bathrooms",
+            "Bathroom Amenities by Roberto Cavalli",
+            "Deep-Soak Bathtubs and Rain Showers",
+            "Intelligent Toilet Bowls",
+            "Hairdryer and Weighing Scale",
+            "Feather Duvet and 100% Cotton Bed Linens",
+            "Luxury Bathrobes and Slippers",
+            "Expansive Walk-in Closets",
+            "Automated Private Bar",
+            "In-room Safety Deposit Box",
+            "Nespresso Machine",
+            "DigiValet Smart Controls",
+            "Bedside Phones",
+            "Grand Living and Dining Areas",
+            "Private Entertainment Lounge",
+            "Executive Work Desk Area",
+            "Welcome Amenities",
+            "Complimentary High-Speed Wi-Fi"
+        ],
+        "isAvailable": true,
+        "sqm": 350,
+        "beds": 6,
+        "bath": 4,
+        "maxGuests": 8,
+        "description": "Our most expansive and prestigious family suite, designed for grand gatherings and exceptional stays.",
+        "longerDescription": "Spanning an extraordinary 350 sqm, the Celestial Family Suite offers an unparalleled luxury experience for up to eight guests. Featuring six premium beds, four full bathrooms, multiple living areas, and an elegant dining space, this suite is ideal for large families, special celebrations, or executive retreats. Refined interiors, grand proportions, and thoughtfully curated amenities ensure comfort, privacy, and sophistication at the highest level.",
+        "imageUrl": [
+            "https://www.theplazany.com/wp-content/uploads/2025/05/2025-royal-suite-living-room-1151x500-1.jpg",
+            "https://i.pinimg.com/736x/f1/47/d8/f147d8b76ca15e27b944c6d42717e6f3.jpg",
+            "https://i.pinimg.com/736x/90/26/ee/9026eea4a0eef64dfec4c279e9868d97.jpg"
+        ]
     }
     
 ]

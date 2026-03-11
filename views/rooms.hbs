@@ -32,40 +32,40 @@
                 <section class="room-container">
                     <div class="room-list">
                         {{#each rooms}}
-                        <a href="room-details.hbs#{{dashcase roomName}}" class="room-list-btn">
-                            <div class="room-item" data-category="{{category}}">   
-                                <div class="room-image">
-                                    <img src="{{imageUrl.[0]}}" alt="{{roomName}}">
-                                </div>
-                                
-                                <div class="room-card-content">
-                                    <h3 class="room-name">{{roomName}}"</h3>
+                            <a href="/rooms/{{id}}" class="room-list-btn">
+                                <div class="room-item" data-category="{{category}}">   
+                                    <div class="room-image">
+                                        <img src="{{imageUrl.[0]}}" alt="{{roomName}}">
+                                    </div>
                                     
-                                    <div class="room-details-container">
-                                        <span class="room-details">
-                                            <img src="img/sqm.png" alt="icon">
-                                            <p>{{sqm}}sqm</p>
-                                        </span>
-                                        <span class="room-details">
-                                            <img src="img/bed.png" alt="icon">
-                                            <p>{{beds}} bed{{#unless (eq beds 1)}}s{{/unless}}</p>
-                                        </span>
-                                        <span class="room-details">
-                                            <img src="img/bath.png" alt="icon">
-                                            <p>{{bath}} bath{{#unless (eq bath 1)}}s{{/unless}}</p>
-                                        </span>
-                                        <span class="room-details">
-                                            <img src="img/guests.png" alt="icon">
-                                            <p>{{maxGuests}} guests</p>
-                                        </span>
-                                    </div>
-                    
-                                    <div class="room-price">
-                                        <span class="amount">₱{{formatPrice price}}</span> <span class="per-night">/ Night</span>
+                                    <div class="room-card-content">
+                                        <h3 class="room-name">{{roomName}}"</h3>
+                                        
+                                        <div class="room-details-container">
+                                            <span class="room-details">
+                                                <img src="img/sqm.png" alt="icon">
+                                                <p>{{sqm}}sqm</p>
+                                            </span>
+                                            <span class="room-details">
+                                                <img src="img/bed.png" alt="icon">
+                                                <p>{{beds}} bed{{#unless (eq beds 1)}}s{{/unless}}</p>
+                                            </span>
+                                            <span class="room-details">
+                                                <img src="img/bath.png" alt="icon">
+                                                <p>{{bath}} bath{{#unless (eq bath 1)}}s{{/unless}}</p>
+                                            </span>
+                                            <span class="room-details">
+                                                <img src="img/guests.png" alt="icon">
+                                                <p>{{maxGuests}} guests</p>
+                                            </span>
+                                        </div>
+                        
+                                        <div class="room-price">
+                                            <span class="amount">₱{{formatPrice price}}</span> <span class="per-night">/ Night</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
                         {{/each}}
                     </div>
         

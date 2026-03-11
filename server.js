@@ -18,7 +18,8 @@ const hbs = exphbs.create({
   layoutsDir: __dirname + '/views/layouts/',
   helpers: {
     formatPrice: (price) => {
-      return price.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        if (typeof price !== 'number') return price;
+        return price.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     },
     dashcase: (str) => {
       if (!str) return '';
