@@ -1,0 +1,843 @@
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400..800&family=Montserrat:wght@100..900&display=swap');
+/*included na sa taas ung montserrat font*/
+
+/* main color palette palang, can add fonts + other global settings if need be*/
+:root {
+  --burgundy: #452829;
+  --charcoal: #57595b;
+  --cream: #FFF7F0;
+  --light-beige: #F3E8DF;
+  --off-white: #FDFFF8;
+
+  /* Card Component Variables for amenities */
+  --card-width: 280px;
+  --card-height: 400px;
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
+  
+}
+
+*{
+  box-sizing: border-box;
+}
+
+html, body, p{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Prevents accidental horizontal scrolling */
+  scroll-behavior: auto;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  width: 100%;
+}
+
+main {
+  flex: 1;
+}
+
+
+h1 {
+  font-family: 'EB Garamond', serif;
+}
+
+/* Nav bar, to do */
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;        
+  margin-left: auto; 
+}
+
+.nav a {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.dark-page .nav a {
+  color: white;
+}
+.dark-page .nav a.active {
+  border-bottom: 3px solid white;
+}
+
+.dark-page .nav a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  color: rgb(36, 36, 36);
+}
+ 
+.light-page .nav a {
+  color: var(--burgundy);
+  
+}
+.light-page .nav a.active {
+  border-bottom: 3px solid var(--burgundy);
+}
+
+.light-page .nav a:hover {
+  cursor: pointer;
+  color: #f2baaf;
+  text-decoration: none;
+  transition: all 0.5s ease;
+}
+
+.site-header {
+  width: 100%;
+  top: 0;
+}
+
+.header-inner{
+  display: flex;
+  align-items: center;
+  margin: auto;
+  gap: 50px;
+  padding: 0 50px;
+  width: 100%;
+}
+
+.header-inner > a {
+  display: flex;
+  align-items: center;
+  margin-left: 20px; /* Space between the last link and profile icon */
+}
+
+.header-inner img {
+  height: 55px;      /* Consistent sizing */
+  width: 55px;
+  display: block;
+}
+
+.logo{
+  background-color: #452829;
+  width: 220px;
+  margin-left: 0;
+  height: fit-content;
+  text-align: center;
+  font-family: 'EB Garamond', serif;
+  font-size: 0.9rem;
+  font-weight: 450;
+  letter-spacing: 0.3rem;
+  padding-top : 0.5rem;
+  padding-bottom: 1.5rem;
+  border-radius: 0 0 30px 30px;
+}
+
+.logo-btn{
+  text-decoration: none;
+  text-transform: capitalize;
+  color: #FFF7F0;
+}
+
+.logo-btn:hover{
+  text-decoration: underline;
+  color: #E8D1C5;
+  transition: all 0.5s ease;
+}
+
+.logo-btn:visited{
+  color: #FFF7F0;
+}
+
+.nav {
+  display: flex;
+  justify-content : flex-start;
+  gap: 30px;
+}
+
+.nav a {
+  margin-left: 50px;
+  text-decoration: none;
+  color: white;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+
+.hero .static-header {
+  background-color: transparent;
+  position: absolute;
+  left: 0px;
+}
+
+
+
+/* hero/big image section */
+
+.hero-content {
+  text-align: left;
+  color: var(--off-white);
+  padding: 0 20px;
+  max-width: 800px;
+  margin: 0px;
+}
+
+/* per section general settings */
+
+section {
+  padding: 6rem 4rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-label {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--burgundy);
+  margin-bottom: -1rem;
+}
+
+.section-title {
+  font-family: 'EB Garamond', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  word-spacing: 0.5rem;
+  color: var(--burgundy);
+  margin-bottom: 1rem;
+}
+
+.section-body {
+  font-family: 'Montserrat';
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  max-width: 435px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.rooms-section {
+  background-color: var(--cream);
+}
+
+.room-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 5rem;
+  flex-direction:column;
+}
+
+.room-book-button{
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 1rem 2.5rem;
+  background-color: #E8D1C5; 
+  color: #452829;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.room-book-button:hover {
+  cursor: pointer;
+  background-color: #f7ded1; 
+  color: #452829;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(69, 40, 41, 0.2);
+}
+
+/* Footer section */
+
+.footer-section {
+  background-color: var(--burgundy);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 7%;
+  box-sizing: border-box;
+  color: white;
+}
+
+.footer-socials{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.footer-title {
+  font-family: 'EB Garamond', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.footer-title h1 {
+  letter-spacing: 1rem;
+  font-weight: 500;
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.footer-title h4 {
+  letter-spacing: 0.75rem;
+  font-weight: 500;
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1;
+}
+
+.footer-body {
+  font-size: 0.8rem;
+  max-width: 300px;
+  line-height: 1.3rem;
+  letter-spacing: 1px;
+  font-family: 'Montserrat';
+}
+
+.footer-section a{
+  text-decoration: none;
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  cursor: pointer;
+  color: var(--charcoal);
+}
+
+
+/*Carousel*/
+
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.room-card {
+  flex: 0 0 calc(33.333% - 16px); 
+  min-width: 300px;
+}
+
+.room-card img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.room-card:hover img {
+  transform: scale(1.02);
+}
+
+/*Rooms section*/
+
+.static-header {
+  position: relative;
+  background-color: var(--cream);
+  padding: 0;
+}
+
+.static-header .header-inner {
+  margin-bottom: 0;
+  height: 60px;
+}
+
+.static-header .logo {
+  margin-top: 0;
+  padding-bottom: 1rem; 
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.static-header .nav {
+  display: flex;
+  justify-content : flex-end;
+  gap: 20px;
+}
+
+
+
+#explore-rooms {
+  padding-top: 3rem;
+}
+
+
+/* Container for the nav to create the full-width bottom border */
+.rooms-list-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  width: 100%;
+  gap: 0.1rem;
+}
+
+.room-nav {
+  width: 100%; 
+  display: flex;
+  justify-content: center; 
+  gap: 40px;
+  border-bottom: 1px solid #eee; 
+  padding-bottom: 10px;
+}
+.room-nav a {
+  color: #757575;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 1rem 2rem; 
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent; 
+}
+
+.room-nav a:hover {
+  color: #452829;
+  cursor: pointer;
+}
+
+.room-nav a.active {
+  color: #452829;
+  font-weight: 600;
+  border-bottom: 3px solid #452829; 
+}
+
+.room-list-btn {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease-in-out;
+}
+
+.room-list-btn:hover {
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transform: scale(1.02);
+}
+
+.room-list-btn:hover .room-item {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  border-radius: 10px;
+}
+
+.room-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 30px;
+  padding: 20px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+.room-item {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.room-image img {
+  width: 100%;      
+  height: 250px;    
+  object-fit: cover; 
+  display: block;
+}
+
+.room-card-content {
+  padding: 20px;
+}
+
+.room-name {
+  font-size: 1.2rem;
+  margin: 0 0 15px 0;
+  color: #333;
+}
+
+.room-details-container {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.room-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.room-details img {
+  width: 20px; /* Adjust based on your icon size */
+  height: 20px;
+  opacity: 0.6; /* Makes icons look subtle like the image */
+}
+
+.room-details p {
+  margin: 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Price Styling */
+.room-price {
+  font-size: 1rem;
+  color: #666;
+}
+
+.room-price .amount {
+  color: #d4a373;   
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.room-price .per-night {
+  font-weight: normal;
+}
+
+/* Sign-in / Sign-up Page Styles */
+.signin-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+  url("https://www.siliconluxembourg.lu/wp-content/uploads/2017/05/gabriel-ghnassia-hotel.jpg");
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.signin-hero .static-header {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.auth-card {
+  background-color: var(--cream);
+  padding: 3rem;
+  border-radius: var(--border-radius);
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  text-align: center;
+  margin-top: 60px;
+}
+
+.auth-header h2 {
+  font-family: 'EB Garamond', serif;
+  color: var(--burgundy);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.auth-header p {
+  color: var(--charcoal);
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--burgundy);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: white;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--burgundy);
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--burgundy);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.auth-btn:hover {
+  background-color: #2c1a1b;
+}
+
+.auth-footer {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--charcoal);
+}
+
+.auth-footer a {
+  color: var(--burgundy);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Horizontal layout for Sign Up card */
+#signup-card {
+  max-width: 800px;
+}
+
+#signup-card .auth-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+#signup-card .auth-btn,
+#signup-card .auth-footer {
+  grid-column: 1 / -1;
+}
+
+#signup-card .form-group {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  #signup-card .auth-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Contact Number Input Styling */
+.contact-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  background-color: white;
+  width: 100%;
+}
+
+.contact-wrapper:focus-within {
+  border-color: var(--burgundy);
+}
+
+.contact-prefix {
+  padding: 12px 15px;
+  color: var(--charcoal);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  background-color: #f3e8df; /* Light beige to distinguish prefix */
+  border-right: 1px solid #dcdcdc;
+  border-radius: 6px 0 0 6px;
+}
+
+.form-group .contact-wrapper input {
+  border: none;
+  border-radius: 0 6px 6px 0;
+  width: 100%;
+}
+
+.form-group .contact-wrapper input:focus {
+  outline: none;
+  border: none;
+}
+
+/*ROOM DETAILS PAGE*/
+/* --- Root Styles for Detail Page --- */
+.room-details-page {
+    display: none;
+    padding-top: 3rem;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color: var(--cream);
+    color: #333;
+}
+
+.detail-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.text-center { text-align: center; }
+
+/* --- Titles & Text --- */
+.room-main-title {
+    font-size: 3rem;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+}
+
+.room-description {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: #555;
+    font-size: 1.05rem;
+}
+
+.lead-text {
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.section-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- Specifications Grid --- */
+.specification-wrapper {
+    background-color: #bb9d7a; 
+    padding: 60px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.spec-flex-container {
+    display: flex;
+    flex-wrap: wrap;      
+    justify-content: center; 
+    gap: 20px;           
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.spec-item {
+    flex: 1 1 200px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    transition: all 0.3s ease; 
+}
+
+.spec-item img {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 12px;
+}
+
+
+.spec-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #eee4de; 
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+}
+
+.spec-item p {
+    font-size: 0.95rem;
+    margin: 0;
+    color: #333;
+}
+
+@media (max-width: 600px) {
+    .spec-flex-container {
+        gap: 10px;
+        padding: 20px 0;
+    }
+    .spec-item {
+        flex: 1 1 140px; /
+    }
+}
+
+/* --- Amenities Lis --- */
+.amenities-container {
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 10px;
+}
+.amenities-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px 40px;
+    list-style: none;
+    padding: 0;
+}
+
+.amenities-list li {
+    font-size: 0.9rem;
+    color: #666;
+    position: relative;
+    padding-left: 20px;
+}
+
+.amenities-list li::before {
+    content: "♦"; 
+    position: absolute;
+    left: 0;
+    color: #d4af37; 
+    font-size: 0.8rem;
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 768px) {
+    .spec-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+    .amenities-list { grid-template-columns: 1fr; }
+    .room-main-title { font-size: 2.2rem; }
+}
+
+.room-price-display {
+    margin: 40px 0;
+}
+
+.room-price-display .amount {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #bb9d7a;
+}
+
+.room-price-display .per-night {
+    font-size: 1.3rem;
+    color: #666;
+}

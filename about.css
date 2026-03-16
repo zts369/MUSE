@@ -1,0 +1,73 @@
+@import url('style.css');
+
+.hero-about {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+  url('img/Lobby.png');
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 60vh;
+}
+
+.hero-about-title {
+  font-family: 'EB Garamond', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 500;
+  letter-spacing: 8px;
+  margin-top: 20rem;
+  font-style: italic;
+}
+
+.hero-about .static-header {
+  background-color: transparent;
+  position: absolute;
+  left: 0px;
+}
+
+.about-description {
+  background-color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.about-description h3 {
+  font-family: 'EB Garamond';
+  font-size: 2.5rem;
+  color: var(--burgundy);
+  text-align: center;
+}
+
+.about-description p {
+  word-spacing: 8px;
+  line-height: 1.8rem;
+  font-family: 'Montserrat';
+}
+
+.about-text {
+  max-width: 75%;
+}
+
+/* Image Container Styling */
+.mission-vision-wrapper {
+  margin-top: 5rem;
+}
+
+.image-frame {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+}
+
+.mission-vision-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
