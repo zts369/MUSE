@@ -1,26 +1,28 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const filterLinks = document.querySelectorAll(".room-nav a");
-    // Change this selector to target the link wrappers
-    const roomWrappers = document.querySelectorAll(".room-list-btn"); 
+document.addEventListener('DOMContentLoaded', () => {
+    const filterLinks = document.querySelectorAll('.room-nav a');
+    const roomItems = document.querySelectorAll('.room-list > a'); // Selecting the anchor tags that wrap your items
 
     filterLinks.forEach(link => {
-        link.addEventListener("click", (e) => {
+        link.addEventListener('click', (e) => {
             e.preventDefault();
 
-            filterLinks.forEach(l => l.classList.remove("active"));
-            link.classList.add("active");
+            // 1. Update Active State in UI
+            filterLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
 
-            const filterValue = link.getAttribute("data-filter");
+            const filterValue = link.getAttribute('data-filter');
 
-            roomWrappers.forEach(wrapper => {
-                // Look inside the wrapper to find the category from the .room-item
-                const item = wrapper.querySelector(".room-item");
-                const category = item.getAttribute("data-category");
+            // 2. Filter the rooms
+            roomItems.forEach(item => {
+                // We look for the room-item div inside the anchor to check the category
+                const category = item.querySelector('.room-item').getAttribute('data-category');
 
-                if (filterValue === "all" || category === filterValue) {
-                    wrapper.style.display = "block"; // Show the whole link
+                if (filterValue === 'all') {
+                    item.style.display = 'block';
+                } else if (category === filterValue) {
+                    item.style.display = 'block';
                 } else {
-                    wrapper.style.display = "none";  // Hide the whole link
+                    item.style.display = 'none';
                 }
             });
         });

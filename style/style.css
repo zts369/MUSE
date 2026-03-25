@@ -45,56 +45,33 @@ h1 {
 }
 
 /* Nav bar, to do */
-
 .nav {
   display: flex;
-  align-items: center;
-  gap: 30px;        
-  margin-left: auto; 
+  justify-content : flex-start;
+  gap: 30px;
 }
 
 .nav a {
+  margin-left: 50px;
   text-decoration: none;
-  transition: 0.3s;
-}
-
-.dark-page .nav a {
   color: white;
-}
-.dark-page .nav a.active {
-  border-bottom: 3px solid white;
-}
-
-.dark-page .nav a:hover {
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
-  color: rgb(36, 36, 36);
-}
- 
-.light-page .nav a {
-  color: var(--burgundy);
-  
-}
-.light-page .nav a.active {
-  border-bottom: 3px solid var(--burgundy);
-}
-
-.light-page .nav a:hover {
-  cursor: pointer;
-  color: #f2baaf;
-  text-decoration: none;
-  transition: all 0.5s ease;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .site-header {
   width: 100%;
-  top: 0;
+  background-color: var(--burgundy);
+  display: block;
+  position: relative;
+  z-index: 1000;
 }
 
 .header-inner{
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin: auto;
   gap: 50px;
   padding: 0 50px;
@@ -104,7 +81,7 @@ h1 {
 .header-inner > a {
   display: flex;
   align-items: center;
-  margin-left: 20px; /* Space between the last link and profile icon */
+  margin-left: 20px;
 }
 
 .header-inner img {
@@ -114,7 +91,6 @@ h1 {
 }
 
 .logo{
-  background-color: #452829;
   width: 220px;
   margin-left: 0;
   height: fit-content;
@@ -143,22 +119,6 @@ h1 {
 .logo-btn:visited{
   color: #FFF7F0;
 }
-
-.nav {
-  display: flex;
-  justify-content : flex-start;
-  gap: 30px;
-}
-
-.nav a {
-  margin-left: 50px;
-  text-decoration: none;
-  color: white;
-  font-family: 'Montserrat';
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
 
 .hero .static-header {
   background-color: transparent;
@@ -289,9 +249,23 @@ section {
   line-height: 1.8;
 }
 
+.room-container {
+  width: 100%;
+  background-color: #FFF7F0;
+  padding-top: 20px;
+}
+
 .rooms-section {
   background-color: var(--cream);
 }
+
+.rooms-divider {
+  height: 1px;
+  border: none;
+  background-color: #E8D1C5;
+  margin: 20px 0;
+}
+
 
 .room-buttons {
   display: flex;
@@ -1060,7 +1034,7 @@ section {
 /*ROOM DETAILS PAGE*/
 /* --- Root Styles for Detail Page --- */
 .room-details-page {
-    display: none;
+    /* display: none; */
     padding-top: 3rem;
     padding-left: 0px;
     padding-right: 0px;

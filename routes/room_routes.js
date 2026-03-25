@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
   res.redirect('/rooms');
 });
 
+res.render('room-details', { room });
 // Existing route to list rooms
 router.get('/rooms', async (req, res) => {
   try {

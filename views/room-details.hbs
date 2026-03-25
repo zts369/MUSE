@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Hotel Transylvania Booking</title>
-</head>
-<body class = "light-page">
-    
-    <main class="container" style = "background-color: #FFF7F0">
-        <!-- navigation bar -->
-        <div id="nav-placeholder" style = "padding-bottom: 10px;"></div>
-
-        <hr style="height: 1px; border: none; background-color: #E8D1C5;">
-        
-
+<main class="room-container">
+            
         <!-- View Room / Suite Details-->
 
         <section id="{{room.id}}" class="room-details-page">
@@ -27,7 +12,7 @@
             </div>
 
             <div class="room-price-display text-center">
-                <span class="amount">₱{{formatPrice rooms.price}}</span>
+                <span class="amount">₱{{formatPrice room.price}}</span>
                 <span class="per-night"> / Night</span>
             </div>
 
@@ -38,13 +23,16 @@
             <section class="room-detail-gallery">
                 <div class="specification-header">
                     <h3 class="section-subtitle text-center">Gallery</h3>
-                </div>
-                {{#each room.imageUrl}}
-                    <div class="carousel-track">
-                        <div class="room-card"><img src="{{this}}"></div>
-                    </div>    
-                {{/each}}                
+                </div> 
 
+                <div class="carousel-track">
+                    {{#each room.imageUrl}}
+                        <div class="room-card">
+                            <img src="{{this}}" alt="Gallery Image">
+                        </div>
+                    {{/each}}
+                </div>
+                
             </section>
 
             <section class="specification-wrapper">
@@ -53,22 +41,22 @@
                 </div>
                 <div class="spec-flex-container">
                     <div class="spec-item">
-                        <img src="img/sqm.png" alt="icon">
+                        <img src="/img/sqm.png" alt="icon">
                         <span class="spec-label">ROOM SIZE</span>
                         <p>{{room.sqm}} SQM</p>
                     </div>
                     <div class="spec-item">
-                        <img src="img/guests.png" alt="icon">
+                        <img src="/img/guests.png" alt="icon">
                         <span class="spec-label">MAX GUESTS</span>
                         <p>{{room.maxGuests}} Guests</p>
                     </div>
                     <div class="spec-item">
-                        <img src="img/bed.png" alt="icon">
+                        <img src="/img/bed.png" alt="icon">
                         <span class="spec-label">NO. OF BEDS</span>
                         <p>{{room.beds}} King-size Bed</p>
                     </div>
                     <div class="spec-item">
-                        <img src="img/bath.png" alt="icon">
+                        <img src="/img/bath.png" alt="icon">
                         <span class="spec-label">BATHROOM</span>
                         <p>{{room.bath}} Full Bath</p>
                     </div>
@@ -90,38 +78,31 @@
             </section>                
         </section>
 
-
         
+        <script>
+           document.addEventListener("DOMContentLoaded", function () {
+            const track = document.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const nextButton = document.querySelector('.next');
+            const prevButton = document.querySelector('.prev');
+            
+            let currentIndex = 0;
 
-        <!--FOOTER-->    
-        <div id="footer-placeholder"></div>
+            const updateSlide = (index) => {
+                track.style.transform = `translateX(-${index * 100}%)`;
+            };
 
-
-        <script src="footerscript.js"></script>
-        <script src="navscript.js"></script>
-        {{!-- <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                // Get the hash from URL (example: #moonlight)
-                const hash = window.location.hash.substring(1);
-
-                // Get all room sections
-                const rooms = document.querySelectorAll(".room-details-page");
-
-                // Hide all rooms first
-                rooms.forEach(room => {
-                    room.style.display = "none";
-                });
-
-                // Show the selected room if it exists
-                if (hash) {
-                    const selectedRoom = document.getElementById(hash);
-                    if (selectedRoom) {
-                        selectedRoom.style.display = "block";
-                    }
-                }
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlide(currentIndex);
             });
-        </script> --}}
+
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateSlide(currentIndex);
+            });
+        });
+        </script>
 
 
     </main>
-</body>

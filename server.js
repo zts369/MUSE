@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
+const path = require('path');
 const fs = require('fs'); //for seeding data
 
 //Import Models
@@ -13,6 +14,7 @@ const roomRoutes = require('./routes/room_routes');
 
 const app = express();
 const PORT = 3000;
+
 
 app.use(express.static('public'));
 
@@ -40,6 +42,7 @@ const hbs = exphbs.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', './views');
+app.use(express.static(path.join(__dirname,)));
 
 const connectionURI = 'mongodb://localhost:27017/hotel-reservation';
 
