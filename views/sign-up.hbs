@@ -1,0 +1,101 @@
+<main class="container">
+        
+    <section class="signin-hero">
+       <div id="nav-placeholder"></div>
+
+        <!-- Sign In Card -->
+        <div class="auth-card" id="signin-card">
+            <div class="auth-header">
+                <h2>Welcome Back</h2>
+                <p>Enter your details to sign in</p>
+            </div>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="signin-identifier">Email or Username</label>
+                    <input type="text" id="signin-identifier" placeholder="Enter your email or username" required>
+                </div>
+                <div class="form-group">
+                    <label for="signin-password">Password</label>
+                    <input type="password" id="signin-password" placeholder="Enter your password" required>
+                </div>
+                <button type="button" class="auth-btn" onclick="location.href='/user/home'">Sign In</button>
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+                    <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.7;">Staff Access: <a href="/admin/management">Admin</a> | <a href="/staff/reservations">Front Desk</a></p>
+                </div>
+            </form>
+        </div>
+
+        <!-- Sign Up Card -->
+        <div class="auth-card" id="signup-card" style="display: none;">
+            <div class="auth-header">
+                <h2>Create Account</h2>
+                <p>Register your details to book a stay</p>
+            </div>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-username">Username</label>
+                    <input type="text" id="signup-username" placeholder="Choose a username" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-contact">Contact Number</label>
+                    <div class="contact-wrapper">
+                        <span class="contact-prefix">+63</span>
+                        <input type="tel" id="signup-contact" placeholder="9123456789" maxlength="10" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" placeholder="Confirm your password" required>
+                </div>
+                <button type="button" class="auth-btn" onclick="location.href='/user/home'">Sign Up</button>
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" id="show-signin">Sign in</a></p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    {{!-- <div id="footer-placeholder"></div>
+    <script src="footerscript.js"></script>
+    <script src ="navscript.js"></script> --}}
+
+</main>
+
+<script>
+    const signinCard = document.getElementById('signin-card');
+    const signupCard = document.getElementById('signup-card');
+    const showSignupBtn = document.getElementById('show-signup');
+    const showSigninBtn = document.getElementById('show-signin');
+
+    showSignupBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        signinCard.style.display = 'none';
+        signupCard.style.display = 'block';
+    });
+
+    showSigninBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        signupCard.style.display = 'none';
+        signinCard.style.display = 'block';
+    });
+
+    // Contact Number Validation
+    const contactInput = document.getElementById('signup-contact');
+    contactInput.addEventListener('input', function(e) {
+        // Remove any non-digit characters to ensure integer values only
+        this.value = this.value.replace(/\D/g, '');
+    });
+</script>

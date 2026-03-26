@@ -5,24 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{title}}</title>
   <link rel="stylesheet" href="/style/style.css">
+  <link rel="stylesheet" href="/style/about.css">
+  <link rel="stylesheet" href="/style/admin.css">
+  <link rel="stylesheet" href="/style/amenities.css">
+  <link rel="stylesheet" href="/style/booking.css">
+  <link rel="stylesheet" href="/style/frontdesk-style.css">
+  <link rel="stylesheet" href="/style/home.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-        <div class="logo">
-            <a class="logo-btn" href="/home">HOTEL TRANSYLVANIA</a>
-        </div>
-        <div class="nav">
-            <a href="/home">Home</a>
-            <a href="/about">About Us</a>
-            <a href="/rooms">Rooms</a>
-            <a href="/booking">Book</a>
-            <a href="/logout">Logout</a>
-        </div>
-        <a href="profile.html"><img src="/img/profile.png"></a>
-    </div>
-</header>
-  {{{body}}}
+    {{#unless (eq user.type "admin")}}
+        {{#unless (eq user.type "staff")}}
+            <header class="site-header">
+                <div class="header-inner">
+                    <div class="logo">
+                        <a class="logo-btn" href="/customer/home">HOTEL TRANSYLVANIA</a>
+                    </div>
+                    <div class="nav">
+                        <a href="/user/home">Home</a>
+                        <a href="/user/about">About Us</a>
+                        <a href="/room">Rooms</a>
+                        <a href="/user/booking">Book</a>
+                        <a href="../sign-up">Logout</a>
+
+                    </div>
+                    <a href="/user/profile/{{user.id}}"><img src="/img/profile.png"></a>
+                </div>
+            </header>
+        {{/unless}}
+    {{/unless}}
+
+    {{{body}}}
 </body>
 
 <section class ="footer-section">
@@ -46,4 +58,6 @@
             
 </section>
 <script src="/scripts/footerscript.js"></script>
+<script src="/scripts/carouselScript.js"></script>
+<script src="/scripts/amenities.js"></script>
 </html>

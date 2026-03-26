@@ -1,0 +1,255 @@
+<main class = "container" style = "background-color: #FFF7F0">
+    <!-- navigation bar -->
+    <div id ="nav-placeholder" style = "padding-bottom: 10px;"></div>
+
+    <hr style="height: 1px; border: none; background-color: #E8D1C5;">
+
+    <section class="progress-section">
+            <p id = "step-subtitle" class="booking-section-subtitle">SELECT YOUR DATES</p>
+            <div class="stepper">
+                <div class="step active">
+                    <div class="circle">1</div>
+                    <span>Booking Details</span>
+                </div>
+                <div class="step">
+                    <div class="circle">2</div>
+                    <span>Room & Rate Selection</span>
+                </div>
+                <div class="step">
+                    <div class="circle">3</div>
+                    <span>Payment</span>
+                </div>
+                <div class="step">
+                    <div class="circle">4</div>
+                    <span>Confirmation</span>
+                </div>
+            </div>
+    </section>
+
+    <section id = "step-1" class = "booking-details-section booking-step" style = "margin-bottom: -50px;"> 
+
+        <section class="form-section">
+            <div class="booking-card">
+                <h2>Booking Details</h2>
+                <form class="booking-form">
+                    <div class="booking-form-group">
+                        <label>Check-in Date *</label>
+                        <input type="date" placeholder="Select Date">
+                    </div>
+                    <div class="booking-form-group">
+                        <label>Check-out Date *</label>
+                        <input type="date" placeholder="Select Date">
+                    </div>
+                    <div class="booking-form-group">
+                        <label>Adult Guests *</label>
+                        <select><option>Select Number of Adults</option></select>
+                    </div>
+                    <div class="booking-form-group">
+                        <label>Child Guests *</label>
+                        <select><option>Select Number of Children (Under 12yrs old)</option> </select>
+                    </div>
+                    <div class="booking-form-group full-width">
+                        <label>Room *</label>
+                        <select><option>Select Number of Rooms</option></select>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="navigation-section">
+            <button type="button" class="btn" onclick="location.href='home.html'">Back to Home</button>
+            <button class="btn" onclick="goToStep(2)">Continue</button>
+        </section>
+
+    </section>  
+
+    <section id = "step-2" class = "room-selection-section booking-step" style="display:none;">
+        <div class="selection-header">
+            <h3>All Stays Include:</h3>
+            <p>
+                Daily breakfast. Daily afternoon tea at the Clubhouse. In-room refreshments and non-alcoholic beverages. Daily scheduled wellnes class (advance booking required). Daily morning snorkelling trip from the beach (to
+                be provided on a first come, first serve basis). Access to wellness facilities including Yoga pavilion and Pilates studio, steam room, cold plunge pool and fitness centre.
+            </p>
+        </div>
+
+        <div class="room-selection-section">
+            <div class = "room-cards">
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://i.pinimg.com/1200x/83/9e/fe/839efe28d4e47810182789ead59a1ceb.jpg" alt="Moonlight Room">
+                    </div>
+                    <div class="room-info">
+                        <div class="room-title-row">
+                            <h3>Moonlight Room</h3>
+                            <div class="price-box">
+                                <p>₱2,000/night</p>
+                            </div>
+                        </div>
+                        <p>Spanning 60 sqm, the Moonlight Room offers a private haven with stylish features and furnishings. Designed for ultimate relaxation, the space includes a king-size bed with premium Sealy mattresses, a spacious bathroom featuring a deep-soak bathtub, a refreshing rain shower, and exclusive designer amenities. Whether you're here for a romantic getaway or a quiet retreat, this room provides the perfect blend of modern luxury and cozy ambiance.</p>
+
+                        <div class="room-specs">
+                            <span class="room-details">
+                                <img src="img/sqm.png" alt="icon">
+                                <p>60sqm</p>
+                            </span>
+                            <span class="room-details">
+                                <img src="img/bed.png" alt="icon">
+                                <p>1 bed</p>
+                            </span>
+                            <span class="room-details">
+                                <img src="img/bath.png" alt="icon">
+                                <p>1 bath</p>
+                            </span>
+                            <span class="room-details">
+                                <img src="img/guests.png" alt="icon">
+                                <p>2 guests</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="add-room-btn" onclick="location.href='rooms.html'">+ Add Room</button>
+        </div>
+
+        <div class="navigation-section">
+            <button class="btn" onclick="goToStep(1)">Back</button>
+            <button class="btn" onclick="goToStep(3)">Continue</button>
+        </div>
+    </section>
+
+    <section id = "step-3" class = "payment-section booking-step" style = "display: none;">
+        <div class="payment-container">
+            <div class="payment-method-card">
+                <h3>Payment Method</h3>
+                <div class="payment-options">
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="card">
+                        <span class="custom-radio"></span>
+                        Credit / Debit Card
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="hotel" checked>
+                        <span class="custom-radio"></span>
+                        Pay at Hotel
+                    </label>
+                </div>
+
+                <div id="credit-card-details" style="display: none;">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Card Number *</label>
+                            <input type="text" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="input-group">
+                            <label>Expiry Date *</label>
+                            <input type="text" placeholder="MM/YY">
+                        </div>
+                        <div class="input-group">
+                            <label>CVV *</label>
+                            <input type="text" placeholder="123">
+                        </div>
+                    </div>
+                    <div class = "input-row">
+                        <div class = "input-group">
+                            <label>Billing Address </label>
+                            <input type = "text" placeholder="1 Taft Avenue">
+                        </div>
+                    </div>
+
+                    <p> For security reasons, you my be asked to present the credit card used for verification during check-in.</p>
+                
+                    <div class = "input-row" style = "margin-top: 30px">
+                        <div class = "input-group special-request">
+                            <label>Special Request </label>
+                            <textarea placeholder="Others" rows = "5"> </textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="booking-summary-card">
+                <h3>Booking Summary</h3>
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Guest Room subtotal</span>
+                        <span>₱00,000</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Other fees</span>
+                        <span>₱000</span>
+                    </div>
+                    <hr>
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <span class="total-price">₱00,000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class = "spacer"></div>
+
+        <div class="navigation-section">
+            <button class="btn" onclick="goToStep(2)">Back</button>
+            <button class="btn" onclick="goToStep(4)">Continue</button>
+        </div>
+    </section>
+
+    <section id = "step-4" class = "confirmation booking-step" style = "display: none;">
+
+        <div class="confirmation-container">
+            <div class="confirmation-card">
+                <h3>Booking Summary</h3>
+                
+                <div class="confirmation-details">
+                    <div class="confirm-room-img">
+                        <img src="https://i.pinimg.com/1200x/83/9e/fe/839efe28d4e47810182789ead59a1ceb.jpg" alt="Moonlight Comfort Room">
+                    </div>
+
+                    <div class="confirm-stay-info">
+                        <h4>Moonlight Room</h4>
+                        <div class = "date">
+                            <p>Arriving: February 14, 2026</p>
+                            <p>Departing: February 20, 2026</p>
+                        </div>
+                        <div class = "guests">
+                            <p>Adults: 2 </p>
+                            <p>Children: 0</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="summary-divider" style="height: 1px; border: none; background-color: #452829;">
+
+                <div class="final-pricing">
+                    <div class="summary-row">
+                        <span>Guest Room Subtotal</span>
+                        <span>₱00,000</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Other fees</span>
+                        <span>₱000</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <span class="total-price">₱00,000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation-section">
+            <button class="btn" onclick="goToStep(3)">Back</button>
+            <button type="button" class="btn" onclick="location.href='rooms.html'">Complete Booking</button>
+        </div>
+
+    </section>
+        
+    <div id="footer-placeholder"></div>
+    <script src="footerscript.js"></script>
+    <script src = "navscript.js"></script>
+    <script src = "booking.js"></script>
+
+</main>
