@@ -1,22 +1,21 @@
 const mongoose = require('mongoose');
 
+// Booking Sub-schema
 const bookingSchema = new mongoose.Schema({
     id: {
         type: String, 
-        required: true, 
-        unique: true 
+        required: true
     },
     roomId: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Room', 
+        type: String, // Changed from ObjectId to String to match "moonlight", "lunar", etc.
         required: true 
     },
     in: { 
-        type: Date, 
+        type: String, // Changed from Date to String to match "2024-07-01"
         required: true 
     },
     out: { 
-        type: Date, 
+        type: String, // Changed from Date to String to match "2024-07-01"
         required: true 
     },
     adults: { 
@@ -36,15 +35,16 @@ const bookingSchema = new mongoose.Schema({
         default: 'Reserved' 
     }
 }, {
-  timestamps: true   // each booking gets createdAt/updatedAt
+    timestamps: true
 });
 
+// User Schema
 const userSchema = new mongoose.Schema({
     id: { 
         type: String, 
         required: true, 
         unique: true 
-    }, // username
+    }, // This holds your username like "iDing35"
     firstName: { 
         type: String, 
         required: true, 
@@ -58,14 +58,15 @@ const userSchema = new mongoose.Schema({
     email: { 
         type: String, 
         required: true, 
-        unique: true, trim: true, 
+        unique: true, 
+        trim: true, 
         lowercase: true 
     },
     contact: { 
         type: String, 
         required: true, 
         trim: true, 
-        maxLength: 10 
+        maxLength: 11 // Corrected to match your 11-digit JSON numbers
     },
     password: { 
         type: String, 
@@ -74,11 +75,12 @@ const userSchema = new mongoose.Schema({
     type: { 
         type: String, 
         required: true, 
-        enum: ['guest', 'staff','admin'], default: 'guest' 
+        enum: ['guest', 'staff','admin'], 
+        default: 'guest' 
     },
-    bookings: [bookingSchema]   // embed the sub-schema
+    bookings: [bookingSchema] 
 }, {
-  timestamps: true   // user itself also gets createdAt/updatedAt
+    timestamps: true
 });
 
 module.exports = mongoose.model('User', userSchema);

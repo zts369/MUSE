@@ -1,63 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{title}}</title>
-  <link rel="stylesheet" href="/style/style.css">
-  <link rel="stylesheet" href="/style/about.css">
-  <link rel="stylesheet" href="/style/admin.css">
-  <link rel="stylesheet" href="/style/amenities.css">
-  <link rel="stylesheet" href="/style/booking.css">
-  <link rel="stylesheet" href="/style/frontdesk-style.css">
-  <link rel="stylesheet" href="/style/home.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    {{!-- Stylesheets --}}
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/style/about.css">
+    <link rel="stylesheet" href="/style/admin.css">
+    <link rel="stylesheet" href="/style/amenities.css">
+    <link rel="stylesheet" href="/style/booking.css">
+    <link rel="stylesheet" href="/style/frontdesk-style.css">
+    <link rel="stylesheet" href="/style/home.css">
 </head>
 <body>
-    {{#unless (eq user.type "admin")}}
-        {{#unless (eq user.type "staff")}}
-            <header class="site-header">
-                <div class="header-inner">
-                    <div class="logo">
-                        <a class="logo-btn" href="/customer/home">HOTEL TRANSYLVANIA</a>
-                    </div>
-                    <div class="nav">
-                        <a href="/user/home">Home</a>
-                        <a href="/user/about">About Us</a>
-                        <a href="/room">Rooms</a>
-                        <a href="/user/booking">Book</a>
-                        <a href="../sign-up">Logout</a>
 
-                    </div>
-                    <a href="/user/profile/{{user.id}}"><img src="/img/profile.png"></a>
+    {{!-- 1. HEADER LOGIC: Only show for Guests or Logged-out users --}}
+    {{#unless (or (eq user.type "staff") (eq user.type "admin"))}}
+        <header class="site-header">
+            <div class="header-inner">
+                <div class="logo">
+                    <a class="logo-btn" href="/user/home">HOTEL TRANSYLVANIA</a>
                 </div>
-            </header>
-        {{/unless}}
+                <div class="nav">
+                    <a href="/user/home">Home</a>
+                    <a href="/user/about">About Us</a>
+                    <a href="/room">Rooms</a>
+                    <a href="/user/booking">Book</a>
+                    {{#if user}}
+                        <a href="/logout">Logout</a>
+                    {{else}}
+                        <a href="/sign-up">Login</a>
+                    {{/if}}
+                </div>
+                {{#if user}}
+                    <a href="/user/profile/{{user.id}}"><img src="/img/profile.png" alt="Profile"></a>
+                {{/if}}
+            </div>
+        </header>
     {{/unless}}
 
-    {{{body}}}
-</body>
+    {{!-- 2. MAIN BODY CONTENT --}}
+    {{#if (eq user.type "staff")}}
+        {{!-- Staff Dashboard Wrapper --}}
+        <div class="fd-wrapper">
+            <nav class="fd-sidebar">
+                <div class="sidebar-header">
+                    <h3 class="brand-title">Hotel Transylvania</h3>
+                    <p class="brand-sub">Front Desk</p>
+                </div>
+                <ul class="fd-nav">
+                    <li><a href="/staff/reservations" class="nav-item">View Reservations</a></li>
+                    <li><a href="/staff/directory" class="nav-item">Guest Directory</a></li>
+                    <li><a href="/staff/history" class="nav-item">History Logs</a></li>
+                </ul>
+                <div class="fd-sidebar-footer">
+                    <a href="/logout" class="nav-item">Logout</a>
+                </div>
+            </nav>
+            {{{body}}}
+        </div>
 
-<section class ="footer-section">
-            
+    {{else if (eq user.type "admin")}}
+        {{!-- Admin Dashboard Wrapper --}}
+        <script src="adminHome.js"></script>
+        <div class="fd-wrapper">
+            <nav class="fd-sidebar">
+                <div class="sidebar-header">
+                    <h3 class="brand-title">Hotel Transylvania</h3>
+                    <p class="brand-sub">Admin Panel</p>
+                </div>
+                <ul class="fd-nav">
+                    <li><a href="/admin/management" class="nav-item">Room Management</a></li>
+                    <li><a href="/admin/reports" class="nav-item">Reports</a></li>
+                </ul>
+                <div class="fd-sidebar-footer">
+                    <a href="/logout" class="nav-item">Logout</a>
+                </div>
+            </nav>
+            {{{body}}}
+        </div>
+
+    {{else}}
+        {{!-- Guest/Public Body --}}
+        {{{body}}}
+    {{/if}}
+
+    {{!-- 3. FOOTER LOGIC: Only show for Guests or Logged-out users --}}
+    {{#unless (or (eq user.type "staff") (eq user.type "admin"))}}
+        <section class="footer-section">
             <div class="footer-body">
-                <p>406 Mayon St, Santa Mesa Heights, Quezon City, Metro Manila <br> +63 917 420 6767 <br> testemail@gmail.com
-                </p>
+                <p>406 Mayon St, Santa Mesa Heights, Quezon City, Metro Manila <br> +63 917 420 6767 <br> testemail@gmail.com</p>
             </div>
-            
             <div class="footer-title">
                 <h4> Hotel </h4>
                 <h1> Transylvania</h1>
             </div>
-
-            <div class = "footer-socials">
-                <a href = "#">Facebook</a>
-                <a href = "#">Tiktok</a>
-                <a href = "#">Instagram</a>
-                <a href = "#">X</a>
+            <div class="footer-socials">
+                <a href="#">Facebook</a>
+                <a href="#">Tiktok</a>
+                <a href="#">Instagram</a>
+                <a href="#">X</a>
             </div>
-            
-</section>
-<script src="/scripts/footerscript.js"></script>
-<script src="/scripts/carouselScript.js"></script>
-<script src="/scripts/amenities.js"></script>
+        </section>
+        {{!-- Guest Scripts --}}
+        <script src="/scripts/footerscript.js"></script>
+        <script src="/scripts/carouselScript.js"></script>
+        <script src="/scripts/amenities.js"></script>
+    {{/unless}}
+
+</body>
 </html>

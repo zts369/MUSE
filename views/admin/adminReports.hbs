@@ -1,0 +1,81 @@
+<main class="fd-main">
+    <header class="content-header">
+        <h2 class="header-font">Financial Reports</h2>
+        <div class="staff-info">Admin Access</div>
+    </header>
+
+    <div class="fd-table-card" id="report-container">
+        <div class="report-header">
+            <h3 class="header-font" style="margin: 0;">Monthly Revenue Report</h3>
+            <button class="action-btn edit-btn" onclick="generatePDF()" data-html2canvas-ignore="true">Export PDF</button>
+        </div>
+        
+        <table class="fd-data-table">
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Total Bookings</th>
+                    <th>Occupancy Rate</th>
+                    <th>Total Revenue</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>January 2026</td>
+                    <td>45</td>
+                    <td>75%</td>
+                    <td>₱150,000</td>
+                </tr>
+                <tr>
+                    <td>February 2026</td>
+                    <td>38</td>
+                    <td>65%</td>
+                    <td>₱125,400</td>
+                </tr>
+                <tr>
+                    <td>March 2026</td>
+                    <td>52</td>
+                    <td>85%</td>
+                    <td>₱180,200</td>
+                </tr>
+                <tr>
+                    <td>April 2026</td>
+                    <td>48</td>
+                    <td>78%</td>
+                    <td>₱165,000</td>
+                </tr>
+                <tr>
+                    <td>May 2026</td>
+                    <td>55</td>
+                    <td>88%</td>
+                    <td>₱195,000</td>
+                </tr>
+                <tr>
+                    <td>June 2026</td>
+                    <td>60</td>
+                    <td>92%</td>
+                    <td>₱210,000</td>
+                </tr>
+                <tr style="background-color: #f9f9f9; font-weight: bold;">
+                    <td>Total (YTD)</td>
+                    <td>298</td>
+                    <td>81% (Avg)</td>
+                    <td>₱1,025,600</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<script>
+    function generatePDF() {
+        const element = document.getElementById('report-container');
+        const opt = {
+            margin:       0.5,
+            filename:     'Monthly_Revenue_Report.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(element).save();
+    }
+</script>

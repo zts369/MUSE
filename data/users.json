@@ -1,4 +1,15 @@
 [
+
+    {
+        "id": "admin101",
+        "firstName": "Jason",
+        "lastName": "Derulo",
+        "email": "jason@human.com",
+        "contact": "09171234567",
+        "password": "12345678",
+        "type": "admin",
+        "bookings": []
+    },
     {
         "id": "iDing35",
         "firstName": "Iren Phillin",
@@ -65,16 +76,6 @@
         "contact": "09171234567",
         "password": "12345678",
         "type": "staff",
-        "bookings": []
-    },
-    {
-        "id": "admin101",
-        "firstName": "Jason",
-        "lastName": "Derulo",
-        "email": "jason@human.com",
-        "contact": "09171234567",
-        "password": "12345678",
-        "type": "admin",
         "bookings": []
     }
 

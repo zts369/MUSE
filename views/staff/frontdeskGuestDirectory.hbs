@@ -1,85 +1,79 @@
-{{!-- <script>
+<!-- <script>
+    
     document.addEventListener('DOMContentLoaded', () => {
         
-        const resList = document.getElementById('reservation-list');
-        if (resList) {
-            resList.addEventListener('click', (e) => {
+        const guestList = document.getElementById('guest-list');
+        if (guestList) {
+            guestList.addEventListener('click', (e) => {
                 const row = e.target.closest('.clickable-row');
                 if (row) {
-                    window.location.href = `guestBooking.html?guest=${encodeURIComponent(row.dataset.guest)}`;
+                    window.location.href = `guestHistory.html?guest=${encodeURIComponent(row.dataset.guest)}`;
                 }
             });
         }
     });
-</script> --}}
-
+</script> -->
 <title>Front Desk | Hotel Transylvania</title>
-
+   
 <main class="fd-main">
     <header class="content-header">
-        <h2 id="tab-title" class="header-font">View Reservations</h2>
+        <h2 id="tab-title" class="header-font">Guest Directory</h2>
         <div class="staff-info">Staff Access</div>
     </header>
 
-    <div id="reservations" class="tab-pane">
+    <div id="directory" class="tab-pane">
+        <div class="guest-search-box">
+            <input type="text" id="guest-search" placeholder="Search guests...">
+            <button id="guest-search-btn" class="guest-search-btn">Search</button>
+        </div>
+
         <div class="fd-table-card">
             <table class="fd-data-table">
                 <thead>
                     <tr>
                         <th>Guest Name</th>
-                        <th>Reservations</th>
-                        <th>Check-In</th>
-                        <th>Check-Out</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Total Bookings</th>
                     </tr>
                 </thead>
-                <tbody id="reservation-list">
+                <tbody id="guest-list">
                     <tr class="clickable-row" data-guest="Jonathan Loughran">
                         <td class="guest-name">Jonathan Loughran</td>
-                        <td>5</td>
-                        <td>2026-02-20</td>
-                        <td>2026-02-22</td>
                         <td>jonathan@human.com</td>
                         <td>0917-123-4567</td>
+                        <td>10</td>
                     </tr>
 
                     <tr class="clickable-row" data-guest="Iren Phillin Ding">
                         <td class="guest-name">Iren Phillin Ding</td>
-                        <td>5</td>
-                        <td>2026-02-21</td>
-                        <td>2026-502-22</td>
                         <td>iren@human.com</td>
                         <td>0917-123-4567</td>
+                        <td>10</td>
                     </tr>
 
                     <tr class="clickable-row" data-guest="Arisha Beri">
                         <td class="guest-name">Arisha Beri</td>
-                        <td>5</td>
-                        <td>2026-02-22</td>
-                        <td>2026-02-24</td>
                         <td>arishaberi@human.com</td>
                         <td>0917-123-4567</td>
+                        <td>10</td>
                     </tr>
 
                     <tr class="clickable-row" data-guest="Jason Derulo">
                         <td class="guest-name">Jason Derulo</td>
-                        <td>5</td>
-                        <td>2026-02-20</td>
-                        <td>2026-02-22</td>
                         <td>jason@human.com</td>
                         <td>0917-123-4567</td>
+                        <td>10</td>
                     </tr>
 
                     <tr class="clickable-row" data-guest="Zhupin Sio">
                         <td class="guest-name">Zhupin Sio</td>
-                        <td>5</td>
-                        <td>2026-02-20</td>
-                        <td>2026-02-22</td>
                         <td>zhupin@human.com</td>
                         <td>0917-123-4567</td>
+                        <td>10</td>
                     </tr>
                 </tbody>
+
             </table>
         </div>
     </div>
