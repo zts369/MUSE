@@ -4,23 +4,25 @@ const router = express.Router();
 const Room = require('../models/rooms');
 
 
-// This will now be: localhost:3000/rooms/
+// This handles the "Rooms" link in your header: <a href="/room">
 router.get('/room', async (req, res) => {
   try {
     const rooms = await Room.find().lean();
-    res.render('customer/rooms', { rooms }); // Relative to 'views' folder
+    res.render('customer/rooms', { rooms, title: "Rooms" }); 
   } catch (err) {
-    console.error(err);
     res.status(500).send("Error fetching rooms");
   }
 });
 
-// This will now be: localhost:3000/rooms/details/:id
+// This handles the card click: <a href="/details/moonlight">
 router.get('/details/:id', async (req, res) => {
     try {
-        const room = await Room.findOne({ id: req.params.id }).lean();
+        // This looks for the "id" field in your JSON/DB (e.g., "moonlight")
+        const room = await Room.findOne({ id: req.params.id }).lean(); 
+        
         if (!room) return res.status(404).send("Room not found");
-        res.render('customer/room-details', { room });
+        
+        res.render('customer/room-details', { room, title: room.roomName });
     } catch (err) {
         res.status(500).send("Error fetching room details");
     }
