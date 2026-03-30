@@ -75,36 +75,24 @@
         <div class="room-selection-section">
             <div class = "room-cards">
                 <div class="room-card">
-                    <div class="room-image">
-                        <img src="https://i.pinimg.com/1200x/83/9e/fe/839efe28d4e47810182789ead59a1ceb.jpg" alt="Moonlight Room">
+                   <div class="room-image">
+                        {{!-- Use the first image from the array --}}
+                        <img src="{{room.imageUrl.[0]}}" alt="{{room.roomName}}">
                     </div>
                     <div class="room-info">
                         <div class="room-title-row">
-                            <h3>Moonlight Room</h3>
+                            <h3>{{room.roomName}}</h3>
                             <div class="price-box">
-                                <p>₱2,000/night</p>
+                                <p>₱{{formatPrice room.price}}/night</p>
                             </div>
                         </div>
-                        <p>Spanning 60 sqm, the Moonlight Room offers a private haven with stylish features and furnishings. Designed for ultimate relaxation, the space includes a king-size bed with premium Sealy mattresses, a spacious bathroom featuring a deep-soak bathtub, a refreshing rain shower, and exclusive designer amenities. Whether you're here for a romantic getaway or a quiet retreat, this room provides the perfect blend of modern luxury and cozy ambiance.</p>
-
+                        <p>{{room.description}}</p>
                         <div class="room-specs">
                             <span class="room-details">
-                                <img src="img/sqm.png" alt="icon">
-                                <p>60sqm</p>
+                                <img src="/img/sqm.png" alt="icon">
+                                <p>{{room.sqm}}sqm</p>
                             </span>
-                            <span class="room-details">
-                                <img src="img/bed.png" alt="icon">
-                                <p>1 bed</p>
-                            </span>
-                            <span class="room-details">
-                                <img src="img/bath.png" alt="icon">
-                                <p>1 bath</p>
-                            </span>
-                            <span class="room-details">
-                                <img src="img/guests.png" alt="icon">
-                                <p>2 guests</p>
-                            </span>
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -246,10 +234,7 @@
         </div>
 
     </section>
-        
-    <div id="footer-placeholder"></div>
-    <script src="footerscript.js"></script>
-    <script src = "navscript.js"></script>
-    <script src = "booking.js"></script>
+    
+    <script src="/scripts/booking.js"></script>
 
 </main>

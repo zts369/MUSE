@@ -28,4 +28,20 @@ router.get('/details/:id', async (req, res) => {
     }
 });
 
+// GET /user/booking/:id
+router.get('/user/booking/:id', async (req, res) => {
+  try {
+      const room = await Room.findOne({ id: req.params.id }).lean();
+      if (!room) return res.status(404).send("Room not found");
+
+      res.render('customer/booking', { 
+          room, 
+          user: req.session.user,
+          title: "Book " + room.roomName
+      });
+  } catch (err) {
+      res.status(500).send("Error loading booking page");
+  }
+});
+
 module.exports = router;

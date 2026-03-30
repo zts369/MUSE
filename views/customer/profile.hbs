@@ -1,74 +1,66 @@
-<main class="profile-main">
+<main class="prof-main">
+    <h2 class="prof-page-title">Guest Profile</h2>
 
-        <h2 class="page-title">Guest Profile</h2>
-
-        <div class="profile-grid">
-            <section class="card guest-info-card">
-                <h3 class="card-header">Guest Info</h3>
-                <div class="info-group">
-                    <div class="info-row">
-                        <span class="label">Full Name</span>
-                        <span id="det-name" class="value">John Doe</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="label">Phone</span>
-                        <span id="det-phone" class="value">0912 345 6789</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="label">Email</span>
-                        <span id="det-email" class="value">johnmichael_doe@gmail.com</span>
-                    </div>
+    <div class="prof-grid">
+        <section class="prof-card prof-info-card">
+            <h3 class="prof-card-header">Guest Info</h3>
+            <div class="prof-info-group">
+                <div class="prof-info-row">
+                    <span class="prof-label">Full Name</span>
+                    <span id="det-name" class="prof-value">{{user.firstName}} {{user.lastName}}</span>
                 </div>
-                <a href="#" class="edit-link">Edit Profile</a>
-            </section>
+                <div class="prof-info-row">
+                    <span class="prof-label">Phone</span>
+                    <span id="det-phone" class="prof-value">{{user.contact}}</span>
+                </div>
+                <div class="prof-info-row">
+                    <span class="prof-label">Email</span>
+                    <span id="det-email" class="prof-value">{{user.email}}</span>
+                </div>
+            </div>
+            <a href="#" class="prof-edit-link">Edit Profile</a>
+        </section>
 
-            <section class="card history-card">
-                <h3 class="card-header">Booking History</h3>
-                <div id="booking-wrapper">
-                    <table class="history-table" id="history-table">
-                        <thead>
+        <section class="prof-card prof-history-card">
+            <h3 class="prof-card-header">Booking History</h3>
+            <div id="prof-booking-wrapper">
+                <table class="prof-history-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Room</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#if bookings.length}}
+                            {{#each bookings}}
                             <tr>
-                                <th>Date</th>
-                                <th>Room</th>
-                                <th>Amount</th>
-                                <th>Status</th>
+                                <td>{{this.in}}</td>
+                                <td style="text-transform: capitalize;">{{this.roomId}}</td>
+                                <td>₱--.--</td>
+                                <td>
+                                    <span class="prof-status-pill {{this.status}}">
+                                        {{this.status}}
+                                    </span>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody id="history-table-body">
-                            </tbody>
-                    </table>
-
-                </div>
-            </section>
-        </div>
-    </main>
+                            {{/each}}
+                        {{else}}
+                            <tr>
+                                <td colspan="4" style="text-align: center; padding: 20px;">No bookings found.</td>
+                            </tr>
+                        {{/if}}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
 
 
     <script>
-        const sampleGuest = {
-            name: "John Doe",
-            phone: "0912 345 6789",
-            email: "johnmichael_doe@gmail.com",
-            bookings: [
-                {
-                    id: "BK-101",
-                    in: "January 4, 2026",
-                    out: "January 8, 2026",
-                    room: "Lunar Deluxe Suite x1<br>Starlight Family Room x2",
-                    total: 45000,
-                    status: "Reserved"
-                },
-                {
-                    id: "BK-99",
-                    in: "February 14, 2025",
-                    out: "February 21, 2025",
-                    room: "Moonlight Room x1",
-                    total: 12000,
-                    status: "Checked-Out"
-                }
-            ]
-        };
-
         function renderPage() {
             const tableBody = document.getElementById('history-table-body');
             const tableElement = document.getElementById('history-table');

@@ -131,13 +131,19 @@ router.get('/user/about', async (req, res) => {
 
 
 
-router.get('/profile/:id', async (req, res) => {
+router.get('/user/profile/:id', async (req, res) => {
     try {
+        // Find the user by your custom 'id' string
         const user = await User.findOne({ id: req.params.id }).lean();
+        
         if (!user) return res.status(404).send("User not found");
         
-        // Pass the user and their specific bookings
-        res.render('customer/home', { user, bookings: user.bookings });
+        // Render a profile view, passing the user data and their bookings
+        res.render('customer/profile', { 
+            user, 
+            bookings: user.bookings,
+            title: `${user.firstName}'s Profile`
+        });
     } catch (err) {
         console.error(err);
         res.status(500).send("Error loading profile");
