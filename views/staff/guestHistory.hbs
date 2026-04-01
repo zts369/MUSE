@@ -1,55 +1,83 @@
-<main class="fd-content-section">
-    <header class="content-header">
-        <h2 id="booking-title" class="header-font">{{guest.firstName}} {{guest.lastName}}'s Booking</h2>
-        <button onclick="window.history.back()" class="link-btn">← Back to View Reservations</button>
-    </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="frontdesk-style.css">
+    <title>Guest History | Hotel Transylvania</title>
+</head>
+<body class="fd-wrapper">
+    <main class="fd-content-section">
+        <header class="content-header">
+            <h2 id="history-title" class="header-font">Guest History</h2>
+            <button type="button" onclick="window.history.back()" class="link-btn">← Back to Guest Directory</button>
+        </header>
 
-    <div class="fd-table-card">
-        <div class="guest-summary-box">
-            <p><strong>Email:</strong> <span id="det-email">{{guest.email}}</span></p>
-            <p><strong>Phone:</strong> <span id="det-phone">{{guest.contact}}</span></p>
+        <div class="fd-table-card">
+            <div class="guest-summary-box">
+                <p><strong>Email:</strong> <span id="det-email"></span></p>
+                <p><strong>Phone:</strong> <span id="det-phone"></span></p>
+            </div>
+            
+            <h4 class="section-label">Current & Upcoming Stays</h4>
+            <div id="active-bookings-container" class="history-container"></div>
+
+            <h4 class="section-label">Past Reservations</h4>
+            <div id="past-bookings-container" class="history-container"></div>
         </div>
-        
-        <h4 class="section-label">Reservations</h4>
-        <div id="booking-items-container">
-            {{#if guest.bookings.length}}
-                {{#each guest.bookings}}
-                <div class="booking-item">
+    </main>
+
+    <script src="guestData.js"></script>
+    <script>
+        // Inside guestHistory.html <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const guestName = urlParams.get('guest');
+
+        if (guestName && guestDataStore[guestName]) {
+            const data = guestDataStore[guestName];
+            document.getElementById('history-title').innerText = `${guestName}'s History`;
+            document.getElementById('det-email').innerText = data.email;
+            document.getElementById('det-phone').innerText = data.phone;
+
+            const activeStays = data.bookings.filter(b => b.status === "Reserved" || b.status === "Checked-In");
+            
+            const pastStays = data.bookings.filter(b => b.status === "Checked-Out");
+
+            // Render them to their respective containers
+            renderHistoryItems(activeStays, 'active-bookings-container');
+            renderHistoryItems(pastStays, 'past-bookings-container');
+        }
+
+        function renderHistoryItems(items, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = ""; 
+            if (items.length === 0) {
+                container.innerHTML = `<p class="no-data">No records found for this section.</p>`;
+                return;
+            }
+
+            items.forEach(booking => {
+                // Assign color class based on status
+                let statusClass = "status-reserved"; 
+                if (booking.status === "Checked-In") statusClass = "status-checkedin"; 
+                if (booking.status === "Checked-Out") statusClass = "status-checkedout";
+
+                const div = document.createElement('div');
+                div.className = 'booking-item';
+                div.innerHTML = `
                     <div class="booking-flex">
                         <div class="booking-info">
-                            <p><strong>Booking ID:</strong> <small>{{this.id}}</small></p>
-                            <p><strong>Room:</strong> {{this.roomId}}</p>
-                            <p><strong>Check-In:</strong> {{this.in}} | <strong>Check-Out:</strong> {{this.out}}</p>
-                            <p><strong>Guests:</strong> {{this.adults}} Adults, {{this.children}} Children</p>
-                            {{!-- Using a placeholder since total isn't in your JSON yet --}}
-                            <p><strong>Total:</strong> ₱{{#if this.total}}{{this.total}}{{else}}0.00{{/if}}</p>
+                            <p><strong>ID:</strong> ${booking.id}</p>
+                            <p><strong>Room:</strong> ${booking.room}</p>
+                            <p><strong>Check-in:</strong> ${booking.in} | <strong>Check-out:</strong>  ${booking.out}</p>
                         </div>
-                        
                         <div class="status-control">
-                            <label class="status-label">Status</label>
-                            {{!-- Note: To save this to the DB, you'd need an actual <form> or a small script for the API call --}}
-                            <select class="status-select status-{{toLowerCase this.status}}" onchange="updateStatusColor(this)">
-                                <option value="Reserved" {{#if (eq this.status "Reserved")}}selected{{/if}}>Reserved</option>
-                                <option value="Checked-In" {{#if (eq this.status "Checked-In")}}selected{{/if}}>Checked-In</option>
-                                <option value="Checked-Out" {{#if (eq this.status "Checked-Out")}}selected{{/if}}>Checked-Out</option>
-                                <option value="Cancelled" {{#if (eq this.status "Cancelled")}}selected{{/if}}>Cancelled</option>
-                            </select>
+                            <span class="status-badge ${statusClass}">${booking.status}</span>
                         </div>
                     </div>
-                </div>
-                {{/each}}
-            {{else}}
-                <p style="padding: 20px; text-align: center;">No active reservations for this guest.</p>
-            {{/if}}
-        </div>
-    </div>
-</main>
-
-<script>
-    // Just a small helper to keep your visual colors working when you click the dropdown
-    function updateStatusColor(selectElement) {
-        selectElement.classList.remove('status-reserved', 'status-checkedin', 'status-checkedout', 'status-cancelled');
-        const val = selectElement.value.toLowerCase().replace('-', '');
-        selectElement.classList.add(`status-${val}`);
-    }
-</script>
+                `;
+                container.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>

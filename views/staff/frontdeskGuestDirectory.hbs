@@ -13,7 +13,6 @@
         }
     });
 </script> -->
-<title>Front Desk | Hotel Transylvania</title>
    
 <main class="fd-main">
     <header class="content-header">
@@ -38,40 +37,14 @@
                     </tr>
                 </thead>
                 <tbody id="guest-list">
-                    <tr class="clickable-row" data-guest="Jonathan Loughran">
-                        <td class="guest-name">Jonathan Loughran</td>
-                        <td>jonathan@human.com</td>
-                        <td>0917-123-4567</td>
-                        <td>10</td>
-                    </tr>
-
-                    <tr class="clickable-row" data-guest="Iren Phillin Ding">
-                        <td class="guest-name">Iren Phillin Ding</td>
-                        <td>iren@human.com</td>
-                        <td>0917-123-4567</td>
-                        <td>10</td>
-                    </tr>
-
-                    <tr class="clickable-row" data-guest="Arisha Beri">
-                        <td class="guest-name">Arisha Beri</td>
-                        <td>arishaberi@human.com</td>
-                        <td>0917-123-4567</td>
-                        <td>10</td>
-                    </tr>
-
-                    <tr class="clickable-row" data-guest="Jason Derulo">
-                        <td class="guest-name">Jason Derulo</td>
-                        <td>jason@human.com</td>
-                        <td>0917-123-4567</td>
-                        <td>10</td>
-                    </tr>
-
-                    <tr class="clickable-row" data-guest="Zhupin Sio">
-                        <td class="guest-name">Zhupin Sio</td>
-                        <td>zhupin@human.com</td>
-                        <td>0917-123-4567</td>
-                        <td>10</td>
-                    </tr>
+                    {{#each guests}}
+                        <tr class="clickable-row" data-guest="{{this.firstName}} {{this.lastName}}">
+                            <td class="guest-name">{{this.firstName}} {{this.lastName}}</td>
+                            <td>{{this.email}}</td>
+                            <td>{{this.contact}}</td>
+                            <td>{{this.bookings.length}}</td>
+                        </tr>
+                    {{/each}}
                 </tbody>
 
             </table>

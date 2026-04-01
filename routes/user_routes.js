@@ -2,6 +2,20 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
+const path = require('path');
+const fs = require('fs');
+
+// CORRECT PATH: Go up one level, into 'data', then 'rooms.json'
+const roomsPath = path.join(__dirname, '../data/rooms.json');
+
+// Wrap in a try-catch so the server doesn't crash if the file moves again
+let rooms = [];
+try {
+    rooms = JSON.parse(fs.readFileSync(roomsPath, 'utf8'));
+    console.log("✅ rooms.json loaded successfully from data folder");
+} catch (err) {
+    console.error("❌ Could not load rooms.json. Path attempted:", roomsPath);
+}
 
 // Fix: Change 'app' to 'router'
 router.get('/sign-up', (req, res) => {
@@ -86,23 +100,35 @@ router.get('/staff/reservations', async (req, res) => {
 
 router.get('/staff/guest-bookings/:id', async (req, res) => {
     try {
-        // Search for the guest by the 'id' field from your JSON
         const guest = await User.findOne({ id: req.params.id }).lean();
+        if (!guest) return res.status(404).send("Guest not found");
 
-        if (!guest) {
-            console.log("Guest not found for ID:", req.params.id);
-            return res.status(404).send("Guest not found");
+        const roomsPath = path.join(__dirname, '../data/rooms.json');
+        const roomsData = JSON.parse(fs.readFileSync(roomsPath, 'utf8'));
+
+        // Merging logic
+        if (guest.bookings && guest.bookings.length > 0) {
+            guest.bookings = guest.bookings.map(booking => {
+                // Find matching room (with extra safety for spaces/case)
+                const roomInfo = roomsData.find(r => 
+                    r.id.trim().toLowerCase() === booking.roomId.trim().toLowerCase()
+                );
+
+                return {
+                    ...booking,
+                    roomName: roomInfo ? roomInfo.roomName : "Room Info Missing",
+                    price: roomInfo ? roomInfo.price : 0
+                };
+            });
         }
 
-        // IMPORTANT: Ensure the filename here matches your .hbs file exactly
-        // If your file is 'views/staff/guestHistory.hbs', use 'staff/guestHistory'
         res.render('staff/guestBooking', { 
-            guest: guest, // This must be 'guest' to match the {{guest.email}} tags above
+            guest: guest, 
             user: req.session.user, 
             title: 'Guest Details' 
         });
     } catch (err) {
-        console.error("Error in /staff/guest-bookings/:id:", err);
+        console.error("Route Error:", err);
         res.status(500).send("Error fetching guest details");
     }
 });
@@ -125,6 +151,7 @@ router.get('/staff/history', async (req, res) => {
     try {
         const guests = await User.find({ type: 'staff' }).lean();
         res.render('staff/frontdeskHistory', {
+            user: req.session.user,
             title: 'Front Desk | History',
             guests: guests // Pass the data to the template
         });

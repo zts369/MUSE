@@ -25,9 +25,10 @@
                         
                         <div class="booking-info">
                             <p><strong>Booking ID:</strong> <small>{{this.id}}</small></p>
-                            <p><strong>Room:</strong> <span style="text-transform: capitalize;">{{this.roomId}}</span></p>
+                            <p><strong>Room:</strong> {{this.roomName}}</span></p>
                             <p><strong>Stay:</strong> {{this.in}} to {{this.out}}</p>
                             <p><strong>Guests:</strong> {{this.adults}} Adults, {{this.children}} Children</p>
+                            <p><strong>Price:</strong> {{formatPrice this.price}}</p>
                         </div>
                         
                         <div class="status-control">
