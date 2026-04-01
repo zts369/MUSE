@@ -6,8 +6,10 @@ const fs = require('fs');
 const session = require('express-session');
 const MongoStore = require('connect-mongo').default;
 
+const Log = require('./models/logs');
 const User = require('./models/users'); 
 const Room = require('./models/rooms'); 
+
 
 const app = express();
 const PORT = 3000;
@@ -74,8 +76,10 @@ async function seedData(model, filePath) {
   }
 }
 // 5. Routes
+const logRoutes = require('./routes/log_routes');
 const userRoutes = require('./routes/user_routes');
 const roomRoutes = require('./routes/room_routes');
+
 
 app.get('/', (req, res) => {
   res.render('sign-up');
@@ -83,6 +87,7 @@ app.get('/', (req, res) => {
 
 app.use('/', userRoutes);
 app.use('/', roomRoutes);
+app.use('/', logRoutes);
 
 // 6. Database Connection
 mongoose.connect(connectionURI)
@@ -91,9 +96,11 @@ mongoose.connect(connectionURI)
     app.listen(PORT, async () => {
       console.log(`🚀 Server running at http://localhost:${PORT}`);
       
-      // Seed both Rooms and Users
+      // Seed data after server starts
       await seedData(Room, path.join(__dirname, 'data', 'rooms.json'));
       await seedData(User, path.join(__dirname, 'data', 'users.json'));
+      await seedData(Log, path.join(__dirname, 'data', 'logs.json'));
     });
   })
   .catch(err => console.log(err));
+

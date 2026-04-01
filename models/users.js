@@ -11,12 +11,12 @@ const bookingSchema = new mongoose.Schema({
         required: true 
     },
     in: { 
-        type: String, // Changed from Date to String to match "2024-07-01"
-        required: true 
+        type: Date,
+        default: Date.now,
     },
     out: { 
-        type: String, // Changed from Date to String to match "2024-07-01"
-        required: true 
+        type: Date,
+        default: Date.now,
     },
     adults: { 
         type: Number, 
@@ -40,11 +40,11 @@ const bookingSchema = new mongoose.Schema({
 
 // User Schema
 const userSchema = new mongoose.Schema({
-    id: { 
+    id: { // This holds your username like "iDing35"
         type: String, 
         required: true, 
         unique: true 
-    }, // This holds your username like "iDing35"
+    }, 
     firstName: { 
         type: String, 
         required: true, 

@@ -30,7 +30,6 @@
     });
 </script>
 
-<title>Front Desk | Hotel Transylvania</title>
 
 <main class="fd-main">
     <header class="content-header">
@@ -45,8 +44,8 @@
                     <tr>
                         <th>Guest Name</th>
                         <th>Reservations</th>
-                        <th>Check-In</th>
-                        <th>Check-Out</th>
+                        <th>Last Check-In</th>
+                        <th>Last Check-Out</th>
                         <th>Email</th>
                         <th>Phone</th>
                     </tr>
@@ -55,19 +54,9 @@
                     {{#each guests}}
                     <tr class="clickable-row" data-guest="{{this.firstName}} {{this.lastName}}" data-id="{{this.id}}">
                         <td class="guest-name">{{this.firstName}} {{this.lastName}}</td>
-                        
-                        {{!-- Shows total number of bookings for this guest --}}
-                        <td>{{this.bookings.length}}</td>
-
-                        {{!-- Show dates from the most recent/first booking if it exists --}}
-                        {{#if this.bookings.[0]}}
-                            <td>{{this.bookings.[0].in}}</td>
-                            <td>{{this.bookings.[0].out}}</td>
-                        {{else}}
-                            <td>N/A</td>
-                            <td>N/A</td>
-                        {{/if}}
-
+                        <td>{{this.totalBookings}}</td>
+                        <td>{{this.displayIn}}</td>
+                        <td>{{this.displayOut}}</td>
                         <td>{{this.email}}</td>
                         <td>{{this.contact}}</td>
                     </tr>

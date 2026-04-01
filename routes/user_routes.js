@@ -83,14 +83,61 @@ router.get('/admin/reports', async (req, res) => {
     }
 });
 
+
+
 // 2. STAFF VIEW: Show only Guests (for the Front Desk)
+
+/**
+ * Formats a list of guest objects with readable dates and booking counts
+ * @param {Array} guests - The raw guest array from MongoDB
+ * @returns {Array} - The formatted guest array for Handlebars
+ */
+const formatGuestData = (data) => {
+    const isArray = Array.isArray(data);
+    const guestsArray = isArray ? data : [data];
+
+    const formatted = guestsArray.map(guest => {
+        // Internal helper for date formatting
+        const formatEntryDate = (dateValue) => {
+            if (!dateValue) return "N/A";
+            return new Date(dateValue).toLocaleString('en-PH', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true 
+            });
+        };
+
+        if (guest.bookings && guest.bookings.length > 0) {
+            guest.bookings = guest.bookings.map(booking => ({
+                ...booking,
+                displayIn: formatEntryDate(booking.in),
+                displayOut: formatEntryDate(booking.out)
+            }));
+        }
+
+        const firstBooking = guest.bookings && guest.bookings.length > 0 ? guest.bookings[0] : null;
+
+        return {
+            ...guest,
+            displayIn: formatEntryDate(firstBooking ? firstBooking.in : null),
+            displayOut: formatEntryDate(firstBooking ? firstBooking.out : null),
+            totalBookings: guest.bookings ? guest.bookings.length : 0
+        };
+    });
+
+    return isArray ? formatted : formatted[0];
+};
+
 router.get('/staff/reservations', async (req, res) => {
     try {
         //find the guests who made reservations
         const guests = await User.find({ type: 'guest' }).lean();
         res.render('staff/frontdeskHome', {
             title: 'Front Desk | View Reservations',
-            guests: guests // Pass the data to the template
+            guests: formatGuestData(guests) // Pass the data to the template
         });
     } catch (err) {
         console.error(err);
@@ -98,22 +145,22 @@ router.get('/staff/reservations', async (req, res) => {
     }
 });
 
+
+
 router.get('/staff/guest-bookings/:id', async (req, res) => {
     try {
-        const guest = await User.findOne({ id: req.params.id }).lean();
-        if (!guest) return res.status(404).send("Guest not found");
+        const guestDoc = await User.findOne({ id: req.params.id }).lean();
+        if (!guestDoc) return res.status(404).send("Guest not found");
 
         const roomsPath = path.join(__dirname, '../data/rooms.json');
         const roomsData = JSON.parse(fs.readFileSync(roomsPath, 'utf8'));
 
-        // Merging logic
-        if (guest.bookings && guest.bookings.length > 0) {
-            guest.bookings = guest.bookings.map(booking => {
-                // Find matching room (with extra safety for spaces/case)
+        // Merge room info into bookings
+        if (guestDoc.bookings && guestDoc.bookings.length > 0) {
+            guestDoc.bookings = guestDoc.bookings.map(booking => {
                 const roomInfo = roomsData.find(r => 
                     r.id.trim().toLowerCase() === booking.roomId.trim().toLowerCase()
                 );
-
                 return {
                     ...booking,
                     roomName: roomInfo ? roomInfo.roomName : "Room Info Missing",
@@ -123,7 +170,8 @@ router.get('/staff/guest-bookings/:id', async (req, res) => {
         }
 
         res.render('staff/guestBooking', { 
-            guest: guest, 
+            // We pass the formatted single object as 'guest'
+            guest: formatGuestData(guestDoc), 
             user: req.session.user, 
             title: 'Guest Details' 
         });
@@ -146,21 +194,6 @@ router.get('/staff/directory', async (req, res) => {
         res.status(500).send("Error fetching guest list");
     }
 });
-
-router.get('/staff/history', async (req, res) => {
-    try {
-        const guests = await User.find({ type: 'staff' }).lean();
-        res.render('staff/frontdeskHistory', {
-            user: req.session.user,
-            title: 'Front Desk | History',
-            guests: guests // Pass the data to the template
-        });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Error fetching guest list");
-    }
-});
-
 
 
 router.get('/user/home', async (req, res) => {

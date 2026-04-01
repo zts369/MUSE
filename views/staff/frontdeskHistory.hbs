@@ -6,13 +6,13 @@
             resList.addEventListener('click', (e) => {
                 const row = e.target.closest('.clickable-row');
                 if (row) {
-                    window.location.href = `guestBooking.html?guest=${encodeURIComponent(row.dataset.guest)}`;
+                    const guestId = row.dataset.id;
+                    window.location.href = `/staff/guest-bookings/${row.dataset.id}`;
                 }
             });
         }
     });
 </script> --}}
-<title>Front Desk | Hotel Transylvania</title>
 
 <main class="fd-main">
     <header class="content-header">
@@ -32,40 +32,14 @@
                     </tr>
                 </thead>
                 <tbody id="log-entry">
-                    <tr class="log-entry">
-                        <td class="log-time">2026-02-19 <span class="time-dim">10:15:22</span></td>
-                        <td><strong>Jonathan Loughran</strong></td>
-                        <td>Room 101</td>
-                        <td><span class="log-badge badge-checkin">Check-In</span></td>
-                    </tr>
-                    <tr class="log-entry">
-                        <td class="log-time">2026-02-19 <span class="time-dim">09:45:10</span></td>
-                        <td><strong>Iren Phillin Ding</strong></td>
-                        <td>Room 204</td>
-                        <td><span class="log-badge badge-checkout">Check-Out</span></td>
-
-                    </tr>
-                    
-                    <tr class="log-entry">
-                        <td class="log-time">2026-02-19 <span class="time-dim">08:45:10</span></td>
-                        <td><strong>Zhupin Sio</strong></td>
-                        <td>Room 204</td>
-                        <td><span class="log-badge badge-checkout">Check-Out</span></td>
-
-                    </tr>
-                    <tr class="log-entry">
-                        <td class="log-time">2026-02-19 <span class="time-dim">06:35:10</span></td>
-                        <td><strong>Jason Derulo</strong></td>
-                        <td>Room 333</td>
-                        <td><span class="log-badge badge-checkout">Check-Out</span></td>
-
-                    </tr>
-                    <tr class="log-entry">
-                        <td class="log-time">2026-02-18 <span class="time-dim">16:20:00</span></td>
-                        <td><strong>Arisha Beri</strong></td>
-                        <td>Suite 01</td>
-                        <td><span class="log-badge badge-cancel">Cancelled</span></td>
-                    </tr>
+                    {{#each logs}}
+                        <tr class="log-entry">
+                            <td class="log-time">{{}} <span class="time-dim">{{this.timestamp}}</span></td>
+                            <td><strong>{{this.guestName}}</strong></td>
+                            <td>{{this.roomName}}</td>
+                            <td><span class="log-badge badge-checkin">{{this.status  }}</span></td>
+                        </tr>
+                    {{/each}}
                     
                 </tbody>
             </table>
