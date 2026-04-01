@@ -27,17 +27,14 @@
                             <td>{{this.roomName}}</td>
                             <td>{{formatPrice this.price}}</td>
                             <td><span class="tag success">
-                                {{#if this.isAvailable}}
+                                {{#if this.isAvailable)}}
                                     Available
                                 {{else}}
                                     Unavailable
                                 {{/if}}
                                 </span></td>
                             <td>
-                                <button class="action-btn edit-btn" 
-                                    onclick="openEditModal('{{this.id}}', '{{this.roomName}}', {{this.price}}, '{{this.isAvailable}}', `{{this.longerDescription}}`)">
-                                    Edit
-                                </button>
+                                <button class="action-btn edit-btn" onclick="openEditModal('Moonlight Room', 2000, 'Available', 'Spanning 60 sqm, the Moonlight Room offers a private haven...')">Edit</button>
                             </td>
                         </tr>
                         {{/each}}
@@ -80,4 +77,3 @@
         </div>
     </div>
 </body>
-</html>
