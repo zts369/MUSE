@@ -43,6 +43,9 @@ const hbs = exphbs.create({
   defaultLayout: 'main',
   layoutsDir: path.join(__dirname, 'views/layouts'),
   helpers: {
+    toLowerCase: function (str) {
+      return str ? str.toLowerCase().replace(/\s+/g, '').replace('-', '') : '';
+    },
     formatPrice: (price) => {
       if (typeof price !== 'number') return price;
       return price.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });

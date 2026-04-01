@@ -13,6 +13,23 @@
     });
 </script> --}}
 
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const resList = document.getElementById('reservation-list');
+        if (resList) {
+            resList.addEventListener('click', (e) => {
+                const row = e.target.closest('.clickable-row');
+                if (row) {
+                    // Redirect to a dynamic route using the Guest's ID
+                    // Assuming you add 'data-id' to your <tr>
+                    const guestId = row.dataset.id;
+                    window.location.href = `/staff/guest-bookings/${row.dataset.id}`;
+                }
+            });
+        }
+    });
+</script>
+
 <title>Front Desk | Hotel Transylvania</title>
 
 <main class="fd-main">
@@ -35,50 +52,26 @@
                     </tr>
                 </thead>
                 <tbody id="reservation-list">
-                    <tr class="clickable-row" data-guest="Jonathan Loughran">
-                        <td class="guest-name">Jonathan Loughran</td>
-                        <td>5</td>
-                        <td>2026-02-20</td>
-                        <td>2026-02-22</td>
-                        <td>jonathan@human.com</td>
-                        <td>0917-123-4567</td>
-                    </tr>
+                    {{#each guests}}
+                    <tr class="clickable-row" data-guest="{{this.firstName}} {{this.lastName}}" data-id="{{this.id}}">
+                        <td class="guest-name">{{this.firstName}} {{this.lastName}}</td>
+                        
+                        {{!-- Shows total number of bookings for this guest --}}
+                        <td>{{this.bookings.length}}</td>
 
-                    <tr class="clickable-row" data-guest="Iren Phillin Ding">
-                        <td class="guest-name">Iren Phillin Ding</td>
-                        <td>5</td>
-                        <td>2026-02-21</td>
-                        <td>2026-502-22</td>
-                        <td>iren@human.com</td>
-                        <td>0917-123-4567</td>
-                    </tr>
+                        {{!-- Show dates from the most recent/first booking if it exists --}}
+                        {{#if this.bookings.[0]}}
+                            <td>{{this.bookings.[0].in}}</td>
+                            <td>{{this.bookings.[0].out}}</td>
+                        {{else}}
+                            <td>N/A</td>
+                            <td>N/A</td>
+                        {{/if}}
 
-                    <tr class="clickable-row" data-guest="Arisha Beri">
-                        <td class="guest-name">Arisha Beri</td>
-                        <td>5</td>
-                        <td>2026-02-22</td>
-                        <td>2026-02-24</td>
-                        <td>arishaberi@human.com</td>
-                        <td>0917-123-4567</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.contact}}</td>
                     </tr>
-
-                    <tr class="clickable-row" data-guest="Jason Derulo">
-                        <td class="guest-name">Jason Derulo</td>
-                        <td>5</td>
-                        <td>2026-02-20</td>
-                        <td>2026-02-22</td>
-                        <td>jason@human.com</td>
-                        <td>0917-123-4567</td>
-                    </tr>
-
-                    <tr class="clickable-row" data-guest="Zhupin Sio">
-                        <td class="guest-name">Zhupin Sio</td>
-                        <td>5</td>
-                        <td>2026-02-20</td>
-                        <td>2026-02-22</td>
-                        <td>zhupin@human.com</td>
-                        <td>0917-123-4567</td>
-                    </tr>
+                    {{/each}}
                 </tbody>
             </table>
         </div>

@@ -1,0 +1,52 @@
+<main class="fd-main"> 
+    <header class="content-header">
+        <h2 id="booking-title" class="header-font">
+            {{guest.firstName}} {{guest.lastName}}'s Booking
+        </h2>
+        <button onclick="window.history.back()" class="link-btn" style="cursor: pointer;">
+            ← Back to View Reservations
+        </button>
+    </header>
+
+    <div class="fd-table-card">
+        {{!-- Guest Contact Info --}}
+        <div class="guest-summary-box" style="margin-bottom: 20px; padding: 15px; background: #fffaf5; border-radius: 10px;">
+            <p><strong>Email:</strong> {{guest.email}}</p>
+            <p><strong>Phone:</strong> {{guest.contact}}</p>
+        </div>
+        
+        <h4 class="section-label" style="margin: 20px 0 10px 0;">Reservations</h4>
+        
+        <div id="booking-items-container">
+            {{#if guest.bookings.length}}
+                {{#each guest.bookings}}
+                <div class="booking-item" style="border: 1px solid #ddd; padding: 20px; border-radius: 15px; margin-bottom: 15px;">
+                    <div class="booking-flex" style="display: flex; justify-content: space-between; align-items: center;">
+                        
+                        <div class="booking-info">
+                            <p><strong>Booking ID:</strong> <small>{{this.id}}</small></p>
+                            <p><strong>Room:</strong> <span style="text-transform: capitalize;">{{this.roomId}}</span></p>
+                            <p><strong>Stay:</strong> {{this.in}} to {{this.out}}</p>
+                            <p><strong>Guests:</strong> {{this.adults}} Adults, {{this.children}} Children</p>
+                        </div>
+                        
+                        <div class="status-control">
+                            <label class="status-label" style="display: block; font-size: 12px; margin-bottom: 5px;">Status</label>
+                            {{!-- Using the toLowerCase helper we registered --}}
+                            <select class="status-select status-{{toLowerCase this.status}}">
+                                <option value="Reserved" {{#if (eq this.status "Reserved")}}selected{{/if}}>Reserved</option>
+                                <option value="Checked-In" {{#if (eq this.status "Checked-In")}}selected{{/if}}>Checked-In</option>
+                                <option value="Checked-Out" {{#if (eq this.status "Checked-Out")}}selected{{/if}}>Checked-Out</option>
+                                <option value="Cancelled" {{#if (eq this.status "Cancelled")}}selected{{/if}}>Cancelled</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+                {{/each}}
+            {{else}}
+                <p>No records found for this guest.</p>
+            {{/if}}
+        </div>
+    </div>
+</main>

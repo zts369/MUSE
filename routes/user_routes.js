@@ -72,7 +72,8 @@ router.get('/admin/reports', async (req, res) => {
 // 2. STAFF VIEW: Show only Guests (for the Front Desk)
 router.get('/staff/reservations', async (req, res) => {
     try {
-        const guests = await User.find({ type: 'staff' }).lean();
+        //find the guests who made reservations
+        const guests = await User.find({ type: 'guest' }).lean();
         res.render('staff/frontdeskHome', {
             title: 'Front Desk | View Reservations',
             guests: guests // Pass the data to the template
@@ -83,11 +84,35 @@ router.get('/staff/reservations', async (req, res) => {
     }
 });
 
+router.get('/staff/guest-bookings/:id', async (req, res) => {
+    try {
+        // Search for the guest by the 'id' field from your JSON
+        const guest = await User.findOne({ id: req.params.id }).lean();
+
+        if (!guest) {
+            console.log("Guest not found for ID:", req.params.id);
+            return res.status(404).send("Guest not found");
+        }
+
+        // IMPORTANT: Ensure the filename here matches your .hbs file exactly
+        // If your file is 'views/staff/guestHistory.hbs', use 'staff/guestHistory'
+        res.render('staff/guestBooking', { 
+            guest: guest, // This must be 'guest' to match the {{guest.email}} tags above
+            user: req.session.user, 
+            title: 'Guest Details' 
+        });
+    } catch (err) {
+        console.error("Error in /staff/guest-bookings/:id:", err);
+        res.status(500).send("Error fetching guest details");
+    }
+});
+
 router.get('/staff/directory', async (req, res) => {
     try {
-        const guests = await User.find({ type: 'staff' }).lean();
+        const guests = await User.find({ type: 'guest' }).lean();
         res.render('staff/frontdeskGuestDirectory', { 
             user: req.session.user, 
+            guests: guests, //pass the guest data to the template
             title: 'Front Desk | Guest Directory' 
         });
     } catch (err) {
@@ -108,6 +133,8 @@ router.get('/staff/history', async (req, res) => {
         res.status(500).send("Error fetching guest list");
     }
 });
+
+
 
 router.get('/user/home', async (req, res) => {
   try {
