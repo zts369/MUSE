@@ -533,6 +533,15 @@ section {
   margin-bottom: 2rem;
 }
 
+.auth-header .error-message {
+  color: #e23e2c;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+}
+
 .form-group {
   margin-bottom: 1.5rem;
   text-align: left;
@@ -657,6 +666,7 @@ section {
   outline: none;
   border: none;
 }
+
 
 /*ROOM DETAILS PAGE*/
 /* --- Root Styles for Detail Page --- */

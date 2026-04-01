@@ -22,46 +22,25 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{#each rooms}}
                         <tr>
-                            <td>Moonlight Room</td>
-                            <td>₱2,000</td>
-                            <td><span class="tag success">Available</span></td>
+                            <td>{{this.roomName}}</td>
+                            <td>{{formatPrice this.price}}</td>
+                            <td><span class="tag success">
+                                {{#if this.isAvailable}}
+                                    Available
+                                {{else}}
+                                    Unavailable
+                                {{/if}}
+                                </span></td>
                             <td>
-                                <button class="action-btn edit-btn" onclick="openEditModal('Moonlight Room', 2000, 'Available', 'Spanning 60 sqm, the Moonlight Room offers a private haven...')">Edit</button>
+                                <button class="action-btn edit-btn" 
+                                    onclick="openEditModal('{{this.id}}', '{{this.roomName}}', {{this.price}}, '{{this.isAvailable}}', `{{this.longerDescription}}`)">
+                                    Edit
+                                </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Twilight Cozy Room</td>
-                            <td>₱3,200</td>
-                            <td><span class="tag success">Available</span></td>
-                            <td>
-                                <button class="action-btn edit-btn" onclick="openEditModal('Twilight Cozy Room', 3200, 'Available', 'Spanning 95 sqm, the Twilight Cozy Room offers generous living space...')">Edit</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Starlight Family Room</td>
-                            <td>₱4,200</td>
-                            <td><span class="tag pending">Maintenance</span></td>
-                            <td>
-                                <button class="action-btn edit-btn" onclick="openEditModal('Starlight Family Room', 4200, 'Maintenance', 'Spanning 140 sqm, the Starlight Family Room offers an expansive private haven...')">Edit</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Midnight Bliss Suite</td>
-                            <td>₱9,900</td>
-                            <td><span class="tag success">Available</span></td>
-                            <td>
-                                <button class="action-btn edit-btn" onclick="openEditModal('Midnight Bliss Suite', 9900, 'Available', 'Spanning 180 sqm, the Midnight Bliss Suite offers a grand and sophisticated retreat...')">Edit</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Lunar Deluxe Suite</td>
-                            <td>₱18,900</td>
-                            <td><span class="tag danger">Booked</span></td>
-                            <td>
-                                <button class="action-btn edit-btn" onclick="openEditModal('Lunar Deluxe Suite', 18900, 'Booked', 'Spanning an impressive 200 sqm, the Lunar Deluxe Suite offers an expansive...')">Edit</button>
-                            </td>
-                        </tr>
+                        {{/each}}
                     </tbody>
                 </table>
             </div>

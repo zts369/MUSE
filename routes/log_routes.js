@@ -16,26 +16,23 @@ router.get('/staff/history', async (req, res) => {
 
         // 3. Merge the data
         const detailedLogs = await Promise.all(logs.map(async (log) => {
-            // Find the User in MongoDB
             const guest = await User.findOne({ id: log.guestId }).lean();
-            
-            // Find the Room in the JSON file
             const room = roomsData.find(r => r.id === log.roomId);
-
+        
             return {
                 ...log,
-                // Use the name from the User database, or a fallback
                 guestName: guest ? `${guest.firstName} ${guest.lastName}` : "Unknown Guest",
                 roomName: room ? room.roomName : "Unknown Room",
-                displayTime: log.timestamp.toISOString().split('T')[0],
-                displayClock: log.timestamp.toTimeString().split(' ')[0]
+                // Format these nicely for the history table
+                displayTime: new Date(log.timestamp).toLocaleDateString('en-PH', { month: 'short', day: 'numeric', year: 'numeric' }),
+                displayClock: new Date(log.timestamp).toLocaleTimeString('en-PH', { hour: '2-digit', minute: '2-digit' })
             };
         }));
-
-        res.render('staff/frontdeskHome', { 
+        
+        res.render('staff/frontdeskHistory', { 
             logs: detailedLogs,
             user: req.session.user,
-            title: 'View Reservations'
+            title: 'Front Desk | View History Logs'
         });
     } catch (err) {
         console.error(err);

@@ -42,7 +42,10 @@ router.post('/login', async (req, res) => {
             if (user.type === 'staff') return res.redirect('/staff/reservations');
             return res.redirect('/user/home');
         } else {
-            res.send("Invalid credentials. <a href='/'>Try again</a>");
+            res.render('sign-up', { 
+                error: "Invalid username, email, or password",
+                identifier // Pass this back so the user doesn't have to re-type it
+            });
         }
     } catch (err) {
         res.status(500).send("Server Error");
@@ -58,18 +61,7 @@ router.get('/logout', (req, res) => {
     });
 });
 
-// 1. ADMIN VIEW: Show only Staff and Admins
-router.get('/admin/management', async (req, res) => {
-    try {
-        // Filter for staff/admin only
-        const employees = await User.find({ type: 'admin' }).lean();
-        res.render('admin/adminHome', { users: employees });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Error fetching employee directory");
-    }
-});
-
+// 1. ADMIN VIEW
 router.get('/admin/reports', async (req, res) => {
     try {
         const employees = await User.find({ type: 'admin' }).lean();

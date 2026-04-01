@@ -6,6 +6,9 @@
         <!-- Sign In Card -->
         <div class="auth-card" id="signin-card">
             <div class="auth-header">
+                {{#if error}}
+                    <p class="error-message">{{error}}</p>
+                {{/if}}
                 <h2>Welcome Back</h2>
                 <p>Enter your details to sign in</p>
             </div>

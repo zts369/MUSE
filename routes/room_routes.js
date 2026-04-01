@@ -44,4 +44,17 @@ router.get('/user/booking/:id', async (req, res) => {
   }
 });
 
+// ADMIN ROOM
+router.get('/admin/management', async (req, res) => {
+  try {
+    const rooms = await Room.find().lean();
+    res.render('admin/adminHome', { 
+      rooms, 
+      user: req.session.user,
+      title: "Admin | Room Management" }); 
+  } catch (err) {
+    res.status(500).send("Error fetching rooms");
+  }
+});
+
 module.exports = router;

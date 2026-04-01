@@ -34,10 +34,12 @@
                 <tbody id="log-entry">
                     {{#each logs}}
                         <tr class="log-entry">
-                            <td class="log-time">{{}} <span class="time-dim">{{this.timestamp}}</span></td>
+                            <td class="log-time">
+                                {{this.displayTime}} <span class="time-dim">{{this.displayClock}}</span>
+                            </td>
                             <td><strong>{{this.guestName}}</strong></td>
                             <td>{{this.roomName}}</td>
-                            <td><span class="log-badge badge-checkin">{{this.status  }}</span></td>
+                            <td><span class="log-badge badge-checkin">{{this.action}}</span></td>
                         </tr>
                     {{/each}}
                     
