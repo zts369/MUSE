@@ -23,22 +23,24 @@
                 <div class="logo">
                     <a class="logo-btn" href="/user/home">HOTEL TRANSYLVANIA</a>
                 </div>
-                <div class="nav">
-                    <a href="/user/home">Home</a>
-                    <a href="/user/about">About Us</a>
-                    <a href="/room">Rooms</a>
-                    {{!-- <a href="/user/booking">Book</a> tinanggal ko nlng kasi naisip ko pupunta lang din naman sa room if mag bbook HAHAHA--}}
+                <div class="header-right">
+                    <div class="nav">
+                        <a href="/user/home">Home</a>
+                        <a href="/user/about">About Us</a>
+                        <a href="/room">Rooms</a>
+                        {{!-- <a href="/user/booking">Book</a> --}}
+                        {{#if user}}
+                            <a href="/logout">Logout</a>
+                        {{else}}
+                            <a href="/sign-up">Login</a>
+                        {{/if}}
+                    </div>
                     {{#if user}}
-                        <a href="/logout">Logout</a>
-                    {{else}}
-                        <a href="/sign-up">Login</a>
+                        <a href="/user/profile/{{user.id}}">
+                            <img src="/img/profile.png" alt="Profile">
+                        </a>
                     {{/if}}
                 </div>
-                {{#if user}}
-                    <a href="/user/profile/{{user.id}}">
-                        <img src="/img/profile.png" alt="Profile">
-                    </a>
-                {{/if}}
             </div>
         </header>
     {{/unless}}
