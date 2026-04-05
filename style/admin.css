@@ -44,10 +44,19 @@
     background: white;
     padding: 30px;
     border-radius: 12px;
-    width: 500px;
-    max-width: 90%;
+    width: 560px;
+    max-width: 95%;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     animation: slideIn 0.3s ease;
+}
+.modal-scrollable {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
 }
 @keyframes slideIn {
     from { transform: translateY(-20px); opacity: 0; }

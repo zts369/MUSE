@@ -1,18 +1,18 @@
-{{!-- <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        
-        const resList = document.getElementById('reservation-list');
-        if (resList) {
-            resList.addEventListener('click', (e) => {
-                const row = e.target.closest('.clickable-row');
-                if (row) {
-                    const guestId = row.dataset.id;
-                    window.location.href = `/staff/guest-bookings/${row.dataset.id}`;
-                }
-            });
-        }
-    });
-</script> --}}
+<script>
+    function filterLogs(query) {
+        const rows = document.querySelectorAll('#log-entry .log-entry');
+        const q = query.toLowerCase().trim();
+        let visibleCount = 0;
+
+        rows.forEach(row => {
+            const match = row.textContent.toLowerCase().includes(q);
+            row.style.display = match ? '' : 'none';
+            if (match) visibleCount++;
+        });
+
+        document.getElementById('no-log-results').style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+</script>
 
 <main class="fd-main">
     <header class="content-header">
@@ -21,6 +21,15 @@
     </header>
 
     <div id="reservations" class="tab-pane">
+        <div class="search-bar-wrapper">
+            <input
+                type="text"
+                class="guest-search-input"
+                placeholder="Search by guest, room, or action..."
+                oninput="filterLogs(this.value)"
+            >
+        </div>
+        <p id="no-log-results" style="display:none; color:#888; margin: 8px 0; font-family:'Montserrat';">No logs match your search.</p>
         <div class="fd-table-card">
             <table class="fd-data-table">
                 <thead>

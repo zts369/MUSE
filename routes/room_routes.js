@@ -88,7 +88,7 @@ router.post('/book/:id', async (req, res) => {
     // Prepare the update query
     const updateQuery = { $push: { bookings: newBooking } };
     if (paymentMethod === 'card' && cardDetails) {
-        updateQuery.$set = { cardDetails: cardDetails };
+      updateQuery.$set = { cardDetails: cardDetails };
     }
 
     // Update database
@@ -107,9 +107,9 @@ router.post('/book/:id', async (req, res) => {
 
     // Create log entry
     await new Log({
-        guestId: req.session.user.id,
-        roomId: roomId,
-        action: 'Reserved'
+      guestId: req.session.user.id,
+      roomId: roomId,
+      action: 'Reserved'
     }).save();
 
     // Send success back with a redirect URL to the user's profile
@@ -135,6 +135,75 @@ router.get('/admin/management', async (req, res) => {
     });
   } catch (err) {
     res.status(500).send("Error fetching rooms");
+  }
+});
+
+// POST /admin/rooms/add
+router.post('/admin/rooms/add', async (req, res) => {
+  try {
+    console.log('[ADD ROOM] req.body:', req.body);
+    const { roomName, category, price, sqm, beds, bath, maxGuests, description, longerDescription, amenities, imageUrls, isAvailable } = req.body;
+    const id = roomName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') + '-' + Date.now();
+
+    const newRoom = new Room({
+      id,
+      roomName,
+      category,
+      price: parseFloat(price),
+      sqm: parseFloat(sqm),
+      beds: parseInt(beds),
+      bath: parseInt(bath),
+      maxGuests: parseInt(maxGuests),
+      description,
+      longerDescription,
+      amenities: amenities ? amenities.split(',').map(a => a.trim()).filter(Boolean) : [],
+      imageUrl: imageUrls ? imageUrls.split('\n').map(u => u.trim()).filter(Boolean) : [],
+      isAvailable: isAvailable === 'true'
+    });
+
+    await newRoom.save();
+    res.redirect('/admin/management');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error adding room: " + err.message);
+  }
+});
+
+// POST /admin/rooms/edit/:mongoId
+router.post('/admin/rooms/edit/:mongoId', async (req, res) => {
+  try {
+    const { roomName, category, price, sqm, beds, bath, maxGuests, description, longerDescription, amenities, imageUrls, isAvailable } = req.body;
+
+    await Room.findByIdAndUpdate(req.params.mongoId, {
+      roomName,
+      category,
+      price: parseFloat(price),
+      sqm: parseFloat(sqm),
+      beds: parseInt(beds),
+      bath: parseInt(bath),
+      maxGuests: parseInt(maxGuests),
+      description,
+      longerDescription,
+      amenities: amenities ? amenities.split(',').map(a => a.trim()).filter(Boolean) : [],
+      imageUrl: imageUrls ? imageUrls.split('\n').map(u => u.trim()).filter(Boolean) : [],
+      isAvailable: isAvailable === 'true'
+    });
+
+    res.redirect('/admin/management');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error updating room: " + err.message);
+  }
+});
+
+// POST /admin/rooms/delete/:mongoId
+router.post('/admin/rooms/delete/:mongoId', async (req, res) => {
+  try {
+    await Room.findByIdAndDelete(req.params.mongoId);
+    res.redirect('/admin/management');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error deleting room");
   }
 });
 

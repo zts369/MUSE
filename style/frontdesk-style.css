@@ -345,3 +345,23 @@ body {
     font-style: italic;
     color: #999;
 }
+
+/* Search Bar */
+.search-bar-wrapper {
+    margin-bottom: 16px;
+}
+.guest-search-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.guest-search-input:focus {
+    border-color: var(--burgundy);
+}
+

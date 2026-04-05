@@ -36,11 +36,14 @@ router.post('/login', async (req, res) => {
 
         if (user && user.password === password) {
             req.session.user = user;
-            
-            // Redirect based on role
-            if (user.type === 'admin') return res.redirect('/admin/management');
-            if (user.type === 'staff') return res.redirect('/staff/reservations');
-            return res.redirect('/user/home');
+
+            // Save session to DB before redirecting so the next request sees the user
+            req.session.save((err) => {
+                if (err) return res.status(500).send("Session error");
+                if (user.type === 'admin') return res.redirect('/admin/management');
+                if (user.type === 'staff') return res.redirect('/staff/reservations');
+                return res.redirect('/user/home');
+            });
         } else {
             res.render('sign-up', { 
                 error: "Invalid username, email, or password",
@@ -99,7 +102,7 @@ router.get('/logout', (req, res) => {
         if (err) {
             return res.status(500).send("Error logging out");
         }
-        res.redirect('sign-up');
+        res.redirect('/sign-up');
     });
 });
 

@@ -1,18 +1,26 @@
-<!-- <script>
-    
+<script>
+    function filterDirectory(query) {
+        const rows = document.querySelectorAll('#guest-list .clickable-row');
+        const q = query.toLowerCase().trim();
+        let visibleCount = 0;
+
+        rows.forEach(row => {
+            const match = row.textContent.toLowerCase().includes(q);
+            row.style.display = match ? '' : 'none';
+            if (match) visibleCount++;
+        });
+
+        document.getElementById('no-dir-results').style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-        
-        const guestList = document.getElementById('guest-list');
-        if (guestList) {
-            guestList.addEventListener('click', (e) => {
-                const row = e.target.closest('.clickable-row');
-                if (row) {
-                    window.location.href = `guestHistory.html?guest=${encodeURIComponent(row.dataset.guest)}`;
-                }
-            });
-        }
+        const input = document.getElementById('guest-search');
+        const btn   = document.getElementById('guest-search-btn');
+
+        input.addEventListener('input', () => filterDirectory(input.value));
+        btn.addEventListener('click', () => filterDirectory(input.value));
     });
-</script> -->
+</script>
    
 <main class="fd-main">
     <header class="content-header">
@@ -26,6 +34,7 @@
             <button id="guest-search-btn" class="guest-search-btn">Search</button>
         </div>
 
+        <p id="no-dir-results" style="display:none; color:#888; margin: 8px 0; font-family:'Montserrat';">No guests match your search.</p>
         <div class="fd-table-card">
             <table class="fd-data-table">
                 <thead>
