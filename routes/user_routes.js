@@ -4,6 +4,8 @@ const router = express.Router();
 const User = require('../models/users');
 const path = require('path');
 const fs = require('fs');
+const bcrypt = require('bcryptjs');
+const saltRounds = 10;
 
 // CORRECT PATH: Go up one level, into 'data', then 'rooms.json'
 const roomsPath = path.join(__dirname, '../data/rooms.json');
@@ -34,7 +36,7 @@ router.post('/login', async (req, res) => {
             ]
         }).lean();
 
-        if (user && user.password === password) {
+        if (user && await bcrypt.compare(password, user.password)) {
             req.session.user = user;
 
             // Save session to DB before redirecting so the next request sees the user
@@ -76,13 +78,14 @@ router.post('/register', async (req, res) => {
         }
 
         // 3. Create the Guest
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
         const newUser = new User({
             id: username,
             firstName,
             lastName,
             email,
             contact,
-            password,
+            password: hashedPassword,
             type: 'guest', // Automatically set as guest
             bookings: []
         });
@@ -284,7 +287,7 @@ router.post('/user/profile/:id/edit', async (req, res) => {
             if (password !== confirmPassword) {
                 return res.redirect(`/user/profile/${req.params.id}?error=passwords_mismatch`);
             }
-            updates.password = password;
+            updates.password = await bcrypt.hash(password, saltRounds);
         }
 
         const updatedUser = await User.findOneAndUpdate(

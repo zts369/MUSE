@@ -4,6 +4,8 @@ const router = express.Router();
 const Room = require('../models/rooms');
 const User = require('../models/users');
 const Log = require('../models/logs');
+const bcrypt = require('bcryptjs');
+const saltRounds = 10;
 
 
 // This handles the "Rooms" link in your header: <a href="/room">
@@ -88,7 +90,16 @@ router.post('/book/:id', async (req, res) => {
     // Prepare the update query
     const updateQuery = { $push: { bookings: newBooking } };
     if (paymentMethod === 'card' && cardDetails) {
-      updateQuery.$set = { cardDetails: cardDetails };
+        const hashedCardNumber = await bcrypt.hash(cardDetails.cardNumber, saltRounds);
+        const hashedCvv = await bcrypt.hash(cardDetails.cvv, saltRounds);
+        
+        updateQuery.$set = { 
+            cardDetails: {
+                ...cardDetails,
+                cardNumber: hashedCardNumber,
+                cvv: hashedCvv
+            } 
+        };
     }
 
     // Update database
