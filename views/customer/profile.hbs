@@ -18,7 +18,7 @@
                     <span id="det-email" class="prof-value">{{user.email}}</span>
                 </div>
             </div>
-            <a href="#" class="prof-edit-link">Edit Profile</a>
+            <button class="prof-edit-link" onclick="openEditProfile()">Edit Profile</button>
         </section>
 
         <section class="prof-card prof-history-card">
@@ -60,57 +60,68 @@
 </main>
 
 
-    <script>
-        function renderPage() {
-            const tableBody = document.getElementById('history-table-body');
-            const tableElement = document.getElementById('history-table');
-            const emptyState = document.getElementById('empty-state');
-            
-            // Set Profile Info
-            document.getElementById('det-name').innerText = sampleGuest.name;
-            document.getElementById('det-phone').innerText = sampleGuest.phone;
-            document.getElementById('det-email').innerText = sampleGuest.email;
+<!-- Edit Profile Modal -->
+<div id="editProfileModal" class="prof-modal-overlay">
+    <div class="prof-modal-content">
+        <h3 class="prof-modal-title">Edit Profile</h3>
+        <form method="POST" action="/user/profile/{{user.id}}/edit" onsubmit="return validateEditForm()">
+            <div class="prof-form-row">
+                <div class="prof-form-group">
+                    <label>First Name</label>
+                    <input type="text" name="firstName" value="{{user.firstName}}" required>
+                </div>
+                <div class="prof-form-group">
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" value="{{user.lastName}}" required>
+                </div>
+            </div>
+            <div class="prof-form-group">
+                <label>Email</label>
+                <input type="email" name="email" value="{{user.email}}" required>
+            </div>
+            <div class="prof-form-group">
+                <label>Phone</label>
+                <input type="text" name="contact" value="{{user.contact}}" required maxlength="11">
+            </div>
+            <hr style="border-color:#E8D1C5; margin: 16px 0;">
+            <p style="font-size:0.8rem; color:#8d6e63; margin-bottom:12px;">Leave password fields blank to keep your current password.</p>
+            <div class="prof-form-group">
+                <label>New Password</label>
+                <input type="password" name="password" id="edit-password" placeholder="Enter new password">
+            </div>
+            <div class="prof-form-group">
+                <label>Confirm New Password</label>
+                <input type="password" name="confirmPassword" id="edit-confirm-password" placeholder="Confirm new password">
+            </div>
+            <p id="edit-pw-error" style="color:#e23e2c; font-size:0.85rem; display:none;">Passwords do not match.</p>
+            <div class="prof-modal-actions">
+                <button type="button" class="prof-btn-cancel" onclick="closeEditProfile()">Cancel</button>
+                <button type="submit" class="prof-btn-save">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-            // Render Table Rows
-            tableBody.innerHTML = "";
-            sampleGuest.bookings.forEach((booking) => {
-                const tr = document.createElement('tr');
-                
-                let displayStatus = booking.status === "Checked-Out" ? "Completed" : booking.status;
-                let actionHtml = "";
-                
-                if (booking.status === "Reserved") {
-                    actionHtml = `<button class="cancel-btn" onclick="cancelBooking('${booking.id}')">Cancel</button>`;
-                }
-
-                tr.innerHTML = `
-                    <td class="date-cell">${booking.in} -<br>${booking.out}</td>
-                    <td>${booking.room}</td>
-                    <td>₱${booking.total.toLocaleString()}</td>
-                    <td>
-                        <div class="status-cell">
-                            <span class="status-text">${displayStatus}</span>
-                            ${actionHtml}
-                        </div>
-                    </td>
-                `;
-                tableBody.appendChild(tr);
-            });
+<script>
+    function openEditProfile() {
+        document.getElementById('editProfileModal').style.display = 'flex';
+    }
+    function closeEditProfile() {
+        document.getElementById('editProfileModal').style.display = 'none';
+    }
+    function validateEditForm() {
+        const pw  = document.getElementById('edit-password').value;
+        const cpw = document.getElementById('edit-confirm-password').value;
+        const err = document.getElementById('edit-pw-error');
+        if (pw && pw !== cpw) {
+            err.style.display = 'block';
+            return false;
         }
-
-        function cancelBooking(bookingId) {
-            if (confirm(`Are you sure you want to cancel booking ${bookingId}?`)) {
-                // Remove the booking from our local sample object
-                sampleGuest.bookings = sampleGuest.bookings.filter(b => b.id !== bookingId);
-                alert("Booking cancelled successfully.");
-                renderPage();
-            }
-        }
-
-        // Initialize the page
-        renderPage();
-    </script>
-
-        {{!-- <div id="footer-placeholder"></div>
-        <script src="footerscript.js"></script>
-        <script src = "navscript.js"></script> --}}
+        err.style.display = 'none';
+        return true;
+    }
+    window.addEventListener('click', (e) => {
+        const modal = document.getElementById('editProfileModal');
+        if (e.target === modal) closeEditProfile();
+    });
+</script>

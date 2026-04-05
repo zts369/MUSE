@@ -274,4 +274,38 @@ router.get('/user/profile/:id', async (req, res) => {
     }
 });
 
+router.post('/user/profile/:id/edit', async (req, res) => {
+    try {
+        const { firstName, lastName, email, contact, password, confirmPassword } = req.body;
+
+        const updates = { firstName, lastName, email, contact };
+
+        if (password) {
+            if (password !== confirmPassword) {
+                return res.redirect(`/user/profile/${req.params.id}?error=passwords_mismatch`);
+            }
+            updates.password = password;
+        }
+
+        const updatedUser = await User.findOneAndUpdate(
+            { id: req.params.id },
+            { $set: updates },
+            { new: true }
+        ).lean();
+
+        if (!updatedUser) return res.status(404).send("User not found");
+
+        // Refresh session with updated data
+        req.session.user = { ...req.session.user, ...updates };
+        req.session.save((err) => {
+            if (err) return res.status(500).send("Session error");
+            res.redirect(`/user/profile/${req.params.id}`);
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error updating profile");
+    }
+});
+
 module.exports = router;
