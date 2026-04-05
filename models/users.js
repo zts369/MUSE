@@ -3,30 +3,30 @@ const mongoose = require('mongoose');
 // Booking Sub-schema
 const bookingSchema = new mongoose.Schema({
     id: {
-        type: String, 
+        type: String,
         required: true
     },
-    roomId: { 
+    roomId: {
         type: String, // Changed from ObjectId to String to match "moonlight", "lunar", etc.
-        required: true 
+        required: true
     },
-    in: { 
+    in: {
         type: Date,
         default: Date.now,
     },
-    out: { 
+    out: {
         type: Date,
         default: Date.now,
     },
-    adults: { 
-        type: Number, 
-        required: true, 
-        min: 1 
+    adults: {
+        type: Number,
+        required: true,
+        min: 1
     },
-    children: { 
-        type: Number, 
-        required: true, 
-        min: 0 
+    children: {
+        type: Number,
+        required: true,
+        min: 0
     },
     roomsCount: {
         type: Number,
@@ -40,11 +40,11 @@ const bookingSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
-    status: { 
-        type: String, 
-        required: true, 
-        enum: ['Reserved', 'Checked-In', 'Checked-Out', 'Cancelled'], 
-        default: 'Reserved' 
+    status: {
+        type: String,
+        required: true,
+        enum: ['Reserved', 'Checked-In', 'Checked-Out', 'Cancelled'],
+        default: 'Reserved'
     },
     specialRequest: {
         type: String,
@@ -62,42 +62,42 @@ const bookingSchema = new mongoose.Schema({
 // User Schema
 const userSchema = new mongoose.Schema({
     id: { // This holds your username like "iDing35"
-        type: String, 
-        required: true, 
-        unique: true 
-    }, 
-    firstName: { 
-        type: String, 
-        required: true, 
-        trim: true 
+        type: String,
+        required: true,
+        unique: true
     },
-    lastName: { 
-        type: String, 
-        required: true, 
-        trim: true 
+    firstName: {
+        type: String,
+        required: true,
+        trim: true
     },
-    email: { 
-        type: String, 
-        required: true, 
-        unique: true, 
-        trim: true, 
-        lowercase: true 
+    lastName: {
+        type: String,
+        required: true,
+        trim: true
     },
-    contact: { 
-        type: String, 
-        required: true, 
-        trim: true, 
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        lowercase: true
+    },
+    contact: {
+        type: String,
+        required: true,
+        trim: true,
         maxLength: 11 // Corrected to match your 11-digit JSON numbers
     },
-    password: { 
-        type: String, 
-        required: true 
+    password: {
+        type: String,
+        required: true
     },
-    type: { 
-        type: String, 
-        required: true, 
-        enum: ['guest', 'staff','admin'], 
-        default: 'guest' 
+    type: {
+        type: String,
+        required: true,
+        enum: ['guest', 'staff', 'admin'],
+        default: 'guest'
     },
     cardDetails: {
         cardNumber: { type: String, required: false },
@@ -105,7 +105,7 @@ const userSchema = new mongoose.Schema({
         cvv: { type: String, required: false },
         billingAddress: { type: String, required: false }
     },
-    bookings: [bookingSchema] 
+    bookings: [bookingSchema]
 }, {
     timestamps: true
 });
