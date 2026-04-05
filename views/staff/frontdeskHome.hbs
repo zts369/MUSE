@@ -20,14 +20,26 @@
             resList.addEventListener('click', (e) => {
                 const row = e.target.closest('.clickable-row');
                 if (row) {
-                    // Redirect to a dynamic route using the Guest's ID
-                    // Assuming you add 'data-id' to your <tr>
-                    const guestId = row.dataset.id;
                     window.location.href = `/staff/guest-bookings/${row.dataset.id}`;
                 }
             });
         }
     });
+
+    function filterGuests(query) {
+        const rows = document.querySelectorAll('#reservation-list .clickable-row');
+        const q = query.toLowerCase().trim();
+        let visibleCount = 0;
+
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            const match = text.includes(q);
+            row.style.display = match ? '' : 'none';
+            if (match) visibleCount++;
+        });
+
+        document.getElementById('no-results').style.display = visibleCount === 0 ? 'block' : 'none';
+    }
 </script>
 
 
@@ -39,6 +51,16 @@
 
     <div id="reservations" class="tab-pane">
         <div class="fd-table-card">
+            <div class="search-bar-wrapper">
+                <input
+                    type="text"
+                    id="guest-search"
+                    class="guest-search-input"
+                    placeholder="Search by name, email, or phone..."
+                    oninput="filterGuests(this.value)"
+                >
+            </div>
+            <p id="no-results" style="display:none; color:#888; margin: 12px 0; font-family:'Montserrat';">No guests match your search.</p>
             <table class="fd-data-table">
                 <thead>
                     <tr>
