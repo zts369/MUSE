@@ -1,5 +1,3 @@
-<script src="adminHome.js"></script>
-<body>
 <main class="fd-main">
         <header class="content-header">
             <h2 class="header-font">Room Management</h2>
@@ -16,6 +14,7 @@
                     <thead>
                         <tr>
                             <th>Room Name</th>
+                            <th>Category</th>
                             <th>Price (Per Night)</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -25,16 +24,32 @@
                         {{#each rooms}}
                         <tr>
                             <td>{{this.roomName}}</td>
-                            <td>{{formatPrice this.price}}</td>
-                            <td><span class="tag success">
-                                {{#if this.isAvailable}}
-                                    Available
-                                {{else}}
-                                    Unavailable
-                                {{/if}}
-                                </span></td>
+                            <td style="text-transform: capitalize;">{{this.category}}</td>
+                            <td>₱{{formatPrice this.price}}</td>
                             <td>
-                                <button class="action-btn edit-btn" onclick="openEditModal('Moonlight Room', 2000, 'Available', 'Spanning 60 sqm, the Moonlight Room offers a private haven...')">Edit</button>
+                                <span class="tag {{#if this.isAvailable}}success{{else}}danger{{/if}}">
+                                    {{#if this.isAvailable}}Available{{else}}Unavailable{{/if}}
+                                </span>
+                            </td>
+                            <td>
+                                <button class="action-btn edit-btn"
+                                    data-mongoid="{{this._id}}"
+                                    data-name="{{this.roomName}}"
+                                    data-category="{{this.category}}"
+                                    data-price="{{this.price}}"
+                                    data-sqm="{{this.sqm}}"
+                                    data-beds="{{this.beds}}"
+                                    data-bath="{{this.bath}}"
+                                    data-maxguests="{{this.maxGuests}}"
+                                    data-description="{{this.description}}"
+                                    data-longer="{{this.longerDescription}}"
+                                    data-amenities="{{this.amenities}}"
+                                    data-images="{{this.imageUrl}}"
+                                    data-available="{{this.isAvailable}}"
+                                    onclick="openEditModal(this)">Edit</button>
+                                <form method="POST" action="/admin/rooms/delete/{{this._id}}" style="display:inline;" onsubmit="return confirm('Delete {{this.roomName}}? This cannot be undone.')">
+                                    <button type="submit" class="action-btn delete-btn">Delete</button>
+                                </form>
                             </td>
                         </tr>
                         {{/each}}
@@ -44,36 +59,77 @@
         </div>
     </main>
 
-    <!-- Edit/Add Room Modal -->
+    <!-- Add / Edit Room Modal -->
     <div id="roomModal" class="modal-overlay">
-        <div class="modal-content">
-            <h3 id="modal-title" style="font-family: 'EB Garamond'; margin-top: 0; font-size: 1.5rem; color: #452829;">Edit Room</h3>
-            <form onsubmit="event.preventDefault(); closeModal();">
-                <div class="form-group">
-                    <label>Room Name</label>
-                    <input type="text" id="room-name" required placeholder="e.g. Moonlight Room">
+        <div class="modal-content modal-scrollable">
+            <h3 id="modal-title" style="font-family: 'EB Garamond'; margin-top: 0; font-size: 1.5rem; color: #452829;">Add New Room</h3>
+            <form id="roomForm" method="POST" action="/admin/rooms/add">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Room Name</label>
+                        <input type="text" id="room-name" name="roomName" required placeholder="e.g. Moonlight Room">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="room-category" name="category">
+                            <option value="room">Room</option>
+                            <option value="suite">Suite</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Price per Night (₱)</label>
+                        <input type="number" id="room-price" name="price" required placeholder="0.00" min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Availability</label>
+                        <select id="room-available" name="isAvailable">
+                            <option value="true">Available</option>
+                            <option value="false">Unavailable</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Size (sqm)</label>
+                        <input type="number" id="room-sqm" name="sqm" required placeholder="e.g. 45" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Max Guests</label>
+                        <input type="number" id="room-maxguests" name="maxGuests" required placeholder="e.g. 2" min="1">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Beds</label>
+                        <input type="number" id="room-beds" name="beds" required placeholder="e.g. 1" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Bathrooms</label>
+                        <input type="number" id="room-bath" name="bath" required placeholder="e.g. 1" min="0">
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label>Description</label>
-                    <textarea id="room-desc" rows="4" placeholder="Enter room description..."></textarea>
+                    <label>Short Description</label>
+                    <textarea id="room-desc" name="description" rows="2" required placeholder="Brief summary shown on room cards..."></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Price per Night (₱)</label>
-                    <input type="number" id="room-price" required placeholder="0.00">
+                    <label>Full Description</label>
+                    <textarea id="room-longerdesc" name="longerDescription" rows="3" required placeholder="Detailed description shown on room detail page..."></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Status</label>
-                    <select id="room-status">
-                        <option value="Available">Available</option>
-                        <option value="Booked">Booked</option>
-                        <option value="Maintenance">Maintenance</option>
-                    </select>
+                    <label>Amenities <span style="font-weight:400; color:#888;">(comma-separated)</span></label>
+                    <input type="text" id="room-amenities" name="amenities" placeholder="e.g. WiFi, Air Conditioning, Mini Bar">
+                </div>
+                <div class="form-group">
+                    <label>Image URLs <span style="font-weight:400; color:#888;">(one per line)</span></label>
+                    <textarea id="room-images" name="imageUrls" rows="3" placeholder="/img/room1.jpg&#10;/img/room1-2.jpg"></textarea>
                 </div>
                 <div class="modal-actions">
                     <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
-                    <button type="submit" class="btn-save">Save Changes</button>
+                    <button type="submit" class="btn-save">Save Room</button>
                 </div>
             </form>
         </div>
     </div>
-</body>
