@@ -91,9 +91,25 @@ h1 {
   margin-left: 20px;
 }
 
-.header-inner img {
-  height: 55px;      /* Consistent sizing */
-  width: 55px;
+.profile-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.15);
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.profile-icon-link:hover {
+  background-color: rgba(255,255,255,0.3);
+}
+
+.profile-icon {
+  width: 24px;
+  height: 24px;
   display: block;
 }
 
@@ -250,6 +266,18 @@ section {
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  align-items: center;
+}
+
+.footer-socials a {
+  color: inherit;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+
+.footer-socials a:hover {
+  opacity: 0.7;
 }
 
 .footer-title {
