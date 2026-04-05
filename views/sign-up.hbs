@@ -34,44 +34,53 @@
 
         <!-- Sign Up Card -->
         <div class="auth-card" id="signup-card" style="display: none;">
-            <div class="auth-header">
-                <h2>Create Account</h2>
-                <p>Register your details to book a stay</p>
-            </div>
-            <form class="auth-form">
-                <div class="form-group">
-                    <label for="signup-name">Full Name</label>
-                    <input type="text" id="signup-name" placeholder="Enter your full name" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-username">Username</label>
-                    <input type="text" id="signup-username" placeholder="Choose a username" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-email">Email</label>
-                    <input type="email" id="signup-email" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-contact">Contact Number</label>
-                    <div class="contact-wrapper">
-                        <span class="contact-prefix">+63</span>
-                        <input type="tel" id="signup-contact" placeholder="9123456789" maxlength="10" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="signup-password">Password</label>
-                    <input type="password" id="signup-password" placeholder="Create a password" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-confirm-password">Confirm Password</label>
-                    <input type="password" id="signup-confirm-password" placeholder="Confirm your password" required>
-                </div>
-                <button type="button" class="auth-btn" onclick="location.href='/user/home'">Sign Up</button>
-                <div class="auth-footer">
-                    <p>Already have an account? <a href="#" id="show-signin">Sign in</a></p>
-                </div>
-            </form>
+        <div class="auth-header">
+            <h2>Create Account</h2>
+            <p>Register your details to book a stay</p>
         </div>
+        
+        <form class="auth-form" action="/register" method="POST">
+            <div class="form-group">
+                <label for="signup-firstName">First Name</label>
+                <input type="text" name="firstName" placeholder="Enter your first name" value="{{firstName}}" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-lastName">Last Name</label>
+                <input type="text" name="lastName" placeholder="Enter your last name" value="{{lastName}}" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-username">Username</label>
+                <input type="text" name="username" placeholder="Choose a username" value="{{username}}" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email</label>
+                <input type="email" name="email" placeholder="Enter your email" value="{{email}}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="signup-password">Password</label>
+                <input type="password" name="password" placeholder="Create a password" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-confirm-password">Confirm Password</label>
+                <input type="password" name="confirmPassword" placeholder="Confirm your password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="signup-contact">Contact Number</label>
+                <div class="contact-wrapper">
+                    <span class="contact-prefix">+63</span>
+                    <input type="tel" name="contact" id="signup-contact" placeholder="9123456789" maxlength="10" value="{{contact}}" required>
+                </div>
+            </div>
+
+            <button type="submit" class="auth-btn">Sign Up</button>
+            
+            <div class="auth-footer">
+                <p>Already have an account? <a href="#" id="show-signin">Sign in</a></p>
+            </div>
+        </form>
+    </div>
     </section>
 
     {{!-- <div id="footer-placeholder"></div>

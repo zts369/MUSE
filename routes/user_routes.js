@@ -52,6 +52,48 @@ router.post('/login', async (req, res) => {
     }
 });
 
+
+router.post('/register', async (req, res) => {
+    // These names must match the 'name' attribute in your HTML
+    const { firstName, lastName, username, email, contact, password, confirmPassword } = req.body;
+
+    try {
+        // 1. Check if passwords match
+        if (password !== confirmPassword) {
+            return res.render('sign-up', { error: "Passwords do not match", ...req.body });
+        }
+
+        // 2. Check if user already exists
+        const existingUser = await User.findOne({ $or: [{ email }, { id: username }] });
+        if (existingUser) {
+            return res.render('sign-up', { 
+                error: "Email or username already in use",
+                ...req.body 
+            });
+        }
+
+        // 3. Create the Guest
+        const newUser = new User({
+            id: username,
+            firstName,
+            lastName,
+            email,
+            contact,
+            password,
+            type: 'guest', // Automatically set as guest
+            bookings: []
+        });
+
+        await newUser.save();
+        
+        // 4. Redirect to login or home after success
+        res.redirect('/?success=registered'); 
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server Error");
+    }
+});
+
 router.get('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {

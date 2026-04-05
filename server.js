@@ -88,6 +88,8 @@ app.get('/', (req, res) => {
 app.use('/', userRoutes);
 app.use('/', roomRoutes);
 app.use('/', logRoutes);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // 6. Database Connection
 mongoose.connect(connectionURI)
