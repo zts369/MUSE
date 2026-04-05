@@ -1,5 +1,4 @@
 [
-
     {
         "id": "admin101",
         "firstName": "Jason",
@@ -8,7 +7,9 @@
         "contact": "09171234567",
         "password": "12345678",
         "type": "admin",
-        "bookings": []
+        "bookings": [],
+        "createdAt": "2026-04-01T19:10:58.283Z",
+        "updatedAt": "2026-04-01T19:10:58.283Z"
     },
     {
         "id": "iDing35",
@@ -22,20 +23,26 @@
             {
                 "id": "b1",
                 "roomId": "moonlight",
-                "in": "2024-07-01T10:15:00Z",
-                "out": "2024-07-05T11:30:00Z",
+                "in": "2024-07-01T10:15:00.000Z",
+                "out": "2024-07-05T11:30:00.000Z",
                 "adults": 2,
                 "children": 0,
-                "status": "Checked-Out"
+                "status": "Checked-Out",
+                "_id": "69cd6dc260c0fe5876b45abb",
+                "createdAt": "2026-04-01T19:10:58.283Z",
+                "updatedAt": "2026-04-01T19:10:58.283Z"
             },
             {
                 "id": "b2",
                 "roomId": "lunar",
-                "in": "2024-08-10T12:15:00Z",
-                "out": "2024-08-15T10:30:00Z",
+                "in": "2024-08-10T12:15:00.000Z",
+                "out": "2024-08-15T10:30:00.000Z",
                 "adults": 4,
                 "children": 2,
-                "status": "Checked-Out"
+                "status": "Checked-Out",
+                "_id": "69cd6dc260c0fe5876b45abc",
+                "createdAt": "2026-04-01T19:10:58.283Z",
+                "updatedAt": "2026-04-01T19:10:58.283Z"
             },
             {
                 "id": "b3",
@@ -44,9 +51,14 @@
                 "out": null,
                 "adults": 4,
                 "children": 3,
-                "status": "Reserved"
+                "status": "Reserved",
+                "_id": "69cd6dc260c0fe5876b45abd",
+                "createdAt": "2026-04-01T19:10:58.283Z",
+                "updatedAt": "2026-04-01T19:10:58.283Z"
             }
-        ]
+        ],
+        "createdAt": "2026-04-01T19:10:58.283Z",
+        "updatedAt": "2026-04-01T19:10:58.283Z"
     },
     {
         "id": "Zumba1",
@@ -64,9 +76,14 @@
                 "out": null,
                 "adults": 4,
                 "children": 2,
-                "status": "Reserved"
+                "status": "Reserved",
+                "_id": "69cd6dc260c0fe5876b45abf",
+                "createdAt": "2026-04-01T19:10:58.284Z",
+                "updatedAt": "2026-04-01T19:10:58.284Z"
             }
-        ]
+        ],
+        "createdAt": "2026-04-01T19:10:58.284Z",
+        "updatedAt": "2026-04-01T19:10:58.284Z"
     },
     {
         "id": "staff1",
@@ -76,7 +93,114 @@
         "contact": "09171234567",
         "password": "12345678",
         "type": "staff",
-        "bookings": []
+        "bookings": [],
+        "createdAt": "2026-04-01T19:10:58.284Z",
+        "updatedAt": "2026-04-01T19:10:58.284Z"
+    },
+    {
+        "id": "hason",
+        "firstName": "jason",
+        "lastName": "lee",
+        "email": "ben@email",
+        "contact": "111",
+        "password": "123",
+        "type": "guest",
+        "bookings": [
+            {
+                "id": "BKG-MNM37EL2-594",
+                "roomId": "twilight",
+                "in": "2026-04-10T00:00:00.000Z",
+                "out": "2026-04-11T00:00:00.000Z",
+                "adults": 5,
+                "children": 0,
+                "roomsCount": 1,
+                "status": "Reserved",
+                "_id": "69d2a7fc15380540fcc38dbe",
+                "createdAt": "2026-04-05T18:20:44.055Z",
+                "updatedAt": "2026-04-05T18:20:44.055Z"
+            },
+            {
+                "id": "BKG-MNM3ZKWQ-945",
+                "roomId": "lunar",
+                "in": "2026-04-17T00:00:00.000Z",
+                "out": "2026-04-18T00:00:00.000Z",
+                "adults": 2,
+                "children": 0,
+                "roomsCount": 1,
+                "price": 18900,
+                "status": "Reserved",
+                "_id": "69d2ad1e2833eb46cee13ba0",
+                "createdAt": "2026-04-05T18:42:38.619Z",
+                "updatedAt": "2026-04-05T18:42:38.619Z"
+            },
+            {
+                "id": "BKG-MNM42D9P-959",
+                "roomId": "celestial",
+                "in": "2026-04-15T00:00:00.000Z",
+                "out": "2026-04-18T00:00:00.000Z",
+                "adults": 4,
+                "children": 2,
+                "roomsCount": 1,
+                "price": 89700,
+                "status": "Reserved",
+                "_id": "69d2ada02833eb46cee13bad",
+                "createdAt": "2026-04-05T18:44:48.685Z",
+                "updatedAt": "2026-04-05T18:44:48.685Z"
+            },
+            {
+                "id": "BKG-MNM4YS5R-919",
+                "roomId": "midnight",
+                "in": "2026-04-18T00:00:00.000Z",
+                "out": "2026-04-19T00:00:00.000Z",
+                "adults": 2,
+                "children": 3,
+                "roomsCount": 1,
+                "price": 9900,
+                "status": "Reserved",
+                "specialRequest": "",
+                "_id": "69d2b38832e24453345b73d2",
+                "createdAt": "2026-04-05T19:10:00.976Z",
+                "updatedAt": "2026-04-05T19:10:00.976Z"
+            },
+            {
+                "id": "BKG-MNM520DF-152",
+                "roomId": "twilight",
+                "in": "2026-04-30T00:00:00.000Z",
+                "out": "2026-05-01T00:00:00.000Z",
+                "adults": 2,
+                "children": 0,
+                "roomsCount": 1,
+                "price": 3200,
+                "status": "Reserved",
+                "specialRequest": "",
+                "_id": "69d2b41f32e24453345b73de",
+                "createdAt": "2026-04-05T19:12:31.588Z",
+                "updatedAt": "2026-04-05T19:12:31.588Z"
+            },
+            {
+                "id": "BKG-MNM52Z4L-194",
+                "roomId": "moonlight",
+                "in": "2026-04-15T00:00:00.000Z",
+                "out": "2026-04-16T00:00:00.000Z",
+                "adults": 2,
+                "children": 0,
+                "roomsCount": 1,
+                "price": 2000,
+                "status": "Reserved",
+                "specialRequest": "",
+                "paymentMethod": "hotel",
+                "_id": "69d2b44c7525acfe9a251f17",
+                "createdAt": "2026-04-05T19:13:16.631Z",
+                "updatedAt": "2026-04-05T19:13:16.631Z"
+            }
+        ],
+        "createdAt": "2026-04-05T17:43:01.467Z",
+        "updatedAt": "2026-04-05T19:13:16.631Z",
+        "cardDetails": {
+            "cardNumber": "1234567890123456",
+            "expiryDate": "02/28",
+            "cvv": "123",
+            "billingAddress": "1 Taft Avenue"
+        }
     }
-
 ]

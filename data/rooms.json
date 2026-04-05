@@ -33,7 +33,9 @@
             "https://i.pinimg.com/1200x/83/9e/fe/839efe28d4e47810182789ead59a1ceb.jpg",
             "https://i.pinimg.com/736x/9b/7f/fc/9b7ffcdbcfba81ca32f7478b95d49e04.jpg",
             "https://i.pinimg.com/736x/0f/f4/e2/0ff4e2b3789e80cc415a43e07fe12491.jpg"
-        ]
+        ],
+        "createdAt": "2026-04-01T19:22:03.269Z",
+        "updatedAt": "2026-04-01T19:22:03.269Z"
     },
     {
         "id": "twilight",
@@ -69,7 +71,9 @@
             "https://i.pinimg.com/1200x/29/40/4c/29404ce879c6f23c151b1e4899d6375d.jpg",
             "https://i.pinimg.com/736x/9b/7f/fc/9b7ffcdbcfba81ca32f7478b95d49e04.jpg",
             "https://i.pinimg.com/736x/0f/f4/e2/0ff4e2b3789e80cc415a43e07fe12491.jpg"
-        ]
+        ],
+        "createdAt": "2026-04-01T19:22:03.270Z",
+        "updatedAt": "2026-04-01T19:22:03.270Z"
     },
     {
         "id": "starlight",
@@ -105,7 +109,9 @@
             "https://i.pinimg.com/1200x/10/bd/6b/10bd6bf72f93d2763fbf6433a36535d8.jpg",
             "https://i.pinimg.com/736x/f1/47/d8/f147d8b76ca15e27b944c6d42717e6f3.jpg",
             "https://i.pinimg.com/736x/90/26/ee/9026eea4a0eef64dfec4c279e9868d97.jpg"
-        ]
+        ],
+        "createdAt": "2026-04-01T19:22:03.270Z",
+        "updatedAt": "2026-04-01T19:22:03.270Z"
     },
     {
         "id": "midnight",
@@ -143,7 +149,9 @@
             "https://sitecore-cd-imgr.shangri-la.com/MediaFiles/D/3/4/%7BD34F6490-FAF6-4256-B447-FED614B63E20%7D2025_MAC%20Presidential%20Suite%20Bedroom%202.jpg",
             "https://i.pinimg.com/736x/f1/47/d8/f147d8b76ca15e27b944c6d42717e6f3.jpg",
             "https://i.pinimg.com/736x/90/26/ee/9026eea4a0eef64dfec4c279e9868d97.jpg"
-        ]
+        ],
+        "createdAt": "2026-04-01T19:22:03.270Z",
+        "updatedAt": "2026-04-01T19:22:03.270Z"
     },
     {
         "id": "lunar",
@@ -182,9 +190,9 @@
             "https://i.pinimg.com/474x/d7/1f/79/d71f79e1e76221f35f5911488aeb8f0c.jpg",
             "https://i.pinimg.com/1200x/ff/db/9e/ffdb9e675856170957494e80e9cf1dfa.jpg",
             "https://i.pinimg.com/736x/8b/63/67/8b6367c5a873a3ecee356c3dec1b5200.jpg"
-        ]
-        
-          
+        ],
+        "createdAt": "2026-04-01T19:22:03.270Z",
+        "updatedAt": "2026-04-01T19:22:03.270Z"
     },
     {
         "id": "celestial",
@@ -224,7 +232,8 @@
             "https://www.theplazany.com/wp-content/uploads/2025/05/2025-royal-suite-living-room-1151x500-1.jpg",
             "https://i.pinimg.com/736x/f1/47/d8/f147d8b76ca15e27b944c6d42717e6f3.jpg",
             "https://i.pinimg.com/736x/90/26/ee/9026eea4a0eef64dfec4c279e9868d97.jpg"
-        ]
+        ],
+        "createdAt": "2026-04-01T19:22:03.270Z",
+        "updatedAt": "2026-04-01T19:22:03.270Z"
     }
-    
 ]
