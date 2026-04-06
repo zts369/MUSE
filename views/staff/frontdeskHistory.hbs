@@ -1,61 +1,102 @@
 <script>
-    function filterLogs(query) {
-        const rows = document.querySelectorAll('#log-entry .log-entry');
-        const q = query.toLowerCase().trim();
-        let visibleCount = 0;
+    let activeFilter = 'All';
+
+    function applyFilters() {
+        const query = document.getElementById('log-search-input').value.toLowerCase().trim();
+        const rows  = document.querySelectorAll('#log-entry .log-entry');
+        let visible = 0;
 
         rows.forEach(row => {
-            const match = row.textContent.toLowerCase().includes(q);
-            row.style.display = match ? '' : 'none';
-            if (match) visibleCount++;
+            const textMatch   = row.textContent.toLowerCase().includes(query);
+            const actionMatch = activeFilter === 'All' || row.dataset.action === activeFilter;
+            const show = textMatch && actionMatch;
+            row.style.display = show ? '' : 'none';
+            if (show) visible++;
         });
 
-        document.getElementById('no-log-results').style.display = visibleCount === 0 ? 'block' : 'none';
+        document.getElementById('no-log-results').style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    function setFilter(btn, action) {
+        activeFilter = action;
+        document.querySelectorAll('.log-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilters();
     }
 </script>
 
 <main class="fd-main">
     <header class="content-header">
-        <h2 id="tab-title" class="header-font">View Reservations</h2>
+        <h2 id="tab-title" class="header-font">History Logs</h2>
         <div class="staff-info">Staff Access</div>
     </header>
 
     <div id="reservations" class="tab-pane">
-        <div class="search-bar-wrapper">
-            <input
-                type="text"
-                class="guest-search-input"
-                placeholder="Search by guest, room, or action..."
-                oninput="filterLogs(this.value)"
-            >
+
+        <!-- Search + Filter Bar -->
+        <div class="log-controls">
+            <div class="search-bar-wrapper" style="margin-bottom:0; flex:1;">
+                <input
+                    type="text"
+                    id="log-search-input"
+                    class="guest-search-input"
+                    placeholder="Search by guest, room, booking ID..."
+                    oninput="applyFilters()"
+                >
+            </div>
+            <div class="log-filter-pills">
+                <button class="log-filter-btn active" onclick="setFilter(this, 'All')">All</button>
+                <button class="log-filter-btn pill-reserved"   onclick="setFilter(this, 'Reserved')">Reserved</button>
+                <button class="log-filter-btn pill-checkin"    onclick="setFilter(this, 'Checked-In')">Checked-In</button>
+                <button class="log-filter-btn pill-checkout"   onclick="setFilter(this, 'Checked-Out')">Checked-Out</button>
+                <button class="log-filter-btn pill-cancelled"  onclick="setFilter(this, 'Cancelled')">Cancelled</button>
+            </div>
         </div>
+
         <p id="no-log-results" style="display:none; color:#888; margin: 8px 0; font-family:'Montserrat';">No logs match your search.</p>
+
         <div class="fd-table-card">
             <table class="fd-data-table">
                 <thead>
                     <tr>
-                        <th>Timestamp</th>
+                        <th>Logged At</th>
                         <th>Guest</th>
                         <th>Room</th>
+                        <th>Stay (Check-in → Check-out)</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="log-entry">
                     {{#each logs}}
-                        <tr class="log-entry">
+                        <tr class="log-entry" data-action="{{this.action}}">
                             <td class="log-time">
-                                {{this.displayTime}} <span class="time-dim">{{this.displayClock}}</span>
+                                {{this.displayTime}}<br>
+                                <span class="time-dim">{{this.displayClock}}</span>
                             </td>
-                            <td><strong>{{this.guestName}}</strong></td>
+                            <td>
+                                <strong>{{this.guestName}}</strong>
+                                {{#if this.bookingId}}<br><small class="booking-id-dim">{{this.bookingId}}</small>{{/if}}
+                            </td>
                             <td>{{this.roomName}}</td>
-                            <td><span class="log-badge badge-checkin">{{this.action}}</span></td>
+                            <td class="stay-dates">
+                                {{this.checkIn}}
+                                <span class="stay-arrow">→</span>
+                                {{this.checkOut}}
+                            </td>
+                            <td>
+                                <span class="log-badge
+                                    {{#if (eq this.action 'Reserved')}}badge-reserved
+                                    {{else if (eq this.action 'Checked-In')}}badge-checkin
+                                    {{else if (eq this.action 'Checked-Out')}}badge-checkout
+                                    {{else if (eq this.action 'Cancelled')}}badge-cancelled
+                                    {{else}}badge-checkin{{/if}}">
+                                    {{this.action}}
+                                </span>
+                            </td>
                         </tr>
                     {{/each}}
-                    
                 </tbody>
             </table>
         </div>
     </div>
 </main>
-
-    

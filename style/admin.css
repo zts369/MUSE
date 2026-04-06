@@ -113,10 +113,187 @@
 .tag.pending { background-color: #fff3cd; color: #856404; }
 .tag.danger { background-color: #f8d7da; color: #721c24; }
 
-/* Report Tab Styles */
-.report-header {
+/* Report Toolbar */
+.report-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+/* Report Printable Area */
+.report-area {
+    background: #fff;
+    border: 1px solid #e8d5cb;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 900px;
+}
+
+/* Report Brand Header */
+.report-brand {
+    text-align: center;
+    border-bottom: 2px solid #452829;
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+}
+.report-hotel-name {
+    font-family: 'EB Garamond', serif;
+    font-size: 2rem;
+    color: #452829;
+    margin: 0 0 4px 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.report-subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #5a3a3a;
+    margin: 0 0 6px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.report-meta {
+    font-size: 0.8rem;
+    color: #999;
+    margin: 0;
+}
+
+/* Summary Cards */
+.report-summary-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+.report-summary-card {
+    background: #fdf5f0;
+    border: 1px solid #e8d5cb;
+    border-radius: 8px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.report-summary-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #8d6e63;
+}
+.report-summary-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #452829;
+    font-family: 'EB Garamond', serif;
+}
+
+/* Report Table */
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 28px;
+    font-size: 0.92rem;
+}
+.report-table thead tr {
+    background-color: #452829;
+    color: #fff;
+}
+.report-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.report-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0e6e0;
+    color: #3e2723;
+}
+.report-table tbody tr:nth-child(even) {
+    background-color: #fdf5f0;
+}
+.report-total-row td {
+    background-color: #f3e8df;
+    font-weight: 700;
+    color: #452829;
+    border-top: 2px solid #452829;
+}
+
+/* Month Block */
+.report-month-block {
+    margin-bottom: 40px;
+    border: 1.5px solid #d9c4bb;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(69,40,41,0.07);
+}
+.report-month-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    background-color: #452829;
+    padding: 14px 20px;
+    margin-bottom: 0;
+}
+.report-month-title {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.report-month-summary {
+    font-size: 0.85rem;
+    color: #f3e8df;
+    font-weight: 600;
+}
+.report-month-block .report-table {
+    border-radius: 0;
+    margin-bottom: 0;
+}
+.report-month-block .report-table thead tr {
+    background-color: #f3e8df;
+}
+.report-month-block .report-table thead th {
+    color: #452829;
+}
+
+/* Grand Total Table */
+.report-grand-total-table {
+    margin-top: 8px;
+}
+.report-grand-row td {
+    background-color: #452829;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 14px 16px;
+}
+
+/* Download Stamp */
+.download-stamp {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    padding: 10px 16px;
+    background-color: #fdf5f0;
+    border: 1px dashed #c9a99a;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    color: #452829;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Report Footer Note */
+.report-footer-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #bbb;
+    border-top: 1px solid #f0e6e0;
+    padding-top: 16px;
+    margin: 0;
 }

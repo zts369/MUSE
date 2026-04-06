@@ -346,6 +346,76 @@ body {
     color: #999;
 }
 
+/* Log Controls Row */
+.log-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+.log-filter-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.log-filter-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid #ccc;
+    background: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #555;
+    transition: all 0.15s;
+}
+.log-filter-btn.active,
+.log-filter-btn:hover { border-color: var(--burgundy); color: var(--burgundy); background: #fdf5f0; }
+.log-filter-btn.pill-reserved.active  { background: #e8f5e9; border-color: #2e7d32; color: #2e7d32; }
+.log-filter-btn.pill-checkin.active   { background: #e3f2fd; border-color: #1565c0; color: #1565c0; }
+.log-filter-btn.pill-checkout.active  { background: #f3e5f5; border-color: #6a1b9a; color: #6a1b9a; }
+.log-filter-btn.pill-cancelled.active { background: #fce4ec; border-color: #b71c1c; color: #b71c1c; }
+
+/* Stay dates column */
+.stay-dates { font-size: 0.85rem; color: #555; white-space: nowrap; }
+.stay-arrow { color: #bbb; margin: 0 4px; }
+
+/* Booking ID dim */
+.booking-id-dim { color: #aaa; font-size: 0.7rem; font-family: monospace; }
+
+/* Log Action Badges */
+.log-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.badge-reserved  { background-color: #e8f5e9; color: #2e7d32; }
+.badge-checkin   { background-color: #e3f2fd; color: #1565c0; }
+.badge-checkout  { background-color: #f3e5f5; color: #6a1b9a; }
+.badge-cancelled { background-color: #fce4ec; color: #b71c1c; }
+
+/* Booking Status Save Button */
+.save-status-btn {
+    display: block;
+    margin-top: 8px;
+    padding: 6px 16px;
+    background-color: var(--burgundy);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+.save-status-btn:hover { opacity: 0.85; }
+.save-status-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
 /* Search Bar */
 .search-bar-wrapper {
     margin-bottom: 16px;

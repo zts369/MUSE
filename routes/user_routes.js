@@ -2,6 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
+const Room = require('../models/rooms');
+const Log  = require('../models/logs');
 const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
@@ -112,14 +114,80 @@ router.get('/logout', (req, res) => {
 // 1. ADMIN VIEW
 router.get('/admin/reports', async (req, res) => {
     try {
-        const employees = await User.find({ type: 'admin' }).lean();
-        res.render('admin/adminReports', { 
-            user: req.session.user, 
-            title: 'Admin | Reports' 
+        const [guests, rooms] = await Promise.all([
+            User.find({ type: 'guest', 'bookings.0': { $exists: true } }).lean(),
+            Room.find().lean()
+        ]);
+
+        // Build a roomId -> roomName lookup
+        const roomNameMap = {};
+        rooms.forEach(r => { roomNameMap[r.id] = r.roomName; });
+
+        // Aggregate by month, then by room within each month
+        const monthMap = {};
+        let grandTotal = 0;
+        let grandBookings = 0;
+
+        guests.forEach(guest => {
+            (guest.bookings || []).forEach(booking => {
+                if (!booking.in) return;
+                const date = new Date(booking.in);
+                const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+                const label = date.toLocaleString('en-PH', { month: 'long', year: 'numeric' });
+                const revenue = booking.price || 0;
+                const roomId = booking.roomId || 'unknown';
+
+                if (!monthMap[key]) monthMap[key] = { label, bookings: 0, revenue: 0, rooms: {} };
+
+                monthMap[key].bookings += 1;
+                monthMap[key].revenue += revenue;
+
+                if (!monthMap[key].rooms[roomId]) {
+                    monthMap[key].rooms[roomId] = {
+                        roomName: roomNameMap[roomId] || roomId,
+                        bookings: 0,
+                        revenue: 0
+                    };
+                }
+                monthMap[key].rooms[roomId].bookings += 1;
+                monthMap[key].rooms[roomId].revenue += revenue;
+
+                grandTotal += revenue;
+                grandBookings += 1;
+            });
+        });
+
+        const fmt = n => n.toLocaleString('en-PH', { minimumFractionDigits: 2 });
+
+        const monthlyData = Object.keys(monthMap).sort().map(key => {
+            const m = monthMap[key];
+            const roomRows = Object.values(m.rooms)
+                .sort((a, b) => b.revenue - a.revenue)
+                .map(r => ({
+                    roomName: r.roomName,
+                    bookings: r.bookings,
+                    revenue: fmt(r.revenue)
+                }));
+
+            return {
+                month: m.label,
+                bookings: m.bookings,
+                revenue: fmt(m.revenue),
+                rooms: roomRows
+            };
+        });
+
+        res.render('admin/adminReports', {
+            user: req.session.user,
+            title: 'Admin | Reports',
+            monthlyData,
+            grandTotal: fmt(grandTotal),
+            grandBookings,
+            generatedDate: new Date().toLocaleString('en-PH', { dateStyle: 'long', timeStyle: 'short' })
         });
     } catch (err) {
         console.error(err);
-        res.status(500).send("Error fetching employee directory");
+        res.status(500).send("Error generating report");
     }
 });
 
@@ -218,6 +286,43 @@ router.get('/staff/guest-bookings/:id', async (req, res) => {
     } catch (err) {
         console.error("Route Error:", err);
         res.status(500).send("Error fetching guest details");
+    }
+});
+
+router.post('/staff/update-booking-status', async (req, res) => {
+    try {
+        const { guestId, bookingId, status } = req.body;
+        const validStatuses = ['Reserved', 'Checked-In', 'Checked-Out', 'Cancelled'];
+
+        if (!validStatuses.includes(status)) {
+            return res.status(400).json({ success: false, message: 'Invalid status.' });
+        }
+
+        // 1. Update the booking status in the user document
+        const guest = await User.findOneAndUpdate(
+            { id: guestId, 'bookings.id': bookingId },
+            { $set: { 'bookings.$.status': status } },
+            { new: true }
+        ).lean();
+
+        if (!guest) {
+            return res.status(404).json({ success: false, message: 'Booking not found.' });
+        }
+
+        // 2. Find the booking to get its roomId
+        const booking = guest.bookings.find(b => b.id === bookingId);
+
+        // 3. Write a log entry
+        await new Log({
+            guestId,
+            roomId: booking ? booking.roomId : 'unknown',
+            action: status
+        }).save();
+
+        res.json({ success: true });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Server error.' });
     }
 });
 

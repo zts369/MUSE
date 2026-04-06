@@ -33,13 +33,16 @@
                         
                         <div class="status-control">
                             <label class="status-label" style="display: block; font-size: 12px; margin-bottom: 5px;">Status</label>
-                            {{!-- Using the toLowerCase helper we registered --}}
-                            <select class="status-select status-{{toLowerCase this.status}}">
+                            <select class="status-select status-{{toLowerCase this.status}}" id="select-{{this.id}}" onchange="markDirty('{{this.id}}')">
                                 <option value="Reserved" {{#if (eq this.status "Reserved")}}selected{{/if}}>Reserved</option>
                                 <option value="Checked-In" {{#if (eq this.status "Checked-In")}}selected{{/if}}>Checked-In</option>
                                 <option value="Checked-Out" {{#if (eq this.status "Checked-Out")}}selected{{/if}}>Checked-Out</option>
                                 <option value="Cancelled" {{#if (eq this.status "Cancelled")}}selected{{/if}}>Cancelled</option>
                             </select>
+                            <button class="save-status-btn" id="btn-{{this.id}}" onclick="saveStatus('{{../guest.id}}', '{{this.id}}')" style="display:none;">
+                                Save
+                            </button>
+                            <span class="status-saved-msg" id="saved-{{this.id}}" style="display:none; color:#2e7d32; font-size:0.78rem; font-weight:600;">✓ Saved</span>
                         </div>
 
                     </div>
@@ -51,3 +54,46 @@
         </div>
     </div>
 </main>
+
+<script>
+    function markDirty(bookingId) {
+        document.getElementById('btn-' + bookingId).style.display = 'inline-block';
+        document.getElementById('saved-' + bookingId).style.display = 'none';
+
+        const select = document.getElementById('select-' + bookingId);
+        select.className = 'status-select status-' + select.value.toLowerCase().replace(/[-\s]/g, '');
+    }
+
+    async function saveStatus(guestId, bookingId) {
+        const select = document.getElementById('select-' + bookingId);
+        const newStatus = select.value;
+        const btn = document.getElementById('btn-' + bookingId);
+
+        btn.disabled = true;
+        btn.textContent = 'Saving...';
+
+        try {
+            const res = await fetch(`/staff/update-booking-status`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ guestId, bookingId, status: newStatus })
+            });
+
+            const data = await res.json();
+            if (data.success) {
+                btn.style.display = 'none';
+                btn.disabled = false;
+                btn.textContent = 'Save';
+                document.getElementById('saved-' + bookingId).style.display = 'inline';
+            } else {
+                alert('Failed to update: ' + (data.message || 'Unknown error'));
+                btn.disabled = false;
+                btn.textContent = 'Save';
+            }
+        } catch (err) {
+            alert('Network error. Please try again.');
+            btn.disabled = false;
+            btn.textContent = 'Save';
+        }
+    }
+</script>

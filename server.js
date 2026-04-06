@@ -53,7 +53,9 @@ const hbs = exphbs.create({
       return price.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     },
     eq: (a, b) => a === b,
-    or: (a, b) => a || b
+    or: (a, b) => a || b,
+    gt: (a, b) => a > b,
+    currentYear: () => new Date().getFullYear()
   }
 });
 

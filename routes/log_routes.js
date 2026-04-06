@@ -1,38 +1,60 @@
 const express = require('express');
 const router = express.Router();
-const Log = require('../models/logs');
-const User = require('../models/users'); // Import your User model
-const path = require('path');
-const fs = require('fs');
+const Log  = require('../models/logs');
+const User = require('../models/users');
+const Room = require('../models/rooms');
 
 router.get('/staff/history', async (req, res) => {
     try {
-        // 1. Get all logs from MongoDB
-        const logs = await Log.find().sort({ timestamp: -1 }).lean();
+        const [logs, users, rooms] = await Promise.all([
+            Log.find().sort({ timestamp: -1 }).lean(),
+            User.find().lean(),
+            Room.find().lean()
+        ]);
 
-        // 2. Load your JSON data for rooms
-        const roomsPath = path.join(__dirname, '../data/rooms.json');
-        const roomsData = JSON.parse(fs.readFileSync(roomsPath, 'utf8'));
+        // Build lookup maps
+        const userMap = {};
+        users.forEach(u => { userMap[u.id] = { name: `${u.firstName} ${u.lastName}`, bookings: u.bookings || [] }; });
 
-        // 3. Merge the data
-        const detailedLogs = await Promise.all(logs.map(async (log) => {
-            const guest = await User.findOne({ id: log.guestId }).lean();
-            const room = roomsData.find(r => r.id === log.roomId);
-        
+        const roomMap = {};
+        rooms.forEach(r => { roomMap[r.id] = r.roomName; });
+
+        const fmtDate = d => d ? new Date(d).toLocaleDateString('en-PH', { month: 'short', day: 'numeric', year: 'numeric' }) : 'N/A';
+
+        const detailedLogs = logs.map(log => {
+            const guest = userMap[log.guestId] || {};
+
+            // Find the booking that matches this log's roomId, closest to the log timestamp
+            const bookings = (guest.bookings || []).filter(b => b.roomId === log.roomId);
+            let booking = null;
+            if (bookings.length === 1) {
+                booking = bookings[0];
+            } else if (bookings.length > 1) {
+                // Pick the booking whose createdAt is closest to the log timestamp
+                const logTime = new Date(log.timestamp).getTime();
+                booking = bookings.reduce((best, b) => {
+                    const diff = Math.abs(new Date(b.createdAt).getTime() - logTime);
+                    const bestDiff = Math.abs(new Date(best.createdAt).getTime() - logTime);
+                    return diff < bestDiff ? b : best;
+                });
+            }
+
             return {
                 ...log,
-                guestName: guest ? `${guest.firstName} ${guest.lastName}` : "Unknown Guest",
-                roomName: room ? room.roomName : "Unknown Room",
-                // Format these nicely for the history table
-                displayTime: new Date(log.timestamp).toLocaleDateString('en-PH', { month: 'short', day: 'numeric', year: 'numeric' }),
-                displayClock: new Date(log.timestamp).toLocaleTimeString('en-PH', { hour: '2-digit', minute: '2-digit' })
+                guestName:    guest.name || log.guestId,
+                roomName:     roomMap[log.roomId] || log.roomId,
+                displayTime:  new Date(log.timestamp).toLocaleDateString('en-PH', { month: 'short', day: 'numeric', year: 'numeric' }),
+                displayClock: new Date(log.timestamp).toLocaleTimeString('en-PH', { hour: '2-digit', minute: '2-digit' }),
+                checkIn:      booking ? fmtDate(booking.in)  : 'N/A',
+                checkOut:     booking ? fmtDate(booking.out) : 'N/A',
+                bookingId:    booking ? booking.id : ''
             };
-        }));
-        
-        res.render('staff/frontdeskHistory', { 
+        });
+
+        res.render('staff/frontdeskHistory', {
             logs: detailedLogs,
             user: req.session.user,
-            title: 'Front Desk | View History Logs'
+            title: 'Front Desk | History Logs'
         });
     } catch (err) {
         console.error(err);

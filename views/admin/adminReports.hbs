@@ -4,78 +4,146 @@
         <div class="staff-info">Admin Access</div>
     </header>
 
-    <div class="fd-table-card" id="report-container">
-        <div class="report-header">
-            <h3 class="header-font" style="margin: 0;">Monthly Revenue Report</h3>
-            <button class="action-btn edit-btn" onclick="generatePDF()" data-html2canvas-ignore="true">Export PDF</button>
+    <div class="report-toolbar" data-html2canvas-ignore>
+        <button class="add-btn" onclick="exportPDF()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-right:6px;">
+                <path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 10v2h6v-2h-6zm-6 0v2h4v-2H5z"/>
+            </svg>
+            Export PDF
+        </button>
+    </div>
+
+    <!-- Printable Report Area -->
+    <div id="report-area" class="report-area">
+
+        <!-- Report Brand Header -->
+        <div class="report-brand">
+            <h1 class="report-hotel-name">Hotel Transylvania</h1>
+            <p class="report-subtitle">Monthly Revenue &amp; Room Booking Report</p>
+            <p class="report-meta">Generated: {{generatedDate}}</p>
         </div>
-        
-        <table class="fd-data-table">
-            <thead>
-                <tr>
-                    <th>Month</th>
-                    <th>Total Bookings</th>
-                    <th>Occupancy Rate</th>
-                    <th>Total Revenue</th>
+
+        <!-- Summary Cards -->
+        <div class="report-summary-row">
+            <div class="report-summary-card">
+                <span class="report-summary-label">Total Bookings</span>
+                <span class="report-summary-value">{{grandBookings}}</span>
+            </div>
+            <div class="report-summary-card">
+                <span class="report-summary-label">Total Revenue</span>
+                <span class="report-summary-value">₱{{grandTotal}}</span>
+            </div>
+            <div class="report-summary-card">
+                <span class="report-summary-label">Months Tracked</span>
+                <span class="report-summary-value">{{monthlyData.length}}</span>
+            </div>
+        </div>
+
+        {{#each monthlyData}}
+        <!-- Month Section -->
+        <div class="report-month-block">
+            <div class="report-month-header">
+                <span class="report-month-title">{{this.month}}</span>
+                <span class="report-month-summary">{{this.bookings}} bookings &nbsp;|&nbsp; ₱{{this.revenue}}</span>
+            </div>
+
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>Room</th>
+                        <th style="text-align:center;">Bookings</th>
+                        <th style="text-align:right;">Revenue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each this.rooms}}
+                    <tr>
+                        <td>{{this.roomName}}</td>
+                        <td style="text-align:center;">{{this.bookings}}</td>
+                        <td style="text-align:right;">₱{{this.revenue}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+                <tfoot>
+                    <tr class="report-total-row">
+                        <td>Month Total</td>
+                        <td style="text-align:center;">{{this.bookings}}</td>
+                        <td style="text-align:right;">₱{{this.revenue}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        {{else}}
+        <p style="text-align:center; color:#888; padding: 32px 0;">No booking data available.</p>
+        {{/each}}
+
+        <!-- Grand Total Row -->
+        {{#if monthlyData.length}}
+        <table class="report-table report-grand-total-table">
+            <tfoot>
+                <tr class="report-grand-row">
+                    <td>Grand Total</td>
+                    <td style="text-align:center;">{{grandBookings}}</td>
+                    <td style="text-align:right;">₱{{grandTotal}}</td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>January 2026</td>
-                    <td>45</td>
-                    <td>75%</td>
-                    <td>₱150,000</td>
-                </tr>
-                <tr>
-                    <td>February 2026</td>
-                    <td>38</td>
-                    <td>65%</td>
-                    <td>₱125,400</td>
-                </tr>
-                <tr>
-                    <td>March 2026</td>
-                    <td>52</td>
-                    <td>85%</td>
-                    <td>₱180,200</td>
-                </tr>
-                <tr>
-                    <td>April 2026</td>
-                    <td>48</td>
-                    <td>78%</td>
-                    <td>₱165,000</td>
-                </tr>
-                <tr>
-                    <td>May 2026</td>
-                    <td>55</td>
-                    <td>88%</td>
-                    <td>₱195,000</td>
-                </tr>
-                <tr>
-                    <td>June 2026</td>
-                    <td>60</td>
-                    <td>92%</td>
-                    <td>₱210,000</td>
-                </tr>
-                <tr style="background-color: #f9f9f9; font-weight: bold;">
-                    <td>Total (YTD)</td>
-                    <td>298</td>
-                    <td>81% (Avg)</td>
-                    <td>₱1,025,600</td>
-                </tr>
-            </tbody>
+            </tfoot>
         </table>
+        {{/if}}
+
+        <p class="report-footer-note">
+            This report was automatically generated from live booking data. &copy; Hotel Transylvania {{currentYear}}
+        </p>
+
+        <!-- Download stamp — hidden until export -->
+        <div id="download-stamp" class="download-stamp" style="display:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="#452829" style="margin-right:6px; flex-shrink:0;"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 14.93V17a1 1 0 0 1-2 0v-.07A8 8 0 0 1 4.07 9h.02A1 1 0 1 1 6 9a6 6 0 0 0 5 5.92zm0-4.26V7a1 1 0 0 1 2 0v5.67a6 6 0 0 0 3.93-5.6A1 1 0 1 1 21 7a8 8 0 0 1-8 7.67z"/></svg>
+            <span id="stamp-text"></span>
+        </div>
     </div>
 </main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
-    function generatePDF() {
-        const element = document.getElementById('report-container');
+    function generateCode() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let code = '';
+        for (let i = 0; i < 8; i++) code += chars.charAt(Math.floor(Math.random() * chars.length));
+        return code;
+    }
+
+    function exportPDF() {
+        const now = new Date();
+        const code = generateCode();
+
+        // Build timestamp string
+        const timestamp = now.toLocaleString('en-PH', {
+            year: 'numeric', month: 'long', day: 'numeric',
+            hour: '2-digit', minute: '2-digit', second: '2-digit',
+            hour12: true
+        });
+
+        // Show the stamp inside the PDF
+        const stamp = document.getElementById('download-stamp');
+        document.getElementById('stamp-text').textContent =
+            `Downloaded on ${timestamp}  •  Report Code: RPT-${code}`;
+        stamp.style.display = 'flex';
+
+        // Build filename with date + code
+        const datePart = now.toISOString().slice(0, 10); // YYYY-MM-DD
+        const filename = `HotelTransylvania_Report_${datePart}_RPT-${code}.pdf`;
+
+        const el = document.getElementById('report-area');
         const opt = {
-            margin:       0.5,
-            filename:     'Monthly_Revenue_Report.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
-            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            margin:      [0.5, 0.5, 0.5, 0.5],
+            filename,
+            image:       { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true },
+            jsPDF:       { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
-        html2pdf().set(opt).from(element).save();
+
+        html2pdf().set(opt).from(el).save().then(() => {
+            // Hide stamp again after export so the page looks clean
+            stamp.style.display = 'none';
+        });
     }
 </script>
